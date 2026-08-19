@@ -8,6 +8,8 @@
  *
  * @author Ale
  */
+import java.util.*;
+
 public class Obra {
     private String id;
     private String nombre;
@@ -16,9 +18,6 @@ public class Obra {
     private int anio;
     private int precio; 
     
-    public static void main (String args[]){
-        System.out.printl("hola funciono jaja");
-    }
     //Constructor 
     public Obra(){
         id= "000000";
@@ -37,11 +36,18 @@ public class Obra {
         this.estado= estado; 
         this.precio= precio;
     }
-    //Métodos GET
+    //Metodos GET
     public String getId(){ return id }
     public String getNombre(){ return nombre }
     public String getAutor(){ return autor }
     public String getEstado(){ return estado }
     public int getAnio(){ return anio }
     public int getPrecio(){ return precio }
+    //Metodos SET
+    public void setId(String id){ this.id= id }
+    public void setNombre(String nombre){ this.nombre= nombre }
+    public void setAutor(String autor){ this.autor= autor }
+    public void setEstado(String estado){ this.estado= estado }
+    public void setAnio(int anio){ this.anio= anio }
+    public void setPrecio(int precio){ this.precio= precio }
 }
