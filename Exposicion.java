@@ -31,8 +31,7 @@ public class Exposicion {
         this.fechaInicio= fechaInicio;
         this.fechaTermino= fechaTermino;
         //Se añade la primera obra 
-        private Obra primera= obra;
-        this.obras.add(primera);
+        this.obras.add(obra);
     }
     //Metodos GET - menos lista de obras
     public String getId(){ return id }
