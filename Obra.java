@@ -12,25 +12,16 @@ import java.util.*;
 
 public class Obra {
     private String id;
-    private String nombre;
-    private Artista autor;
+    private String titulo;
+    private Artista artista;
     private String estado; 
     private int anio;
     private int precio; 
-    
     //Constructor 
-    public Obra(){
-        id= "000000";
-        nombre= "Sin Nombre";
-        artista= null;
-        anio= 0;
-        estado= "Sin Estado"; 
-        precio= 0;
-    }
-    public Obra(String id, String nombre, Artista artista, String estado, int anio, 
-                int precio){
+    public Obra(String id, String titulo, Artista artista, String estado, 
+                int anio, int precio){
         this.id= id;
-        this.nombre= nombre;
+        this.titulo= titulo;
         this.artista= artista;
         this.anio= anio;
         this.estado= estado; 
@@ -38,16 +29,39 @@ public class Obra {
     }
     //Metodos GET
     public String getId(){ return id }
-    public String getNombre(){ return nombre }
+    public String getTitulo(){ return titulo }
     public Artista getArtista(){ return artista }
     public String getEstado(){ return estado }
     public int getAnio(){ return anio }
     public int getPrecio(){ return precio }
     //Metodos SET
     public void setId(String id){ this.id= id }
-    public void setNombre(String nombre){ this.nombre= nombre }
-    public void setAutor(Artista artista){ this.artista= artista }
+    public void setTitulo(String titulo){ this.titulo= titulo }
+    public void setArtista(Artista artista){ this.artista= artista }
     public void setEstado(String estado){ this.estado= estado }
-    public void setAnio(int anio){ this.anio= anio }
-    public void setPrecio(int precio){ this.precio= precio }
+    public void setAnio(int anio){ 
+        if (anio < 0){
+            System.out.printl("El año ingresado no es válido, inténtelo de nuevo.");
+            return;
+        }
+        this.anio= anio;
+    }
+    public void setPrecio(int precio){ 
+        if (precio < 0){
+            System.out.printl("El precio ingresado no es válido, inténtelo de nuevo.");
+            return;
+        }
+        this.precio= precio;
+    }
+    //Otros Metodos 
+    //Mostrar Atributos de la obra
+    public void mostrarAtributos(){
+        System.out.printl("= ATRIBUTOS DE LA OBRA =");
+        System.out.printl("ID: " + id);
+        System.out.printl("TITULO: " + titulo);
+        System.out.printl("ARTISTA: " + artista.getNombre);
+        System.out.printl("ESTADO: " + estado);
+        System.out.printl("AÑO: " + anio);
+        System.out.printl("PRECIO: " + precio);
+    }
 }
