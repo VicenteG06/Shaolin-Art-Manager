@@ -36,7 +36,16 @@ public class Venta {
     public int getPrecio(){return precio}
     //Metodos set
     public void setFechaVenta(LocalDate fechaVenta){ this.fechaVenta = fechaVenta }
+    public void setFechaVenta(String fechaVenta){ 
+        this.fechaVenta = LocalDate.parse(fechaVenta);
+    }
     public void setCliente(Cliente cliente){ this.cliente = cliente }
     public void setObraVendida(Obra obraVendida){ this.obraVendida = obraVendida }
-    public void setPrecio(int precio){ this.precio = precio }
+    public void setPrecio(int precio){ 
+        if (precio < 0){
+            System.out.printl("El precio ingresado no es válido, inténtelo de nuevo.");
+            return;
+        }
+        this.precio= precio;
+    }
 }

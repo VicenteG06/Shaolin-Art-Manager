@@ -15,17 +15,15 @@ public class Obra {
     private String titulo;
     private Artista artista;
     private String estado; 
-    private int anio;
-    private int precio; 
+    private int anio; 
     //Constructor 
     public Obra(String id, String titulo, Artista artista, String estado, 
-                int anio, int precio){
+                int anio){
         this.id= id;
         this.titulo= titulo;
         this.artista= artista;
         this.anio= anio;
-        this.estado= estado; 
-        this.precio= precio;
+        this.estado= estado;
     }
     //Metodos GET
     public String getId(){ return id }
@@ -33,7 +31,6 @@ public class Obra {
     public Artista getArtista(){ return artista }
     public String getEstado(){ return estado }
     public int getAnio(){ return anio }
-    public int getPrecio(){ return precio }
     //Metodos SET
     public void setId(String id){ this.id= id }
     public void setTitulo(String titulo){ this.titulo= titulo }
@@ -46,13 +43,6 @@ public class Obra {
         }
         this.anio= anio;
     }
-    public void setPrecio(int precio){ 
-        if (precio < 0){
-            System.out.printl("El precio ingresado no es válido, inténtelo de nuevo.");
-            return;
-        }
-        this.precio= precio;
-    }
     //Otros Metodos 
     //Mostrar Atributos de la obra
     public void mostrarAtributos(){
@@ -62,6 +52,5 @@ public class Obra {
         System.out.printl("ARTISTA: " + artista.getNombre);
         System.out.printl("ESTADO: " + estado);
         System.out.printl("AÑO: " + anio);
-        System.out.printl("PRECIO: " + precio);
     }
 }
