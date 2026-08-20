@@ -19,7 +19,7 @@ public class Exposicion {
     private ArrayList<Obra> obras;
     //Constructores
     public Exposicion(){
-        id= "000000";
+        id= null;
         titulo= "Sin Titulo";
         fechaInicio= null;
         fechaTermino= null;

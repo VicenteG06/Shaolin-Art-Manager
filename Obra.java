@@ -22,8 +22,8 @@ public class Obra {
         this.id= id;
         this.titulo= titulo;
         this.artista= artista;
-        this.anio= anio;
         this.estado= estado;
+        this.anio= anio;
     }
     //Metodos GET
     public String getId(){ return id }
@@ -38,7 +38,7 @@ public class Obra {
     public void setEstado(String estado){ this.estado= estado }
     public void setAnio(int anio){ 
         if (anio < 0){
-            System.out.printl("El año ingresado no es válido, inténtelo de nuevo.");
+            System.out.println("El año ingresado no es válido, inténtelo de nuevo.");
             return;
         }
         this.anio= anio;
@@ -46,11 +46,11 @@ public class Obra {
     //Otros Metodos 
     //Mostrar Atributos de la obra
     public void mostrarAtributos(){
-        System.out.printl("= ATRIBUTOS DE LA OBRA =");
-        System.out.printl("ID: " + id);
-        System.out.printl("TITULO: " + titulo);
-        System.out.printl("ARTISTA: " + artista.getNombre);
-        System.out.printl("ESTADO: " + estado);
-        System.out.printl("AÑO: " + anio);
+        System.out.println("= ATRIBUTOS DE LA OBRA =");
+        System.out.println("ID: " + id);
+        System.out.println("TITULO: " + titulo);
+        System.out.println("ARTISTA: " + artista.getNombre);
+        System.out.println("ESTADO: " + estado);
+        System.out.println("AÑO: " + anio);
     }
 }
