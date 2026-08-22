@@ -1,0 +1,222 @@
+id,titulo,artista,ano_creacion,estilo,tipo_obra,ubicacion_actual,precio_estimado_usd,estado
+1,Mona Lisa,Leonardo da Vinci,1503,Renacimiento,Pintura,"Museo del Louvre, París",860000000,Disponible
+2,La noche estrellada,Vincent van Gogh,1889,Postimpresionismo,Pintura,"MoMA, Nueva York",150000000,Disponible
+3,El grito,Edvard Munch,1893,Expresionismo,Pintura,"Museo Nacional de Noruega, Oslo",120000000,Disponible
+4,La joven de la perla,Johannes Vermeer,1665,Barroco,Pintura,"Mauritshuis, La Haya",75000000,Disponible
+5,Guernica,Pablo Picasso,1937,Cubismo,Pintura,"Museo Reina Sofía, Madrid",200000000,Disponible
+6,Las meninas,Diego Velázquez,1656,Barroco,Pintura,"Museo del Prado, Madrid",150000000,Disponible
+7,La creación de Adán,Miguel Ángel,1512,Renacimiento,Pintura (Fresco),"Capilla Sixtina, Ciudad del Vaticano",300000000,Disponible
+8,El nacimiento de Venus,Sandro Botticelli,1486,Renacimiento,Pintura,"Galería Uffizi, Florencia",150000000,Disponible
+9,La última cena,Leonardo da Vinci,1498,Renacimiento,Pintura (Fresco),"Santa Maria delle Grazie, Milán",400000000,Disponible
+10,La persistencia de la memoria,Salvador Dalí,1931,Surrealismo,Pintura,"MoMA, Nueva York",100000000,Disponible
+11,David,Miguel Ángel,1504,Renacimiento,Escultura,"Galería de la Academia, Florencia",200000000,Disponible
+12,El pensador,Auguste Rodin,1904,Impresionismo / Escultura Moderna,Escultura,"Museo Rodin, París",30000000,Disponible
+13,La ronda de noche,Rembrandt,1642,Barroco,Pintura,"Rijksmuseum, Ámsterdam",150000000,Disponible
+14,"Impresión, sol naciente",Claude Monet,1872,Impresionismo,Pintura,"Museo Marmottan Monet, París",90000000,Disponible
+15,La libertad guiando al pueblo,Eugène Delacroix,1830,Romanticismo,Pintura,"Museo del Louvre, París",120000000,Disponible
+16,El beso,Gustav Klimt,1908,Simbolismo / Art Nouveau,Pintura,"Galería Belvedere, Viena",180000000,Disponible
+17,La gran ola de Kanagawa,Katsushika Hokusai,1831,Ukiyo-e,Grabado,"Museo Metropolitano de Arte, Nueva York",5000000,Disponible
+18,American Gothic,Grant Wood,1930,Regionalismo,Pintura,Instituto de Arte de Chicago,80000000,Disponible
+19,Noche estrellada sobre el Ródano,Vincent van Gogh,1888,Postimpresionismo,Pintura,"Museo de Orsay, París",95000000,Disponible
+20,Los girasoles,Vincent van Gogh,1888,Postimpresionismo,Pintura,"National Gallery, Londres",100000000,Disponible
+21,La Venus de Milo,Alejandros de Antioquía,-100,Escultura Griega Helenística,Escultura,"Museo del Louvre, París",250000000,Disponible
+22,Victoria de Samotracia,Desconocido,-190,Escultura Griega Helenística,Escultura,"Museo del Louvre, París",200000000,Disponible
+23,El jardín de las delicias,El Bosco,1505,Renacimiento Nórdico,Pintura,"Museo del Prado, Madrid",180000000,Disponible
+24,La balsa de la Medusa,Théodore Géricault,1819,Romanticismo,Pintura,"Museo del Louvre, París",110000000,Disponible
+25,El caminante sobre el mar de nubes,Caspar David Friedrich,1818,Romanticismo,Pintura,Kunsthalle de Hamburgo,70000000,Disponible
+26,Nighthawks,Edward Hopper,1942,Realismo Americano,Pintura,Instituto de Arte de Chicago,90000000,Disponible
+27,Las señoritas de Avignon,Pablo Picasso,1907,Cubismo,Pintura,"MoMA, Nueva York",160000000,Disponible
+28,La escuela de Atenas,Rafael Sanzio,1511,Renacimiento,Pintura (Fresco),"Museos Vaticanos, Ciudad del Vaticano",250000000,Disponible
+29,El hijo del hombre,René Magritte,1964,Surrealismo,Pintura,Colección Privada,40000000,Disponible
+30,Nenúfares,Claude Monet,1916,Impresionismo,Pintura,"Museo de la Orangerie, París",80000000,Disponible
+31,Saturno devorando a su hijo,Francisco de Goya,1823,Romanticismo,Pintura,"Museo del Prado, Madrid",90000000,Disponible
+32,El 3 de mayo en Madrid,Francisco de Goya,1814,Romanticismo,Pintura,"Museo del Prado, Madrid",100000000,Disponible
+33,La metamorfosis de Narciso,Salvador Dalí,1937,Surrealismo,Pintura,"Tate Modern, Londres",45000000,Disponible
+34,"Composición en rojo, azul y amarillo",Piet Mondrian,1930,Neoplasticismo,Pintura,Kunsthaus Zürich,50000000,Disponible
+35,El coloso,Francisco de Goya,1812,Romanticismo,Pintura,"Museo del Prado, Madrid",60000000,Disponible
+36,La bacanal de los andrios,Tiziano,1526,Renacimiento,Pintura,"Museo del Prado, Madrid",75000000,Disponible
+37,Un domingo en la Grande Jatte,Georges Seurat,1886,Puntillismo,Pintura,Instituto de Arte de Chicago,130000000,Disponible
+38,Bailarina basculando,Edgar Degas,1879,Impresionismo,Pintura,"Museo de Orsay, París",40000000,Disponible
+39,Almuerzo sobre la hierba,Édouard Manet,1863,Impresionismo,Pintura,"Museo de Orsay, París",85000000,Disponible
+40,Olympia,Édouard Manet,1863,Impresionismo,Pintura,"Museo de Orsay, París",80000000,Disponible
+41,El bar del Folies-Bergère,Édouard Manet,1882,Impresionismo,Pintura,"Courtauld Gallery, Londres",70000000,Disponible
+42,La clase de danza,Edgar Degas,1874,Impresionismo,Pintura,"Museo de Orsay, París",50000000,Disponible
+43,Terraza de café por la noche,Vincent van Gogh,1888,Postimpresionismo,Pintura,"Museo Kröller-Müller, Otterlo",85000000,Disponible
+44,Dormitorio en Arlés,Vincent van Gogh,1888,Postimpresionismo,Pintura,"Museo van Gogh, Ámsterdam",90000000,Disponible
+45,Campo de trigo con cuervos,Vincent van Gogh,1890,Postimpresionismo,Pintura,"Museo van Gogh, Ámsterdam",95000000,Disponible
+46,Autorretrato con oreja vendada,Vincent van Gogh,1889,Postimpresionismo,Pintura,"Courtauld Gallery, Londres",80000000,Disponible
+47,Los comedores de patatas,Vincent van Gogh,1885,Postimpresionismo,Pintura,"Museo van Gogh, Ámsterdam",60000000,Disponible
+48,La catedral de Rouen,Claude Monet,1894,Impresionismo,Pintura,"Museo de Orsay, París",65000000,Disponible
+49,El puente de Argenteuil,Claude Monet,1874,Impresionismo,Pintura,"Museo de Orsay, París",55000000,Disponible
+50,La urraca,Claude Monet,1869,Impresionismo,Pintura,"Museo de Orsay, París",45000000,Disponible
+51,Campbell's Soup Cans,Andy Warhol,1962,Pop Art,Pintura,"MoMA, Nueva York",120000000,Disponible
+52,Marilyn Diptych,Andy Warhol,1962,Pop Art,Pintura,"Tate Modern, Londres",130000000,Disponible
+53,Whaam!,Roy Lichtenstein,1963,Pop Art,Pintura,"Tate Modern, Londres",60000000,Disponible
+54,Girl with Ball,Roy Lichtenstein,1961,Pop Art,Pintura,"MoMA, Nueva York",40000000,Disponible
+55,Untitled (1982),Jean-Michel Basquiat,1982,Neoexpresionismo,Pintura,Colección Privada,110000000,Disponible
+56,Boy and Dog in a Johnnypump,Jean-Michel Basquiat,1982,Neoexpresionismo,Pintura,Colección Privada,85000000,Disponible
+57,La traición de las imágenes,René Magritte,1929,Surrealismo,Pintura,"LACMA, Los Ángeles",60000000,Disponible
+58,Los amantes,René Magritte,1928,Surrealismo,Pintura,"MoMA, Nueva York",45000000,Disponible
+59,El nacimiento de las estrellas,Joan Miró,1925,Surrealismo,Pintura,"Fundación Joan Miró, Barcelona",35000000,Disponible
+60,El carnaval de Arlequín,Joan Miró,1925,Surrealismo,Pintura,"Albright-Knox Art Gallery, Búfalo",40000000,Disponible
+61,Autorretrato con collar de espinas,Frida Kahlo,1940,Surrealismo / Realismo,Pintura,"Harry Ransom Center, Austin",50000000,Disponible
+62,Las dos Fridas,Frida Kahlo,1939,Surrealismo / Realismo,Pintura,"Museo de Arte Moderno, Ciudad de México",60000000,Disponible
+63,La columna rota,Frida Kahlo,1944,Surrealismo / Realismo,Pintura,"Museo Dolores Olmedo, Ciudad de México",45000000,Disponible
+64,Diego y yo,Frida Kahlo,1949,Surrealismo / Realismo,Pintura,Colección Eduardo F. Costantini,35000000,Disponible
+65,El cargador de flores,Diego Rivera,1935,Muralismo / Realismo,Pintura,"SFMOMA, San Francisco",30000000,Disponible
+66,Sueño de una tarde dominical en la Alameda Central,Diego Rivera,1947,Muralismo,Pintura (Mural),"Museo Mural Diego Rivera, Ciudad de México",70000000,Disponible
+67,La Anunciación,Fra Angelico,1426,Renacimiento,Pintura,"Museo del Prado, Madrid",80000000,Disponible
+68,La Asunción de la Virgen,Tiziano,1518,Renacimiento,Pintura,"Básilica de Santa María Gloriosa dei Frari, Venecia",90000000,Disponible
+69,El prendimiento de Cristo,Caravaggio,1602,Barroco,Pintura,"Galería Nacional de Irlanda, Dublín",85000000,Disponible
+70,Judith decapitando a Holofernes,Caravaggio,1599,Barroco,Pintura,"Gallerie Nazionali d'Arte Antica, Roma",95000000,Disponible
+71,La vocación de San Mateo,Caravaggio,1600,Barroco,Pintura,"Iglesia de San Luis de los Franceses, Roma",100000000,Disponible
+72,Cabeza de Medusa,Caravaggio,1597,Barroco,Pintura,"Galería Uffizi, Florencia",75000000,Disponible
+73,David con la cabeza de Goliat,Caravaggio,1610,Barroco,Pintura,"Galería Borghese, Roma",70000000,Disponible
+74,El bautismo de Cristo,Andrea del Verrocchio y Leonardo da Vinci,1475,Renacimiento,Pintura,"Galería Uffizi, Florencia",110000000,Disponible
+75,Anunciación,Leonardo da Vinci,1472,Renacimiento,Pintura,"Galería Uffizi, Florencia",120000000,Disponible
+76,La dama del armiño,Leonardo da Vinci,1490,Renacimiento,Pintura,"Museo Czartoryski, Cracovia",150000000,Disponible
+77,Salvator Mundi,Leonardo da Vinci,1500,Renacimiento,Pintura,Colección Privada,450000000,Disponible
+78,Ginevra de' Benci,Leonardo da Vinci,1478,Renacimiento,Pintura,"Galería Nacional de Arte, Washington D.C.",130000000,Disponible
+79,La Piedad,Miguel Ángel,1499,Renacimiento,Escultura,"Basílica de San Pedro, Ciudad del Vaticano",250000000,Disponible
+80,Moisés,Miguel Ángel,1515,Renacimiento,Escultura,"San Pietro in Vincoli, Roma",120000000,Disponible
+81,El Juicio Final,Miguel Ángel,1541,Renacimiento,Pintura (Fresco),"Capilla Sixtina, Ciudad del Vaticano",350000000,Disponible
+82,Los desposorios de la Virgen,Rafael Sanzio,1504,Renacimiento,Pintura,"Pinacoteca de Brera, Milán",85000000,Disponible
+83,La Transfiguración,Rafael Sanzio,1520,Renacimiento,Pintura,"Museos Vaticanos, Ciudad del Vaticano",110000000,Disponible
+84,Retrato de Balthasar Castiglione,Rafael Sanzio,1515,Renacimiento,Pintura,"Museo del Louvre, París",90000000,Disponible
+85,La madonna Sixtina,Rafael Sanzio,1512,Renacimiento,Pintura,"Gemäldegalerie Alte Meister, Dresde",120000000,Disponible
+86,El entierro del conde de Orgaz,El Greco,1588,Manierismo,Pintura,"Iglesia de Santo Tomé, Toledo",100000000,Disponible
+87,Vista de Toledo,El Greco,1600,Manierismo,Pintura,"Museo Metropolitano de Arte, Nueva York",60000000,Disponible
+88,El caballero de la mano en el pecho,El Greco,1580,Manierismo,Pintura,"Museo del Prado, Madrid",70000000,Disponible
+89,Las hilanderas,Diego Velázquez,1657,Barroco,Pintura,"Museo del Prado, Madrid",95000000,Disponible
+90,El triunfo de Baco,Diego Velázquez,1629,Barroco,Pintura,"Museo del Prado, Madrid",80000000,Disponible
+91,La rendición de Breda,Diego Velázquez,1635,Barroco,Pintura,"Museo del Prado, Madrid",110000000,Disponible
+92,Retrato del Papa Inocencio X,Diego Velázquez,1650,Barroco,Pintura,"Galería Doria Pamphilj, Roma",100000000,Disponible
+93,La Venus del espejo,Diego Velázquez,1651,Barroco,Pintura,"National Gallery, Londres",85000000,Disponible
+94,La lección de anatomía del Dr. Nicolaes Tulp,Rembrandt,1632,Barroco,Pintura,"Mauritshuis, La Haya",90000000,Disponible
+95,Autorretrato con dos círculos,Rembrandt,1665,Barroco,Pintura,"Kenwood House, Londres",70000000,Disponible
+96,El buey desollado,Rembrandt,1655,Barroco,Pintura,"Museo del Louvre, París",50000000,Disponible
+97,El lechero,Johannes Vermeer,1658,Barroco,Pintura,"Rijksmuseum, Ámsterdam",85000000,Disponible
+98,El arte de la pintura,Johannes Vermeer,1666,Barroco,Pintura,"Kunsthistorisches Museum, Viena",95000000,Disponible
+99,Vista de Delft,Johannes Vermeer,1661,Barroco,Pintura,"Mauritshuis, La Haya",90000000,Disponible
+100,La carta de amor,Johannes Vermeer,1669,Barroco,Pintura,"Rijksmuseum, Ámsterdam",60000000,Disponible
+101,El columpio,Jean-Honoré Fragonard,1767,Rococó,Pintura,"Wallace Collection, Londres",65000000,Disponible
+102,El juramento de los Horacios,Jacques-Louis David,1784,Neoclasicismo,Pintura,"Museo del Louvre, París",85000000,Disponible
+103,La muerte de Marat,Jacques-Louis David,1793,Neoclasicismo,Pintura,"Museos Reales de Bellas Artes de Bélgica, Bruselas",75000000,Disponible
+104,La coronación de Napoleón,Jacques-Louis David,1807,Neoclasicismo,Pintura,"Museo del Louvre, París",110000000,Disponible
+105,La maja desnuda,Francisco de Goya,1800,Romanticismo,Pintura,"Museo del Prado, Madrid",80000000,Disponible
+106,La maja vestida,Francisco de Goya,1805,Romanticismo,Pintura,"Museo del Prado, Madrid",75000000,Disponible
+107,"Lluvia, vapor y velocidad",J.M.W. Turner,1844,Romanticismo,Pintura,"National Gallery, Londres",70000000,Disponible
+108,El 'Temerario' remolcado a su último atraque,J.M.W. Turner,1839,Romanticismo,Pintura,"National Gallery, Londres",85000000,Disponible
+109,El carro de heno,John Constable,1821,Romanticismo,Pintura,"National Gallery, Londres",60000000,Disponible
+110,El taller del pintor,Gustave Courbet,1855,Realismo,Pintura,"Museo de Orsay, París",65000000,Disponible
+111,Entierro en Ornans,Gustave Courbet,1849,Realismo,Pintura,"Museo de Orsay, París",70000000,Disponible
+112,Las espigadoras,Jean-François Millet,1857,Realismo,Pintura,"Museo de Orsay, París",55000000,Disponible
+113,El Ángelus,Jean-François Millet,1859,Realismo,Pintura,"Museo de Orsay, París",60000000,Disponible
+114,Baile en el Moulin de la Galette,Pierre-Auguste Renoir,1876,Impresionismo,Pintura,"Museo de Orsay, París",120000000,Disponible
+115,El almuerzo de los remeros,Pierre-Auguste Renoir,1881,Impresionismo,Pintura,"The Phillips Collection, Washington D.C.",110000000,Disponible
+116,Las grandes bañistas,Paul Cézanne,1906,Postimpresionismo,Pintura,Museo de Arte de Filadelfia,100000000,Disponible
+117,Los jugadores de cartas,Paul Cézanne,1895,Postimpresionismo,Pintura,Colección Privada,250000000,Disponible
+118,La montaña Sainte-Victoire,Paul Cézanne,1904,Postimpresionismo,Pintura,Kunstmuseum Basel,70000000,Disponible
+119,Visión después del sermón,Paul Gauguin,1888,Postimpresionismo,Pintura,"Galería Nacional de Escocia, Edimburgo",50000000,Disponible
+120,¿De dónde venimos? ¿Quiénes somos? ¿Adónde vamos?,Paul Gauguin,1897,Postimpresionismo,Pintura,"Museo de Bellas Artes, Boston",95000000,Disponible
+121,En el Moulin Rouge,Henri de Toulouse-Lautrec,1895,Postimpresionismo,Pintura,Instituto de Arte de Chicago,45000000,Disponible
+122,La danza,Henri Matisse,1910,Fauvismo,Pintura,"Museo del Hermitage, San Petersburgo",130000000,Disponible
+123,La habitación roja,Henri Matisse,1908,Fauvismo,Pintura,"Museo del Hermitage, San Petersburgo",85000000,Disponible
+124,La alegría de vivir,Henri Matisse,1906,Fauvismo,Pintura,"Barnes Foundation, Filadelfia",90000000,Disponible
+125,Retrato de Madame Matisse (La raya verde),Henri Matisse,1905,Fauvismo,Pintura,"Statens Museum for Kunst, Copenhague",60000000,Disponible
+126,El retrato de Ambroise Vollard,Pablo Picasso,1910,Cubismo,Pintura,"Museo Pushkin, Moscú",75000000,Disponible
+127,Los tres músicos,Pablo Picasso,1921,Cubismo,Pintura,"MoMA, Nueva York",90000000,Disponible
+128,El viejo guitarrista ciego,Pablo Picasso,1904,Expresionismo / Período Azul,Pintura,Instituto de Arte de Chicago,100000000,Disponible
+129,La vida,Pablo Picasso,1903,Período Azul,Pintura,Museo de Arte de Cleveland,85000000,Disponible
+130,El sueño,Pablo Picasso,1932,Surrealismo / Cubismo,Pintura,Colección Privada,155000000,Disponible
+131,"Desnudo, hojas verdes y busto",Pablo Picasso,1932,Cubismo,Pintura,Colección Privada,106000000,Disponible
+132,Retrato de Dora Maar,Pablo Picasso,1937,Cubismo,Pintura,"Museo Picasso, París",95000000,Disponible
+133,Violín y paleta,Georges Braque,1909,Cubismo,Pintura,"Guggenheim Museum, Nueva York",40000000,Disponible
+134,Casas en L'Estaque,Georges Braque,1908,Cubismo,Pintura,Kunstmuseum Bern,35000000,Disponible
+135,Formas únicas de continuidad en el espacio,Umberto Boccioni,1913,Futurismo,Escultura,"MoMA, Nueva York",45000000,Disponible
+136,Dinamismo de un ciclista,Umberto Boccioni,1913,Futurismo,Pintura,"Peggy Guggenheim Collection, Venecia",30000000,Disponible
+137,Suprematismo negro,Kazimir Malévich,1915,Suprematismo,Pintura,"Galería Tretiakov, Moscú",60000000,Disponible
+138,Cuadrado negro,Kazimir Malévich,1915,Suprematismo,Pintura,"Galería Tretiakov, Moscú",80000000,Disponible
+139,Blanco sobre blanco,Kazimir Malévich,1918,Suprematismo,Pintura,"MoMA, Nueva York",50000000,Disponible
+140,Composición VII,Wassily Kandinsky,1913,Arte Abstracto,Pintura,"Galería Tretiakov, Moscú",85000000,Disponible
+141,"Amarillo, rojo, azul",Wassily Kandinsky,1925,Arte Abstracto,Pintura,"Centro Pompidou, París",70000000,Disponible
+142,Composición VIII,Wassily Kandinsky,1923,Arte Abstracto,Pintura,"Guggenheim Museum, Nueva York",75000000,Disponible
+143,Fuente,Marcel Duchamp,1917,Dadaísmo / Readymade,Escultura,"Tate Modern, Londres",50000000,Disponible
+144,L.H.O.O.Q.,Marcel Duchamp,1919,Dadaísmo,Pintura,"Centro Pompidou, París",20000000,Disponible
+145,Desnudo bajando una escalera No. 2,Marcel Duchamp,1912,Cubismo / Futurismo,Pintura,Museo de Arte de Filadelfia,65000000,Disponible
+146,La clave de los campos,René Magritte,1936,Surrealismo,Pintura,"Thyssen-Bornemisza, Madrid",35000000,Disponible
+147,Construcción blanda con judías hervidas,Salvador Dalí,1936,Surrealismo,Pintura,Museo de Arte de Filadelfia,55000000,Disponible
+148,El gran masturbador,Salvador Dalí,1929,Surrealismo,Pintura,"Museo Reina Sofía, Madrid",60000000,Disponible
+149,Sueño causado por el vuelo de una abeja,Salvador Dalí,1944,Surrealismo,Pintura,"Museo Thyssen-Bornemisza, Madrid",65000000,Disponible
+150,Cristo de San Juan de la Cruz,Salvador Dalí,1951,Surrealismo,Pintura,"Kelvingrove Art Gallery, Glasgow",50000000,Disponible
+151,Broadway Boogie Woogie,Piet Mondrian,1943,Neoplasticismo,Pintura,"MoMA, Nueva York",70000000,Disponible
+152,Número 1A (1948),Jackson Pollock,1948,Expresionismo Abstracto,Pintura,"MoMA, Nueva York",130000000,Disponible
+153,Autumn Rhythm (Number 30),Jackson Pollock,1950,Expresionismo Abstracto,Pintura,"Museo Metropolitano de Arte, Nueva York",140000000,Disponible
+154,Blue Poles,Jackson Pollock,1952,Expresionismo Abstracto,Pintura,"Galería Nacional de Australia, Canberra",120000000,Disponible
+155,No. 61 (Rust and Blue),Mark Rothko,1953,Expresionismo Abstracto,Pintura,"MOCA, Los Ángeles",80000000,Disponible
+156,"Orange, Red, Yellow",Mark Rothko,1961,Expresionismo Abstracto,Pintura,Colección Privada,86000000,Disponible
+157,Woman I,Willem de Kooning,1952,Expresionismo Abstracto,Pintura,"MoMA, Nueva York",90000000,Disponible
+158,Interchange,Willem de Kooning,1955,Expresionismo Abstracto,Pintura,Colección Privada,300000000,Disponible
+159,El hombre que camina I,Alberto Giacometti,1960,Expresionismo / Escultura Modern,Escultura,Colección Privada,104000000,Disponible
+160,El perro,Alberto Giacometti,1951,Escultura Moderna,Escultura,"MoMA, Nueva York",30000000,Disponible
+161,Grattacielo,Bernard Buffet,1959,Expresionismo,Pintura,Colección Privada,5000000,Disponible
+162,Retrato de Jeanne Hébuterne,Amedeo Modigliani,1919,Expresionismo,Pintura,"Metropolitan Museum of Art, Nueva York",60000000,Disponible
+163,Nu couché,Amedeo Modigliani,1917,Expresionismo,Pintura,Colección Privada,170000000,Disponible
+164,El violonchelista,Amedeo Modigliani,1909,Expresionismo,Pintura,Colección Privada,35000000,Disponible
+165,Avenida en Chantilly,Paul Cézanne,1888,Postimpresionismo,Pintura,"National Gallery, Londres",25000000,Disponible
+166,La habitación azul,Suzanne Valadon,1923,Postimpresionismo,Pintura,"Museo Nacional de Arte Moderno, París",15000000,Disponible
+167,El circo,Georges Seurat,1891,Puntillismo,Pintura,"Museo de Orsay, París",45000000,Disponible
+168,La torre Eiffel,Georges Seurat,1889,Puntillismo,Pintura,Fine Arts Museums of San Francisco,35000000,Disponible
+169,Nocturno en azul y oro,James McNeill Whistler,1875,Tonalismo,Pintura,"Tate Britain, Londres",40000000,Disponible
+170,Arrreglo en gris y negro No. 1 (Madre de Whistler),James McNeill Whistler,1871,Tonalismo,Pintura,"Museo de Orsay, París",75000000,Disponible
+171,Sinfonía en blanco No. 1,James McNeill Whistler,1862,Tonalismo,Pintura,"National Gallery of Art, Washington D.C.",30000000,Disponible
+172,La muerte de Sardanápolo,Eugène Delacroix,1827,Romanticismo,Pintura,"Museo del Louvre, París",60000000,Disponible
+173,Mujeres de Argel en su aposento,Eugène Delacroix,1834,Romanticismo,Pintura,"Museo del Louvre, París",55000000,Disponible
+174,La masacre de Quíos,Eugène Delacroix,1824,Romanticismo,Pintura,"Museo del Louvre, París",65000000,Disponible
+175,Ophelia,John Everett Millais,1852,Hermandad Prerrafaelita,Pintura,"Tate Britain, Londres",50000000,Disponible
+176,El despertar de la conciencia,William Holman Hunt,1853,Hermandad Prerrafaelita,Pintura,"Tate Britain, Londres",25000000,Disponible
+177,Proserpina,Dante Gabriel Rossetti,1874,Hermandad Prerrafaelita,Pintura,"Tate Britain, Londres",35000000,Disponible
+178,Beata Beatrix,Dante Gabriel Rossetti,1870,Hermandad Prerrafaelita,Pintura,"Tate Britain, Londres",30000000,Disponible
+179,La dama de Shalott,John William Waterhouse,1888,Neoclasicismo / Prerrafaelismo,Pintura,"Tate Britain, Londres",40000000,Disponible
+180,Hylas y las ninfas,John William Waterhouse,1896,Prerrafaelismo,Pintura,Manchester Art Gallery,30000000,Disponible
+181,El cazador en la nieve,Pieter Bruegel el Viejo,1565,Renacimiento Nórdico,Pintura,"Kunsthistorisches Museum, Viena",90000000,Disponible
+182,La torre de Babel,Pieter Bruegel el Viejo,1563,Renacimiento Nórdico,Pintura,"Kunsthistorisches Museum, Viena",100000000,Disponible
+183,Los proverbios flamencos,Pieter Bruegel el Viejo,1559,Renacimiento Nórdico,Pintura,"Gemäldegalerie, Berlín",80000000,Disponible
+184,La boda campesina,Pieter Bruegel el Viejo,1567,Renacimiento Nórdico,Pintura,"Kunsthistorisches Museum, Viena",85000000,Disponible
+185,El triunfo de la muerte,Pieter Bruegel el Viejo,1562,Renacimiento Nórdico,Pintura,"Museo del Prado, Madrid",95000000,Disponible
+186,Tríptico de los ermitaños,El Bosco,1493,Renacimiento Nórdico,Pintura,"Palacio Ducal, Venecia",45000000,Disponible
+187,El carro de heno,El Bosco,1516,Renacimiento Nórdico,Pintura,"Museo del Prado, Madrid",80000000,Disponible
+188,La extracción de la piedra de la locura,El Bosco,1494,Renacimiento Nórdico,Pintura,"Museo del Prado, Madrid",40000000,Disponible
+189,Melancolía I,Alberto Durero,1514,Renacimiento Nórdico,Grabado,Staatliche Kunsthalle Karlsruhe,20000000,Disponible
+190,El rinoceronte,Alberto Durero,1515,Renacimiento Nórdico,Grabado,"British Museum, Londres",15000000,Disponible
+191,Autorretrato a los 28 años,Alberto Durero,1500,Renacimiento Nórdico,Pintura,"Alte Pinakothek, Múnich",90000000,Disponible
+192,Joven liebre,Alberto Durero,1502,Renacimiento Nórdico,Acuarela,"Albertina, Viena",35000000,Disponible
+193,Los cuatro apóstoles,Alberto Durero,1526,Renacimiento Nórdico,Pintura,"Alte Pinakothek, Múnich",70000000,Disponible
+194,Retrato de Henry VIII,Hans Holbein el Joven,1537,Renacimiento Nórdico,Pintura,"National Portrait Gallery, Londres",60000000,Disponible
+195,Los embajadores,Hans Holbein el Joven,1533,Renacimiento Nórdico,Pintura,"National Gallery, Londres",110000000,Disponible
+196,La bacanal,Peter Paul Rubens,1615,Barroco,Pintura,"Museo del Hermitage, San Petersburgo",50000000,Disponible
+197,Las tres Gracias,Peter Paul Rubens,1635,Barroco,Pintura,"Museo del Prado, Madrid",85000000,Disponible
+198,El descendimiento de la cruz,Peter Paul Rubens,1614,Barroco,Pintura,"Catedral de Nuestra Señora, Amberes",90000000,Disponible
+199,El juicio de Paris,Peter Paul Rubens,1639,Barroco,Pintura,"Museo del Prado, Madrid",75000000,Disponible
+200,Apolo y Dafne,Gian Lorenzo Bernini,1625,Barroco,Escultura,"Galería Borghese, Roma",150000000,Disponible
+201,El éxtasis de Santa Teresa,Gian Lorenzo Bernini,1652,Barroco,Escultura,"Iglesia de Santa Maria della Vittoria, Roma",180000000,Disponible
+202,Ratto di Proserpina,Gian Lorenzo Bernini,1622,Barroco,Escultura,"Galería Borghese, Roma",140000000,Disponible
+203,David,Gian Lorenzo Bernini,1624,Barroco,Escultura,"Galería Borghese, Roma",120000000,Disponible
+204,La puerta del infierno,Auguste Rodin,1917,Escultura Moderna,Escultura,"Museo Rodin, París",80000000,Disponible
+205,Los burgueses de Calais,Auguste Rodin,1889,Escultura Moderna,Escultura,"Museo Rodin, París",50000000,Disponible
+206,El beso,Auguste Rodin,1882,Escultura Moderna,Escultura,"Museo Rodin, París",70000000,Disponible
+207,El rapto de las sabinas,Giambologna,1583,Manierismo,Escultura,"Loggia dei Lanzi, Florencia",90000000,Disponible
+208,Perseo con la cabeza de Medusa,Benvenuto Cellini,1554,Manierismo,Escultura,"Loggia dei Lanzi, Florencia",85000000,Disponible
+209,Gothic Woodcut,Käthe Kollwitz,1922,Expresionismo,Grabado,"Kollwitz Museum, Berlín",5000000,Disponible
+210,La ciudad que emerge,Umberto Boccioni,1910,Futurismo,Pintura,"MoMA, Nueva York",40000000,Disponible
+211,Bailarina azul,Gino Severini,1912,Futurismo,Pintura,"Peggy Guggenheim Collection, Venecia",25000000,Disponible
+212,Castillo de Praga,Oskar Kokoschka,1936,Expresionismo,Pintura,"Oskar Kokoschka Zentrum, Viena",20000000,Disponible
+213,La novia del viento,Oskar Kokoschka,1914,Expresionismo,Pintura,Kunstmuseum Basel,45000000,Disponible
+214,Retrato de Adele Bloch-Bauer I,Gustav Klimt,1907,Simbolismo / Art Nouveau,Pintura,"Neue Galerie, Nueva York",135000000,Disponible
+215,Judith I,Gustav Klimt,1901,Simbolismo / Art Nouveau,Pintura,"Galería Belvedere, Viena",80000000,Disponible
+216,El árbol de la vida,Gustav Klimt,1909,Art Nouveau,Pintura,"Museum für angewandte Kunst, Viena",60000000,Disponible
+217,Muerte y vida,Gustav Klimt,1915,Simbolismo,Pintura,"Leopold Museum, Viena",70000000,Disponible
+218,Dánae,Gustav Klimt,1907,Simbolismo,Pintura,"Galería Würthle, Viena",65000000,Disponible
+219,Autorretrato con physalis,Egon Schiele,1912,Expresionismo,Pintura,"Leopold Museum, Viena",40000000,Disponible
+220,El abrazo,Egon Schiele,1917,Expresionismo,Pintura,"Galería Belvedere, Viena",50000000,Disponible
+221,Cuatro árboles,Egon Schiele,1917,Expresionismo,Pintura,"Galería Belvedere, Viena",35000000,Disponible

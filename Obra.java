@@ -11,13 +11,13 @@
 import java.util.*;
 
 public class Obra {
-    private String id;
+    private int id;
     private String titulo;
     private Artista artista;
     private String estado; 
     private int anio; 
     //Constructor 
-    public Obra(String id, String titulo, Artista artista, String estado, 
+    public Obra(int id, String titulo, Artista artista, String estado, 
                 int anio){
         this.id= id;
         this.titulo= titulo;
@@ -26,13 +26,13 @@ public class Obra {
         this.anio= anio;
     }
     //Metodos GET
-    public String getId(){ return id }
+    public int getId(){ return id }
     public String getTitulo(){ return titulo }
     public Artista getArtista(){ return artista }
     public String getEstado(){ return estado }
     public int getAnio(){ return anio }
     //Metodos SET
-    public void setId(String id){ this.id= id }
+    public void setId(int id){ this.id= id }
     public void setTitulo(String titulo){ this.titulo= titulo }
     public void setArtista(Artista artista){ this.artista= artista }
     public void setEstado(String estado){ this.estado= estado }
