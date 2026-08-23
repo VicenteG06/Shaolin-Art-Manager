@@ -9,7 +9,7 @@
  * @author Vicente
  */
 
-import java.time.LocalDate;
+import java.time.*;
 
 public class Prestamo {
     private String id;
@@ -25,7 +25,7 @@ public class Prestamo {
         fechaInicio = null;
         fechaRetorno = null;
     }
-    public Prestamo(String id, Cliente cliente, Obra obraPrestada, LocalDate fechaInicio, localDate fechaRetorno){
+    public Prestamo(String id, Cliente cliente, Obra obraPrestada, LocalDate fechaInicio, LocalDate fechaRetorno){
         this.id = id;
         this.cliente = cliente;
         this.obraPrestada = obraPrestada;
@@ -34,14 +34,14 @@ public class Prestamo {
     }
     
     // Métodos get
-    public LocalDate getFechaInicio() { return fechaInicio }
-    public LocalDate getFechaRetorno() { return fechaRetorno }
-    public Obra getObraPrestada() { return obraPrestada }
-    public String getId() { return id }
+    public LocalDate getFechaInicio() { return fechaInicio; }
+    public LocalDate getFechaRetorno() { return fechaRetorno; }
+    public Obra getObraPrestada() { return obraPrestada; }
+    public String getId() { return id; }
     
     // Métodos set
-    public void setObraPrestada(Obra obraPrestada) { this.obraPrestada = obraPrestada }
-    public void setCliente(Cliente cliente) { this.cliente = cliente }
-    public void setFechaInicio(LocalDate fechaInicio) { this.fechaInicio = fechaInicio}
-    public void setFechaRetorno(LocalDate fechaRetorno) { this.fechaRetorno = fechaRetorno}
+    public void setObraPrestada(Obra obraPrestada) { this.obraPrestada = obraPrestada; }
+    public void setCliente(Cliente cliente) { this.cliente = cliente; }
+    public void setFechaInicio(LocalDate fechaInicio) { this.fechaInicio = fechaInicio;}
+    public void setFechaRetorno(LocalDate fechaRetorno) { this.fechaRetorno = fechaRetorno;}
 }

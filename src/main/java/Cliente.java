@@ -21,21 +21,21 @@ public class Cliente {
         prestamos = new ArrayList<>();
     }
     //Metodo GET - solo rut
-    public String getRut(){ return rut }
+    public String getRut(){ return rut; }
     //Metodo SET - solo rut 
-    public void setRut(String rut){ this.rut= rut }
+    public void setRut(String rut){ this.rut= rut; }
     //Metodo ver lista de obras compradas
     public void mostrarCompras(){
         for (int i = 0 ; i < compras.size() ; i++){
             System.out.print("Obra Comprada: ");
-            System.out.println(compras[i].titulo);
+            System.out.println(compras.get(i).getTitulo());
         }
     }
     //Metodo ver lista de obras prestadas
     public void mostrarPrestamos(){
         for (int i = 0 ; i < prestamos.size() ; i++){
             System.out.print("Obra Prestada: ");
-            System.out.println(compras[i].titulo);
+            System.out.println(compras.get(i).getTitulo());
         }
     }
 }

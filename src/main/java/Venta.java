@@ -10,7 +10,7 @@
  */
 
 import java.util.*;
-import java.date.*;
+import java.time.*;
 
 public class Venta {
     private LocalDate fechaVenta;
@@ -25,25 +25,25 @@ public class Venta {
     }
     public Venta(LocalDate fechaVenta, Cliente cliente, Obra obraVendida, int precio){
         this.fechaVenta = fechaVenta;
-        this.cliente = Cliente;
+        this.cliente = cliente;
         this.obraVendida = obraVendida;
         this.precio = precio;
     }
     //Metodos get
-    public LocalDate getFechaVenta(){return fechaVenta}
-    public Cliente getCliente(){return cliente}
-    public Obra getObraVendida(){return fechaVenta}
-    public int getPrecio(){return precio}
+    public LocalDate getFechaVenta(){return fechaVenta;}
+    public Cliente getCliente(){return cliente;}
+    public Obra getObraVendida(){return obraVendida;}
+    public int getPrecio(){return precio;}
     //Metodos set
-    public void setFechaVenta(LocalDate fechaVenta){ this.fechaVenta = fechaVenta }
+    public void setFechaVenta(LocalDate fechaVenta){ this.fechaVenta = fechaVenta; }
     public void setFechaVenta(String fechaVenta){ 
         this.fechaVenta = LocalDate.parse(fechaVenta);
     }
-    public void setCliente(Cliente cliente){ this.cliente = cliente }
-    public void setObraVendida(Obra obraVendida){ this.obraVendida = obraVendida }
+    public void setCliente(Cliente cliente){ this.cliente = cliente; }
+    public void setObraVendida(Obra obraVendida){ this.obraVendida = obraVendida; }
     public void setPrecio(int precio){ 
         if (precio < 0){
-            System.out.printl("El precio ingresado no es válido, inténtelo de nuevo.");
+            System.out.println("El precio ingresado no es válido, inténtelo de nuevo.");
             return;
         }
         this.precio= precio;
