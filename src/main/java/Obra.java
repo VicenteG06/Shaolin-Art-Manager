@@ -11,6 +11,7 @@
 import java.util.*;
 
 public class Obra {
+    //Atributos Obra
     private int id;
     private String titulo;
     private Artista artista;

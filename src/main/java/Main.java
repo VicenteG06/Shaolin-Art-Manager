@@ -54,7 +54,7 @@ public class Main {
                 System.out.println("Saliendo del menú......");
                 break;
             default:
-                System.out.println("Opción no válida, intente nuevamente");
+                System.out.println("Opción no válida, intente nuevamente.");
             }
         } while(opcion != '6');
         
