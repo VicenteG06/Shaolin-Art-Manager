@@ -44,7 +44,6 @@ public class Obra {
         }
         this.anio= anio;
     }
-    //Otros Metodos 
     //Mostrar Atributos de la obra
     public void mostrarAtributos(){
         System.out.println("= ATRIBUTOS DE LA OBRA =");

@@ -66,7 +66,6 @@ public class Exposicion {
         this.fechaTermino = LocalDate.parse(fechaTermino);
     }
     public void setListaObras(ArrayList<Obra> nuevaL){ listaObras= nuevaL; }
-    //  OPERACIONES
     //Añadir obra a la lista
     public void anadirObra(Obra obra){
         //Si la obra ya se encuentra en la exposicion, se da un aviso y se retorna
@@ -113,10 +112,8 @@ public class Exposicion {
             System.out.println("%s NO contiene obras.");
             return;
         }
-        Obra obra;
         for (int i = 0 ; i < listaObras.size() ; i++){
-            obra = (Obra) listaObras.get(i);
-            System.out.printf("%d. TITULO OBRA: '%s' | ARTISTA: %s \n", i+1, obra.getTitulo(), obra.getArtista());
+            System.out.printf("%d. TITULO OBRA: '%s' | ARTISTA: %s \n", i+1, listaObras.get(i).getTitulo(), listaObras.get(i).getArtista());
         }
     }
 }
