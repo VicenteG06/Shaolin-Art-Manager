@@ -20,7 +20,7 @@ public class CargarObras {
         try(BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo))){
 
             String linea = "";
-            //Para leer el encabezado del csv
+            //Para leer el encabezado del csv.
             lector.readLine();
             while((linea = lector.readLine()) != null){
                 String[] campos = linea.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
