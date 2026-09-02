@@ -116,4 +116,15 @@ public class Exposicion {
             System.out.printf("%d. TITULO OBRA: '%s' | ARTISTA: %s \n", i+1, (listaObras.get(i)).getTitulo(), (listaObras.get(i)).getArtista());
         }
     }
+
+    public static void mostrarExposiciones(HashMap<String, Exposicion> exposiciones){
+
+        if(exposiciones.isEmpty()){
+            System.out.println("No hay exposiciones actuales.");
+            return;
+        }
+        for(Exposicion e: exposiciones.values()){
+            e.mostrarAtributos();
+        }
+    }
 }

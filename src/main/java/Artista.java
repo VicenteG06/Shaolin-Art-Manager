@@ -4,6 +4,7 @@
  */
 
 import java.util.*;
+import java.io.*;
 
 public class Artista {
     // Se crean los parametros de la clase.
@@ -49,5 +50,27 @@ public class Artista {
         for(int i = 0; i < obras.size(); i++){
             obras.get(i).mostrarAtributos();
         }
+    }
+
+    public static void mostrarArtistas(HashMap<String, Artista> artistas){
+        System.out.println("========================");
+        System.out.println("        ARTISTAS");
+        System.out.println("========================");
+
+        for(Artista a : artistas.values()){
+            System.out.println("-> " + a.getNombre());
+        }
+    }
+
+    public static void buscarObrasArtista(HashMap<String, Artista> artistas) throws IOException {
+        System.out.println("Ingrese el Artista de las Obras:");
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        String nombre = lector.readLine();
+
+        if(artistas.containsKey(nombre)){
+            Artista a = artistas.get(nombre);
+            a.mostrarObras();
+        }
+        else System.out.println("Este artista no se encuentra en el sistema");
     }
 }

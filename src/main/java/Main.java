@@ -26,7 +26,7 @@ public class Main {
         ArrayList<Prestamo> registroPrestamos = new ArrayList<>();
         
         
-        Menu.menuPrincipal(obras,artistas);
+        Menu.menuPrincipal(obras,artistas, exposiciones);
         
     }
     
