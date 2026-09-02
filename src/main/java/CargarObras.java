@@ -47,7 +47,7 @@ public class CargarObras {
                         obra.setArtista(pair);
                     
                     }
-                    mapaObras.put(titulo.toLowerCase(), obra);
+                    mapaObras.put(campos[0], obra);
                 }
             }
         } catch(IOException e){

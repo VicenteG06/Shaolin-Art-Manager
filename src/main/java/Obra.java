@@ -8,6 +8,8 @@
  *
  * @author Ale
  */
+
+import java.io.*;
 import java.util.*;
 
 public class Obra {
@@ -52,5 +54,21 @@ public class Obra {
         System.out.println("ARTISTA: " + artista.getNombre());
         System.out.println("ESTADO: " + estado);
         System.out.println("AÑO: " + anio);
+    }
+
+    public static void mostrarObras(HashMap<String, Obra> obras){
+        for(Obra o: obras.values()){
+            o.mostrarAtributos();
+        }
+    }
+
+    public static void buscarObra(HashMap<String, Obra> obras) throws IOException{
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        String idObra = lector.readLine();
+        if(obras.containsKey(idObra)){
+            Obra o = obras.get(idObra);
+            o.mostrarAtributos();
+        }
+        else System.out.println("No existe esa obra");
     }
 }
