@@ -30,16 +30,27 @@ public class Cliente {
     public void setListaPrestamos(ArrayList<Obra> nuevaL){ listaPrestamos= nuevaL; }
     //Metodo ver lista de obras compradas
     public void mostrarCompras(){
+        if (listaCompras.size() == 0){
+            System.out.println("El cliente no ha comprado ninguna obra.");
+            return;
+        }
+        System.out.println("= OBRAS COMPRADAS =");
         for (int i = 0 ; i < listaCompras.size() ; i++){
-            System.out.print("Obra Comprada: ");
-            System.out.println(listaCompras.get(i).getTitulo());
+            System.out.print("Obra Comprada: " + (listaCompras.get(i)).getTitulo());
+            System.out.println(" | Artista: " + (listaCompras.get(i)).getArtista());
         }
     }
     //Metodo ver lista de obras prestadas
     public void mostrarPrestamos(){
+        if (listaPrestamos.size() == 0){
+            System.out.println("Al cliente no se le ha prestado ninguna obra.");
+            return;
+        }
+        System.out.println("= OBRAS PRESTADAS =");
         for (int i = 0 ; i < listaPrestamos.size() ; i++){
-            System.out.print("Obra Prestada: ");
-            System.out.println(listaPrestamos.get(i).getTitulo());
+            System.out.print("Obra Prestada: " + (listaPrestamos.get(i)).getTitulo());
+            System.out.print(" | Artista: " + (listaCompras.get(i)).getArtista());
+            System.out.println(" | Estado: " + (listaPrestamos.get(i)).getEstado());
         }
     }
     //Mostrar Atributos
