@@ -98,7 +98,7 @@ public class Exposicion {
     //Buscar una obra (saber si la obra se encuentra en la lista)   
     public boolean obraEstaEnLista(Obra obra){
         if ( listaObras.contains(obra) == true) return true;
-        else return false;
+        return false;
     }
     //Mostrar atributos
     public void mostrarAtributos(){
@@ -113,7 +113,7 @@ public class Exposicion {
             return;
         }
         for (int i = 0 ; i < listaObras.size() ; i++){
-            System.out.printf("%d. TITULO OBRA: '%s' | ARTISTA: %s \n", i+1, listaObras.get(i).getTitulo(), listaObras.get(i).getArtista());
+            System.out.printf("%d. TITULO OBRA: '%s' | ARTISTA: %s \n", i+1, (listaObras.get(i)).getTitulo(), (listaObras.get(i)).getArtista());
         }
     }
 }
