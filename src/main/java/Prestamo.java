@@ -52,7 +52,7 @@ public class Prestamo {
         System.out.println("CLIENTE: " + cliente);
         System.out.print("OBRA PRESTADA: " + obraPrestada.getTitulo() );
         System.out.println(" | ARTISTA: " + obraPrestada.getArtista() );
-        System.out.println("FECHA DE INICIO (DD/MM/AA): " + fechaInicio);
-        System.out.println("FECHA DE RETORNO (DD/MM/AA): " + fechaRetorno);
+        System.out.println("FECHA DE INICIO (AAAA/MM/DD): " + fechaInicio);
+        System.out.println("FECHA DE RETORNO (AAAA/MM/DD): " + fechaRetorno);
     }
 }
