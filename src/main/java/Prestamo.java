@@ -44,4 +44,15 @@ public class Prestamo {
     public void setCliente(Cliente cliente) { this.cliente = cliente; }
     public void setFechaInicio(LocalDate fechaInicio) { this.fechaInicio = fechaInicio;}
     public void setFechaRetorno(LocalDate fechaRetorno) { this.fechaRetorno = fechaRetorno;}
+    
+    //Mostrar Atributos del prestamo
+    public void mostrarAtributos(){
+        System.out.println("= ATRIBUTOS DEL PRÉSTAMO =");
+        System.out.println("ID: " + id);
+        System.out.println("CLIENTE: " + cliente);
+        System.out.print("OBRA PRESTADA: " + obraPrestada.getTitulo() );
+        System.out.println(" | ARTISTA: " + obraPrestada.getArtista() );
+        System.out.println("FECHA DE INICIO (DD/MM/AA): " + fechaInicio);
+        System.out.println("FECHA DE RETORNO (DD/MM/AA): " + fechaRetorno);
+    }
 }
