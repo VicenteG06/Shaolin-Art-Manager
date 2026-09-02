@@ -8,56 +8,74 @@
  *
  * @author Ale
  */
+
+import java.io.*;
 import java.util.*;
 
-public class Cliente {
-    private String rut; //rut sin guion
-    private ArrayList<Obra> listaCompras;
-    private ArrayList<Obra> listaPrestamos;
-    //Constructor
-    public Cliente(String rut){
-        this.rut= rut; //rut sin guion
-        listaCompras = new ArrayList<>();
-        listaPrestamos = new ArrayList<>();
+public class Obra {
+    //Atributos Obra
+    private String id; // VUELVE A SER STRING
+    private String titulo;
+    private Artista artista;
+    private String estado; 
+    private int anio; 
+    
+    //Constructor 
+    public Obra(String id, String titulo, Artista artista, String estado, int anio){
+        this.id= id;
+        this.titulo= titulo;
+        this.artista= artista;
+        this.estado= estado;
+        this.anio= anio;
     }
-    //Metodos GET 
-    public String getRut(){ return rut; }
-    public ArrayList<Obra> getListaCompras(){ return listaCompras; }
-    public ArrayList<Obra> getListaPrestamos(){ return listaPrestamos; }
-    //Metodos SET 
-    public void setRut(String rut){ this.rut= rut; }
-    public void setListaCompras(ArrayList<Obra> nuevaL){ listaCompras= nuevaL; }
-    public void setListaPrestamos(ArrayList<Obra> nuevaL){ listaPrestamos= nuevaL; }
-    //Metodo ver lista de obras compradas
-    public void mostrarCompras(){
-        if (listaCompras.size() == 0){
-            System.out.println("El cliente no ha comprado ninguna obra.");
+    
+    //Metodos GET
+    public String getId(){ return id; }
+    public String getTitulo(){ return titulo; }
+    public Artista getArtista(){ return artista; }
+    public String getEstado(){ return estado; }
+    public int getAnio(){ return anio; }
+    
+    //Metodos SET
+    public void setId(String id){ this.id= id; }
+    public void setTitulo(String titulo){ this.titulo= titulo; }
+    public void setArtista(Artista artista){ this.artista= artista; }
+    public void setEstado(String estado){ this.estado= estado; }
+    public void setAnio(int anio){ 
+        if (anio < 0){
+            System.out.println("El año ingresado no es válido, inténtelo de nuevo.");
             return;
         }
-        System.out.println("= OBRAS COMPRADAS =");
-        for (int i = 0 ; i < listaCompras.size() ; i++){
-            System.out.print("Obra Comprada: " + (listaCompras.get(i)).getTitulo());
-            System.out.println(" | Artista: " + (listaCompras.get(i)).getArtista());
-        }
+        this.anio= anio;
     }
-    //Metodo ver lista de obras prestadas
-    public void mostrarPrestamos(){
-        if (listaPrestamos.size() == 0){
-            System.out.println("Al cliente no se le ha prestado ninguna obra.");
-            return;
-        }
-        System.out.println("= OBRAS PRESTADAS =");
-        for (int i = 0 ; i < listaPrestamos.size() ; i++){
-            System.out.print("Obra Prestada: " + (listaPrestamos.get(i)).getTitulo());
-            System.out.print(" | Artista: " + (listaCompras.get(i)).getArtista());
-            System.out.println(" | Estado: " + (listaPrestamos.get(i)).getEstado());
-        }
-    }
-    //Mostrar Atributos
+    
+    //Mostrar Atributos de la obra
     public void mostrarAtributos(){
-        System.out.println("= ATRIBUTOS DEL CLIENTE =");
-        System.out.println("RUT: " + rut);
-        System.out.println("OBRAS COMPRADAS: " + listaCompras.size());
-        System.out.println("OBRAS PRESTADAS: " + listaPrestamos.size());
+        System.out.println("= ATRIBUTOS DE LA OBRA =");
+        System.out.println("ID: " + id);
+        System.out.println("TITULO: " + titulo);
+        System.out.println("ARTISTA: " + artista.getNombre());
+        System.out.println("ESTADO: " + estado);
+        System.out.println("AÑO: " + anio);
+    }
+
+    public static void mostrarObras(HashMap<String, Obra> obras){
+        for(Obra o: obras.values()){
+            o.mostrarAtributos();
+        }
+    }
+
+    public static void buscarObra(HashMap<String, Obra> obras) throws IOException{
+        System.out.println("Ingrese el ID de la obra:");
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        String idObra = lector.readLine();
+        
+        if(obras.containsKey(idObra)){
+            Obra o = obras.get(idObra);
+            o.mostrarAtributos();
+        }
+        else {
+            System.out.println("No existe esa obra");
+        }
     }
 }

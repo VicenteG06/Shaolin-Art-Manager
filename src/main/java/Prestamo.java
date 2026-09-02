@@ -11,37 +11,36 @@
 
 import java.time.*;
 
-public class Prestamo {
+public class Prestamo extends Transaccion {
     private String id;
-    private Cliente cliente;
-    private Obra obraPrestada;
     private LocalDate fechaInicio;
     private LocalDate fechaRetorno;
 
     public Prestamo(){
-        id = "No se ha ingresado ID";
-        cliente = null;
-        obraPrestada = null;
-        fechaInicio = null;
-        fechaRetorno = null;
+        super();
+        this.id = "No se ha ingresado ID";
+        this.fechaInicio = null;
+        this.fechaRetorno = null;
     }
-    public Prestamo(String id, Cliente cliente, Obra obraPrestada, LocalDate fechaInicio, LocalDate fechaRetorno){
+    //Antes de crear el objeto PRESTAMO, se debe validar que la obra no esté vendida o prestada
+    public Prestamo(String id, Cliente cliente, Obra obra, LocalDate fechaInicio, LocalDate fechaRetorno){
+        super(cliente,obra);
         this.id = id;
-        this.cliente = cliente;
-        this.obraPrestada = obraPrestada;
         this.fechaInicio = fechaInicio;
         this.fechaRetorno = fechaRetorno;
     }
-    
+    @Override
+    public void registrar() {
+        obra.setEstado("PRESTADA");
+        cliente.getListaPrestamos().add(obra);// Usa el getter exacto de tu Cliente
+        System.out.println("Préstamo registrado con éxito");
+    }
     // Métodos get
     public LocalDate getFechaInicio() { return fechaInicio; }
     public LocalDate getFechaRetorno() { return fechaRetorno; }
-    public Obra getObraPrestada() { return obraPrestada; }
     public String getId() { return id; }
     
     // Métodos set
-    public void setObraPrestada(Obra obraPrestada) { this.obraPrestada = obraPrestada; }
-    public void setCliente(Cliente cliente) { this.cliente = cliente; }
     public void setFechaInicio(LocalDate fechaInicio) { this.fechaInicio = fechaInicio;}
     public void setFechaRetorno(LocalDate fechaRetorno) { this.fechaRetorno = fechaRetorno;}
     
@@ -49,9 +48,9 @@ public class Prestamo {
     public void mostrarAtributos(){
         System.out.println("= ATRIBUTOS DEL PRÉSTAMO =");
         System.out.println("ID: " + id);
-        System.out.println("CLIENTE: " + cliente);
-        System.out.print("OBRA PRESTADA: " + obraPrestada.getTitulo() );
-        System.out.println(" | ARTISTA: " + obraPrestada.getArtista() );
+        System.out.println("CLIENTE: " + cliente.getRut());
+        System.out.print("OBRA PRESTADA: " + obra.getTitulo() );
+        System.out.println(" | ARTISTA: " + obra.getArtista().getNombre() );
         System.out.println("FECHA DE INICIO (AAAA/MM/DD): " + fechaInicio);
         System.out.println("FECHA DE RETORNO (AAAA/MM/DD): " + fechaRetorno);
     }

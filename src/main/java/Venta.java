@@ -12,35 +12,39 @@
 import java.util.*;
 import java.time.*;
 
-public class Venta {
+public class Venta extends Transaccion {
     private LocalDate fechaVenta;
-    private Cliente cliente;
-    private Obra obraVendida; 
     private int precio;
+
     public Venta(){
+        super();
         this.fechaVenta = null;
-        this.cliente = null;
-        this.obraVendida = null;
         this.precio = 0;
     }
-    public Venta(LocalDate fechaVenta, Cliente cliente, Obra obraVendida, int precio){
+    //Antes de crear el objeto VENTA, se debe validar que la obra a vender no esté vendida o prestada con getEstado()
+    public Venta(LocalDate fechaVenta, Cliente cliente, Obra obra, int precio){
+        super(cliente,obra);
         this.fechaVenta = fechaVenta;
-        this.cliente = cliente;
-        this.obraVendida = obraVendida;
+        obra.setEstado("VENDIDO");
         this.precio = precio;
+        
+    }
+
+    @Override
+    public void registrar() {
+        obra.setEstado("VENDIDO");
+        cliente.getListaCompras().add(obra);
+        System.out.println("Venta registrada con éxito");
     }
     //Metodos get
     public LocalDate getFechaVenta(){return fechaVenta;}
-    public Cliente getCliente(){return cliente;}
-    public Obra getObraVendida(){return obraVendida;}
     public int getPrecio(){return precio;}
     //Metodos set
     public void setFechaVenta(LocalDate fechaVenta){ this.fechaVenta = fechaVenta; }
     public void setFechaVenta(String fechaVenta){ 
         this.fechaVenta = LocalDate.parse(fechaVenta);
     }
-    public void setCliente(Cliente cliente){ this.cliente = cliente; }
-    public void setObraVendida(Obra obraVendida){ this.obraVendida = obraVendida; }
+
     public void setPrecio(int precio){ 
         if (precio < 0){
             System.out.println("El precio ingresado no es válido, inténtelo de nuevo.");
