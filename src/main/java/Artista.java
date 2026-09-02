@@ -24,13 +24,10 @@ public class Artista {
     }
 
     // Se definen los setters y getters.
-    public void setNombre(String nombre){
-        this.nombre = nombre;
-    }
-
+    public void setNombre(String nombre){ this.nombre = nombre;}
     public String getNombre() {return nombre;}
 
-    // Se define el método de añadir obra y solo si esta no existe.
+    // Se define el método de añadir obra y solo si esta no existe en la lista.
     public boolean anadirObra(Obra obra){
         for(int i = 0; i < obras.size(); i++){
             if((obras.get(i)).getId() == obra.getId()){
@@ -43,10 +40,12 @@ public class Artista {
 
     // Se define el método para mostrar las obras del artista.
     public void mostrarObras(){
+        //Si no hay obras en la lista, se da un aviso y se retorna.
         if(obras.size() == 0){
-            System.out.println("Este artistas no tiene obras.");
+            System.out.println("Este artista no tiene obras.");
+            return;
         }
-
+        //Si hay obras en la lista, se imprimen los atributos de cada obra.
         for(int i = 0; i < obras.size(); i++){
             obras.get(i).mostrarAtributos();
         }
