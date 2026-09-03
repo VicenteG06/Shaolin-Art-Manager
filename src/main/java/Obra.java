@@ -14,28 +14,30 @@ import java.util.*;
 
 public class Obra {
     //Atributos Obra
-    private int id;
+    private String id; // VUELVE A SER STRING
     private String titulo;
     private Artista artista;
     private String estado; 
     private int anio; 
+    
     //Constructor 
-    public Obra(int id, String titulo, Artista artista, String estado, 
-                int anio){
+    public Obra(String id, String titulo, Artista artista, String estado, int anio){
         this.id= id;
         this.titulo= titulo;
         this.artista= artista;
         this.estado= estado;
         this.anio= anio;
     }
+    
     //Metodos GET
-    public int getId(){ return id; }
+    public String getId(){ return id; }
     public String getTitulo(){ return titulo; }
     public Artista getArtista(){ return artista; }
     public String getEstado(){ return estado; }
     public int getAnio(){ return anio; }
+    
     //Metodos SET
-    public void setId(int id){ this.id= id; }
+    public void setId(String id){ this.id= id; }
     public void setTitulo(String titulo){ this.titulo= titulo; }
     public void setArtista(Artista artista){ this.artista= artista; }
     public void setEstado(String estado){ this.estado= estado; }
@@ -46,6 +48,7 @@ public class Obra {
         }
         this.anio= anio;
     }
+    
     //Mostrar Atributos de la obra
     public void mostrarAtributos(){
         System.out.println("= ATRIBUTOS DE LA OBRA =");
@@ -63,14 +66,16 @@ public class Obra {
     }
 
     public static void buscarObra(HashMap<String, Obra> obras) throws IOException{
-
         System.out.println("Ingrese el ID de la obra:");
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         String idObra = lector.readLine();
+        
         if(obras.containsKey(idObra)){
             Obra o = obras.get(idObra);
             o.mostrarAtributos();
         }
-        else System.out.println("No existe esa obra");
+        else {
+            System.out.println("No existe esa obra");
+        }
     }
 }

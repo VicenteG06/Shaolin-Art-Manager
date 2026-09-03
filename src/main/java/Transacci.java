@@ -8,16 +8,16 @@
  *
  * @author Netaxion
  */
-public class Transaccion {
+public class Transacci {
     protected Cliente cliente;
     protected Obra obra; 
     
-    public Transaccion() {
+    public Transacci() {
         this.cliente = null;
         this.obra = null;
     }
     
-    public Transaccion(Cliente cliente, Obra obra){
+    public Transacci(Cliente cliente, Obra obra){
         this.cliente = cliente;
         this.obra = obra;
     }
