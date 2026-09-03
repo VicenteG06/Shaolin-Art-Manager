@@ -26,7 +26,7 @@ public class CargarObras {
                 String[] campos = linea.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
 
                 if(campos.length >= 9){
-                    int id = Integer.parseInt(campos[0].trim());
+                    String id = campos[0].trim();
                     String titulo = campos[1].replace("\"", "").trim();
                     String artista = campos[2].replace("\"", "").trim();
                     int anio = Integer.parseInt(campos[3].trim());
