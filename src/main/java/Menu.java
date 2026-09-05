@@ -21,8 +21,9 @@ public class Menu {
         System.out.println("2) Artistas");
         System.out.println("3) Ventas");
         System.out.println("4) Prestamos");
-        System.out.println("5) Exposiciones");
-        System.out.println("6) Salir");
+        System.out.println("5) Subastas");
+        System.out.println("6) Exposiciones");
+        System.out.println("7) Salir");
     }
 
     public static void menuPrincipal(HashMap<String, Obra> obras, HashMap<String, Artista> artistas, HashMap<String, Exposicion> exposiciones) throws IOException {
@@ -47,12 +48,14 @@ public class Menu {
                 Menu.menuExposiciones(exposiciones);
                 break;
             case '6':
+                break;
+            case '7':
                 System.out.println("Saliendo del menú......");
                 break;
             default:
                 System.out.println("Opción no válida, intente nuevamente.");
             }
-        } while(opcion != '6');
+        } while(opcion != '7');
     }
     
     public static void mostrarMenuExposiciones(){
@@ -78,8 +81,10 @@ public class Menu {
                 Exposicion.mostrarExposiciones(exposiciones);
                 break;
             case '2':
+                Exposicion.buscarExposicion(exposiciones);
                 break;
             case '3':
+                Exposicion.registrarExposicion(exposiciones);
                 break;
             case '4':
                 break;

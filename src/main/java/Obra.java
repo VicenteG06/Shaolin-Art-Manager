@@ -65,7 +65,7 @@ public class Obra {
         }
     }
 
-    public static void buscarObra(HashMap<String, Obra> obras) throws IOException{
+    public static Obra buscarObra(HashMap<String, Obra> obras) throws IOException{
         System.out.println("Ingrese el ID de la obra:");
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         String idObra = lector.readLine();
@@ -73,9 +73,9 @@ public class Obra {
         if(obras.containsKey(idObra)){
             Obra o = obras.get(idObra);
             o.mostrarAtributos();
+            return o;
         }
-        else {
-            System.out.println("No existe esa obra");
-        }
+        System.out.println("No existe esa obra");
+        return null;
     }
 }
