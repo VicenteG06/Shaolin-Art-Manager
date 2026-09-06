@@ -24,7 +24,7 @@ public class Main {
         HashMap<String, Cliente> clientes = new HashMap<>();
         ArrayList<Venta> registroVentas = new ArrayList<>();
         ArrayList<Prestamo> registroPrestamos = new ArrayList<>();
-        
+        ArrayList<Subasta> registroSubastas = new ArrayList<>();
         
         Menu.menuPrincipal(obras, artistas, exposiciones, registroVentas, clientes);
         

@@ -13,6 +13,12 @@ import java.io.*;
 import java.util.*;
 
 public class Menu {
+
+
+    public static Subasta subastaActiva =null; //VARIABLE PARA QUE LA SUBASTA ACTIVA SE MANTENGA ACTIVA AUNQUE SE CIERRE EL MEN{U DE SUBASTAS
+
+
+
     public static void mostrarMenuPrincipal(){
         System.out.println("========================");
         System.out.println("Shaolin Art Manager");
@@ -335,5 +341,124 @@ public class Menu {
         } while(opcion != '6');
     }
     
+     public static void mostrarMenuSubastas(){
+        System.out.println("========================");
+        System.out.println("           Subastas");
+        System.out.println("========================");
+        System.out.println("1) Mostrar subastas cerradas");
+        System.out.println("2) Iniciar nueva subasta");
+        System.out.println("3) Registrar nueva oferta en la subasta activa");
+        System.out.println("4) Cerrar subasta activa");
+        System.out.println("5) Salir del Menú");
+        
+        
+    }
+
+
+
+    public static void menuSubastas(ArrayList<Subasta> subastas, HashMap<String, Obra> obras, HashMap<String, Cliente> clientes) throws IOException{
+        
+        char opcion;
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+
+        do{
+            Menu.mostrarMenuSubastas();
+            opcion = (lector.readLine()).charAt(0);
+            
+            switch(opcion){
+            case '1': //mOSTRAR SUBASTAS CERRADAS
+
+                if (subastas.isEmpty()){
+
+                    System.out.println("No hay subastas finalizadas");
+                } else {
+
+                    System.out.println("-> HISTORIAL DE SUBASTAS:");
+                    Subasta auxS;
+                    for (int i = 0 ; i < subastas.size() ; i++){
+                        auxS= (Subasta) subastas.get(i);
+                        auxS.mostrarAtributos();
+                    }
+                }
+                break;
+                
+            case '2': // iniciar subasta
+                
+                if (Menu.subastaActiva != null) {
+
+                    System.out.println("Ya hay una subasta en curso.");
+                    break;
+                }
+                
+                System.out.println("Ingrese el ID de la Obra a subastar:");
+
+                String idObra = lector.readLine();
+                if(!obras.containsKey(idObra) ){
+                    System.out.println("No existe esa obra .");
+                    break;
+                }
+                
+                Obra o = obras.get(idObra); //REVISAR SI LA OBRA TIENE ESTADO "DISPONIBLE"
+                if (!o.getEstado().equals("DISPONIBLE")) {
+
+                    System.out.println("La obra no está disponible para ser subastada.");
+                    break;
+                }
+                
+                System.out.println("Ingrese el precio inicial de la obra:");
+                int precioInicial = Integer.parseInt(lector.readLine()); 
+                
+                System.out.println("Ingrese la fecha de la subasta (formato AAAA-MM-DD):");
+                String fechaS = (lector.readLine());
+                
+                // INICIALIZAR VARIABLE GLOABL DE MENU 
+                Menu.subastaActiva = new Subasta(o, precioInicial, fechaS);
+                System.out.println("Subasta iniciada con éxito");
+                break;
+                
+            case '3': // ofertar
+                if (Menu.subastaActiva == null) {
+                    System.out.println("No hay ninguna subasta activa en este momento.");
+                    break;
+                }
+                
+                System.out.println("Ingrese el RUT del cliente que oferta (Sin guión, incluyendo dígito verificador):");
+                String rutOfertador = lector.readLine();
+                
+
+                System.out.println("Ingrese el monto de la oferta:");
+                int monto = Integer.parseInt(lector.readLine());
+                
+                Menu.subastaActiva.ofertar(monto, rutOfertador);
+                break;
+                
+            case '4': // CERRAR SUBASTA
+                if (Menu.subastaActiva == null) { //verificar que haya una subasta activa
+                    System.out.println("No hay ninguna subasta activa para cerrar.");
+                    break;
+                }
+                System.out.println("Cerrando subasta...");
+                boolean exito = Menu.subastaActiva.cerrarSubasta(clientes);
+                
+                if (exito) {
+                    subastas.add(Menu.subastaActiva);
+                }
+                
+                // Reiniciamos la variable de subastaActiva
+                Menu.subastaActiva = null; 
+                break;
+                
+            case '5':
+                System.out.println("Saliendo del menú......");
+                break;
+                
+
+            default:
+                System.out.println("Opción no válida, intente nuevamente.");
+                break;
+            }
+        } while(opcion != '5');
+    }
+
     
 }

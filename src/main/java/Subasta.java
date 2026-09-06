@@ -28,6 +28,12 @@ public class Subasta extends Venta {
         this.precioInicial = precioInicial;
         mejorOferta = null;
     }
+    //crear subasta con fecha tipo String
+    public Subasta(Obra obra, int precioInicial, String fechaVenta){
+        super(LocalDate.parse(fechaVenta), null, obra, precioInicial);
+        this.precioInicial = precioInicial;
+        mejorOferta = null;
+    }
     public int getPrecioInicial() { return precioInicial; }
     public Oferta getMejorOferta() { return mejorOferta; }
 
