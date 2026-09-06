@@ -15,7 +15,6 @@ import java.time.*;
 public class Venta extends Transacci {
     private LocalDate fechaVenta;
     private int precio;
-
     public Venta(){
         super();
         this.fechaVenta = null;

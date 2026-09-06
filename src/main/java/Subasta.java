@@ -46,7 +46,7 @@ public class Subasta extends Venta {
             }
             Oferta nueva = new Oferta(monto,rut);
             mejorOferta = nueva;
-            System.out.println("Nueva mayor oferta:" + monto + "por Cliente: RUT " +rut);
+            System.out.println("Nueva mayor oferta:" + monto + " por Cliente: RUT " +rut);
         } else {
             System.out.println("Error. ingresar monto mayor a la oferta actual");
         }
