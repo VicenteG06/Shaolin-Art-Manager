@@ -272,7 +272,7 @@ public class Menu {
                     System.out.printf("El cliente de rut %s no se encuentra registrado. Creando nuevo cliente...\n", rutC);
                     c = new Cliente(rutC);
                     clientes.put(rutC, c); // Se añade al mapa global inmediatamente
-                    System.out.println("¡Cliente nuevo registrado en el sistema con éxito!");
+                    System.out.println("Cliente nuevo registrado en el sistema con éxito!");
                 } else {
                     c = clientes.get(rutC);
                     System.out.println("Cliente encontrado en el sistema.");
@@ -322,13 +322,14 @@ public class Menu {
                         } 
                         ventas.remove(auxV4); //se elimina la venta de la lista de ventas 
                         System.out.printf("La venta de %s ha sido eliminada con éxito.\n", o4.getTitulo());
+                        o4.setEstado("Disponible");
                         break;
                     }
                 }
                 System.out.println("No se pudo encontrar la venta.");
                 break;
             case '5':
-                //Menu.menuSubastas();
+                Menu.menuSubastas();
             case '6':
                 System.out.println("Saliendo del menú......");
                 break;
@@ -527,8 +528,6 @@ public class Menu {
                 }
                 //como está disponible, se puede prestar 
                 System.out.printf("Ingrese el rut SIN GUIÓN Y CON DÍGITO VERIFICADOR del cliente que desea pedir prestado '%s' : \n", o3.getTitulo());
-                System.out.println("**EL CLIENTE DEBE ESTAR PREVIAMENTE REGISTRADO. DE NO ESTARLO, NO SE REALIZARÁ EL PRÉSTAMO.");
-                System.out.println("SI DESEA REGISTRAR UN NUEVO CLIENTE, INGRESE '0' (cero) PARA VOLVER AL MENÚ DE VENTAS.**");
                 String rutC = l3.readLine();
                 if (rutC.equals("0")) break;
                 
@@ -589,6 +588,7 @@ public class Menu {
                         } 
                         prestamos.remove(auxP4); //se elimina el prestamo de la lista de prestamos 
                         System.out.printf("El préstamo de %s ha sido eliminado con éxito.\n", o4.getTitulo());
+                        o4.setEstado("Disponible");
                         break;
                     }
                 }
