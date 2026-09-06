@@ -24,11 +24,21 @@ public class Prestamo extends Transacci {
     }
     //Antes de crear el objeto PRESTAMO, se debe validar que la obra no esté vendida o prestada
     public Prestamo(String id, Cliente cliente, Obra obra, LocalDate fechaInicio, LocalDate fechaRetorno){
-        super(cliente,obra);
+        super(cliente, obra);
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaRetorno = fechaRetorno;
+        // La obra cambia de estado dentro de registrar()
     }
+    //Constructor que recibe la fecha como String y la convierte en LocalDate
+    public Prestamo(String id, Cliente cliente, Obra obra, String fechaInicio, String fechaRetorno){
+        super(cliente, obra);
+        this.id = id;
+        this.fechaInicio = LocalDate.parse(fechaInicio);
+        this.fechaRetorno = LocalDate.parse(fechaRetorno);        
+        // La obra cambia de estado dentro de registrar()
+    }
+    
     @Override
     public void registrar() {
         if (!cliente.agregarPrestamo(obra)){

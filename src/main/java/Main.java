@@ -26,7 +26,7 @@ public class Main {
         ArrayList<Prestamo> registroPrestamos = new ArrayList<>();
         ArrayList<Subasta> registroSubastas = new ArrayList<>();
         
-        Menu.menuPrincipal(obras, artistas, exposiciones, registroVentas, clientes);
+        Menu.menuPrincipal(obras, artistas, exposiciones, registroVentas, clientes, registroPrestamos);
         
     }
     

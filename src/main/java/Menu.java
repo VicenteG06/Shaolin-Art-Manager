@@ -14,10 +14,7 @@ import java.util.*;
 
 public class Menu {
 
-
-    public static Subasta subastaActiva =null; //VARIABLE PARA QUE LA SUBASTA ACTIVA SE MANTENGA ACTIVA AUNQUE SE CIERRE EL MEN{U DE SUBASTAS
-
-
+    public static Subasta subastaActiva =null; //VARIABLE PARA QUE LA SUBASTA ACTIVA SE MANTENGA ACTIVA AUNQUE SE CIERRE EL MENU DE SUBASTAS
 
     public static void mostrarMenuPrincipal(){
         System.out.println("========================");
@@ -33,7 +30,8 @@ public class Menu {
     }
 
     public static void menuPrincipal(HashMap<String, Obra> obras, HashMap<String, Artista> artistas, 
-                       HashMap<String, Exposicion> exposiciones, ArrayList<Venta> ventas, HashMap<String, Cliente> clientes) throws IOException {
+                       HashMap<String, Exposicion> exposiciones, ArrayList<Venta> ventas, 
+                       HashMap<String, Cliente> clientes, ArrayList<Prestamo> prestamos) throws IOException {
         char opcion;
 
         do{
@@ -51,6 +49,7 @@ public class Menu {
                 Menu.menuVentas(ventas, obras, clientes);
                 break;
             case '4':
+                Menu.menuPrestamos(prestamos, obras, clientes);
                 break;
             case '5':
                 break;
@@ -174,7 +173,7 @@ public class Menu {
             }
         } while(opcion != '4');
     }
-    // menu prestamos
+    // menu ventas
     public static void mostrarMenuVentas(){
         System.out.println("========================");
         System.out.println("           Ventas");
@@ -253,7 +252,7 @@ public class Menu {
                     System.out.println("No existe esa obra");
                     break;
                 }
-                //al obtener la obra, se verifica que esta obra no este ya vendida
+                //al obtener la obra, se verifica que esta obra no este ya vendida ni prestada
                 Obra o3 = obras.get(idObra3); 
                 if ( (o3.getEstado()).equals("VENDIDA") ){
                     System.out.printf("La obra '%s' ya ha sido vendida.\n", o3.getTitulo());
@@ -263,11 +262,11 @@ public class Menu {
                     System.out.printf("La obra '%s' está actualmente prestada, por lo que no se puede vender.\n", o3.getTitulo());
                     break;
                 }
-                //como está a la venta, se registra su venta y se da un aviso
+                //como está a la venta, se registra su venta 
                 System.out.println("Ingrese la fecha de la venta (formato: 'AAAA-MM-DD'):");
                 String fechaS = l3.readLine(); 
                 //VERIFICAR SI SE INGRESO CORRECTAMENTE LA FECHA (TRY-CATCH)****
-                System.out.printf("Ingrese el rut SIN GUIÓN del cliente que desea comprar '%s' : \n", o3.getTitulo());
+                System.out.printf("Ingrese el rut SIN GUIÓN Y CON DÍGITO VERIFICADOR del cliente que desea comprar '%s' : \n", o3.getTitulo());
                 System.out.println("**EL CLIENTE DEBE ESTAR PREVIAMENTE REGISTRADO. DE NO ESTARLO, NO SE REALIZARÁ LA VENTA.");
                 System.out.println("SI DESEA REGISTRAR UN NUEVO CLIENTE, INGRESE '0' (cero) PARA VOLVER AL MENÚ DE VENTAS.**");
                 String rutC = l3.readLine();
@@ -278,11 +277,6 @@ public class Menu {
                     break;
                 }
                 Cliente c = (Cliente) clientes.get(rutC);
-                //se ingresa la obra a la lista de compras del cliente
-                if (!c.agregarCompra(o3)){ //si la obra ya fue comprada por el cliente, se da aviso y se retorna al menu
-                    System.out.printf("El cliente %s ya posee la obra '%s'.\n", c.getRut(), o3.getTitulo());
-                    break;
-                }
                 System.out.println("Ingrese el precio de la venta:");
                 int p = Integer.parseInt(l3.readLine());
                 do {
@@ -291,6 +285,7 @@ public class Menu {
                     p = Integer.parseInt(l3.readLine());
                 } while ( p < 0);
                 Venta n = new Venta(fechaS, c, o3, p);
+                //se ingresa la obra a la lista de compras del cliente en el mismo metodo de registro
                 n.registrar();
                 break;
             case '4':
@@ -340,7 +335,7 @@ public class Menu {
             }
         } while(opcion != '6');
     }
-    
+    //menu subastas
      public static void mostrarMenuSubastas(){
         System.out.println("========================");
         System.out.println("           Subastas");
@@ -353,26 +348,18 @@ public class Menu {
         
         
     }
-
-
-
     public static void menuSubastas(ArrayList<Subasta> subastas, HashMap<String, Obra> obras, HashMap<String, Cliente> clientes) throws IOException{
-        
         char opcion;
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-
         do{
             Menu.mostrarMenuSubastas();
             opcion = (lector.readLine()).charAt(0);
             
             switch(opcion){
-            case '1': //mOSTRAR SUBASTAS CERRADAS
-
+            case '1': //MOSTRAR SUBASTAS CERRADAS
                 if (subastas.isEmpty()){
-
                     System.out.println("No hay subastas finalizadas");
                 } else {
-
                     System.out.println("-> HISTORIAL DE SUBASTAS:");
                     Subasta auxS;
                     for (int i = 0 ; i < subastas.size() ; i++){
@@ -381,7 +368,6 @@ public class Menu {
                     }
                 }
                 break;
-                
             case '2': // iniciar subasta
                 
                 if (Menu.subastaActiva != null) {
@@ -415,7 +401,6 @@ public class Menu {
                 Menu.subastaActiva = new Subasta(o, precioInicial, fechaS);
                 System.out.println("Subasta iniciada con éxito");
                 break;
-                
             case '3': // ofertar
                 if (Menu.subastaActiva == null) {
                     System.out.println("No hay ninguna subasta activa en este momento.");
@@ -431,7 +416,6 @@ public class Menu {
                 
                 Menu.subastaActiva.ofertar(monto, rutOfertador);
                 break;
-                
             case '4': // CERRAR SUBASTA
                 if (Menu.subastaActiva == null) { //verificar que haya una subasta activa
                     System.out.println("No hay ninguna subasta activa para cerrar.");
@@ -447,18 +431,172 @@ public class Menu {
                 // Reiniciamos la variable de subastaActiva
                 Menu.subastaActiva = null; 
                 break;
-                
             case '5':
                 System.out.println("Saliendo del menú......");
                 break;
-                
-
             default:
                 System.out.println("Opción no válida, intente nuevamente.");
                 break;
             }
         } while(opcion != '5');
     }
+    // menu prestamos
+    public static void mostrarMenuPrestamos(){
+        System.out.println("========================");
+        System.out.println("           Préstamos");
+        System.out.println("========================");
+        System.out.println("1) Mostrar Préstamos");
+        System.out.println("2) Buscar Préstamos");
+        System.out.println("3) Registrar Préstamo");
+        System.out.println("4) Eliminar Préstamo");
+        System.out.println("5) Salir del Menú");
+    }
+    public static void menuPrestamos(ArrayList<Prestamo> prestamos, HashMap<String, Obra> obras, HashMap<String, Cliente> clientes) throws IOException{
+        char opcion;
+        do{
+            BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+            Menu.mostrarMenuExposiciones();
+            opcion = (lector.readLine()).charAt(0);
+            switch(opcion){
+            case '1': //mostrar 
+                //si no hay préstamos registrados, se da un aviso y se retorna al menu 
+                if (prestamos.size() == 0) {
+                    System.out.println("No hay préstamos registrados.");
+                    break;
+                }
+                System.out.println("-> PRÉSTAMOS:"); //está como medio feo. Arreglar
+                Prestamo auxP;
+                for (int i = 0 ; i < prestamos.size() ; i++){
+                    auxP= prestamos.get(i);
+                    auxP.mostrarAtributos();
+                }
+                break;
+            case '2': //Buscar por obra
+                //si no hay prestamos, se da un aviso y se retorna al menu
+                if (prestamos.size() == 0){
+                    System.out.println("No hay préstamos registrados.");
+                    break;
+                }
+                //se busca la obra prestada. De no existir, se da un aviso y se retorna al menu
+                System.out.println("Ingrese el nombre de la Obra prestada:"); 
+                BufferedReader l2 = new BufferedReader(new InputStreamReader(System.in));
+                String idObra2 = l2.readLine();
+                if(!obras.containsKey(idObra2)){
+                    System.out.println("No existe esa obra");
+                    break;
+                }
+                //al obtener la obra, si no esta prestada se da un aviso y se retorna al menu
+                Obra o2 = obras.get(idObra2); 
+                if ( !(o2.getEstado()).equals("PRESTADA") ){
+                    System.out.printf("La obra '%s' no ha sido prestada.\n", o2.getTitulo());
+                    break;
+                }
+                //como se sabe que esta prestada, se busca y muestra
+                Prestamo auxP2; 
+                for (int i = 0 ; i < prestamos.size() ; i++ ){
+                    auxP2 = (Prestamo) prestamos.get(i);
+                    if (auxP2.getObra() == o2){
+                        auxP2.mostrarAtributos();
+                        break;
+                    }
+                }
+                //si por alguna razón no se encontró, se da aviso 
+                System.out.printf("'%s' sale prestada pero no se encontró en lista préstamos.\n", o2.getTitulo());
+                break;
+            case '3': //registrar
+                //si el mapa de clientes no contiene clientes, se da un aviso y se retorna al menu
+                if (clientes.isEmpty()) {
+                    System.out.println("No se encuentra registrado ningún cliente. Para poder realizar un préstamo, el cliente debe estar PREVIAMENTE REGISTRADO.");
+                    break;
+                }
+                //se busca la obra que se quiere pedir prestada. De no existir, se da un aviso y se retorna al menu
+                System.out.println("Ingrese el nombre de la Obra que se desea pedir prestada:"); 
+                BufferedReader l3 = new BufferedReader(new InputStreamReader(System.in));
+                String idObra3 = l3.readLine();
+                if(!obras.containsKey(idObra3)){
+                    System.out.println("No existe esa obra");
+                    break;
+                }
+                //al obtener la obra, se verifica que esta obra no este ya vendida ni prestada 
+                Obra o3 = obras.get(idObra3); 
+                if ( (o3.getEstado()).equals("VENDIDA") ){
+                    System.out.printf("La obra '%s' está vendida, por lo que no se puede prestar.\n", o3.getTitulo());
+                    break;
+                }
+                else if ( (o3.getEstado()).equals("PRESTADA") ){
+                    System.out.printf("La obra '%s' ya está actualmente prestada.\n", o3.getTitulo());
+                    break;
+                }
+                //como está disponible, se puede prestar 
+                System.out.printf("Ingrese el rut SIN GUIÓN Y CON DÍGITO VERIFICADOR del cliente que desea pedir prestado '%s' : \n", o3.getTitulo());
+                System.out.println("**EL CLIENTE DEBE ESTAR PREVIAMENTE REGISTRADO. DE NO ESTARLO, NO SE REALIZARÁ EL PRÉSTAMO.");
+                System.out.println("SI DESEA REGISTRAR UN NUEVO CLIENTE, INGRESE '0' (cero) PARA VOLVER AL MENÚ DE VENTAS.**");
+                String rutC = l3.readLine();
+                if (rutC.equals("0")) break;
+                if (!clientes.containsKey(rutC)){
+                    System.out.printf("El cliente de rut %s no se encuentra registrado.\n", rutC);
+                    System.out.println("Para que el préstamo se realice correctamente, el cliente debe estar previamente registrado.");
+                    break;
+                }
+                Cliente c = (Cliente) clientes.get(rutC);
 
+                //se pide la fecha de inicio y de retorno del prestamo
+                System.out.println("Ingrese la fecha de INICIO del préstamo:");
+                String fechaI = l3.readLine();
+                //VERIFICAR SI SE INGRESO CORRECTAMENTE LA FECHA (TRY-CATCH)****
+                System.out.println("Ingrese la fecha de RETORNO del préstamo (no debe superar el AÑO):");
+                String fechaR = l3.readLine();
+                //VERIFICAR SI SE INGRESO CORRECTAMENTE LA FECHA (TRY-CATCH)**** 
+                String nId= "000"; //hay q generar un id lolz**********************
+                Prestamo n = new Prestamo(nId, c, o3, fechaI, fechaR);
+                //se ingresa la obra a la lista de prestamos del cliente en el mismo metodo de registro
+                n.registrar();
+                break;
+            case '4': //eliminar 
+
+                //si no hay prestamos, se da un aviso y se retorna al menu
+                if (prestamos.size() == 0){
+                    System.out.println("No hay préstamos registrados.");
+                    break;
+                }
+                //se busca la obra prestada. De no existir, se da un aviso y se retorna al menu
+                System.out.println("Ingrese el nombre de la Obra prestada:"); 
+                BufferedReader l4 = new BufferedReader(new InputStreamReader(System.in));
+                String idObra4 = l4.readLine();
+                if(!obras.containsKey(idObra4)){
+                    System.out.println("No existe esa obra");
+                    break;
+                }
+                //al obtener la obra, si no esta prestada se da un aviso y se retorna al menu
+                Obra o4 = obras.get(idObra4); 
+                if ( !(o4.getEstado()).equals("PRESTADA") ){
+                    System.out.printf("La obra '%s' no ha sido prestada.\n", o4.getTitulo());
+                    break;
+                }
+                //como se sabe que esta prestada, se busca, se elimina y se da un aviso de ello
+                Prestamo auxP4; 
+                for (int i = 0 ; i < prestamos.size() ; i++ ){
+                    auxP4= (Prestamo) prestamos.get(i);
+                    if (auxP4.getObra() == o4){
+                        Cliente cl = auxP4.getCliente(); //se obtiene el cliente del prestamo 
+                        if (!cl.elimObPrestada(o4)){ //se elimina la obra de la lista de obras prestadas del cliente 
+                            System.out.printf("Hubo un problema al eliminar la obra de la lista de préstamos del cliente %s (el cliente no ha pedido prestada la obra)\n", cl.getRut());
+                        } 
+                        prestamos.remove(auxP4); //se elimina la venta de la lista de ventas 
+                        System.out.printf("El préstamo de %s ha sido eliminado con éxito.\n", o4.getTitulo());
+                        break;
+                    }
+                }
+                System.out.println("No se pudo encontrar el préstamo.");
+                break;
+            case '5':
+                System.out.println("Saliendo del menú......");
+                break;
+            default:
+                System.out.println("Opción no válida, intente nuevamente.");
+                break;
+            }
+        } while(opcion != '5');
+    }
     
 }
