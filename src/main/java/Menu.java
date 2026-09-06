@@ -31,7 +31,7 @@ public class Menu {
 
     public static void menuPrincipal(HashMap<String, Obra> obras, HashMap<String, Artista> artistas, 
                        HashMap<String, Exposicion> exposiciones, ArrayList<Venta> ventas, 
-                       HashMap<String, Cliente> clientes, ArrayList<Prestamo> prestamos) throws IOException {
+                       HashMap<String, Cliente> clientes, ArrayList<Prestamo> prestamos, ArrayList<Subasta> subastas) throws IOException {
         char opcion;
 
         do{
@@ -52,6 +52,7 @@ public class Menu {
                 Menu.menuPrestamos(prestamos, obras, clientes);
                 break;
             case '5':
+                Menu.menuSubastas(subastas, obras, clientes);
                 break;
             case '6':
                 Menu.menuExposiciones(exposiciones, obras);

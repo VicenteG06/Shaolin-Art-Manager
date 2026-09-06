@@ -49,7 +49,6 @@ public class Exposicion {
     public String getTitulo(){ return titulo; }
     public LocalDate getfechaInicio(){ return fechaInicio; }
     public LocalDate getfechaTermino(){ return fechaTermino; }
-    public ArrayList<Obra> getListaObras(){ return listaObras; }
     //  Metodos SET 
     public void setId(String id){ this.id= id; }
     public void setTitulo(String titulo){ this.titulo= titulo; }
@@ -65,7 +64,6 @@ public class Exposicion {
     public void setFechaTermino(String fechaTermino){ 
         this.fechaTermino = LocalDate.parse(fechaTermino);
     }
-    public void setListaObras(ArrayList<Obra> nuevaL){ listaObras= nuevaL; }
     //Añadir obra a la lista
     public void anadirObra(Obra obra){
         //Si la obra ya se encuentra en la exposicion, se da un aviso y se retorna
