@@ -12,7 +12,7 @@
 import java.util.*;
 import java.time.*;
 
-public class Venta extends Transacci {
+public class Venta extends Transaccion {
     private LocalDate fechaVenta;
     private int precio;
 
@@ -21,35 +21,61 @@ public class Venta extends Transacci {
         this.fechaVenta = null;
         this.precio = 0;
     }
-    //Antes de crear el objeto VENTA, se debe validar que la obra a vender no esté vendida o prestada con getEstado()
+    
+    // Antes de crear el objeto VENTA, se debe validar que la obra a vender esté "DISPONIBLE" en el menú
     public Venta(LocalDate fechaVenta, Cliente cliente, Obra obra, int precio){
-        super(cliente,obra);
+        super(cliente, obra);
         this.fechaVenta = fechaVenta;
-        obra.setEstado("VENDIDO");
         this.precio = precio;
-        
+        // La obra cambia de estado dentro de registrar()
+    }
+    
+    //Constructor que recibe la fecha como String y la convierte en LocalDate
+    public Venta(String fechaVenta, Cliente cliente, Obra obra, int precio){
+        super(cliente, obra);
+        this.fechaVenta = LocalDate.parse(fechaVenta);
+        this.precio = precio;
+        // La obra cambia de estado dentro de registrar()
     }
 
     @Override
     public void registrar() {
         obra.setEstado("VENDIDO");
         cliente.getListaCompras().add(obra);
-        System.out.println("Venta registrada con éxito");
+        System.out.println("Venta registrada con éxito.");
     }
-    //Metodos get
-    public LocalDate getFechaVenta(){return fechaVenta;}
+    
+    // Métodos get
+    public LocalDate getFechaVenta(){return fechaVenta; }
     public int getPrecio(){return precio;}
-    //Metodos set
-    public void setFechaVenta(LocalDate fechaVenta){ this.fechaVenta = fechaVenta; }
+    
+    // Métodos set
+    public void setFechaVenta(LocalDate fechaVenta){ this.fechaVenta = fechaVenta;}
     public void setFechaVenta(String fechaVenta){ 
         this.fechaVenta = LocalDate.parse(fechaVenta);
     }
 
     public void setPrecio(int precio){ 
         if (precio < 0){
-            System.out.println("El precio ingresado no es válido, inténtelo de nuevo.");
+            System.out.println("El precio ingresado no es válido.");
             return;
         }
-        this.precio= precio;
+        this.precio = precio;
+    }
+
+    // Mostrar los atributos de la venta
+    public void mostrarAtributos(){
+        System.out.println("= DETALLES DE LA VENTA =");
+        if (cliente != null) {
+            System.out.println("CLIENTE COMPRADOR RUT: " + cliente.getRut());
+        } else {
+            System.out.println("CLIENTE COMPRADOR RUT: Ninguno");
+        }
+        
+        System.out.print("OBRA VENDIDA: " + obra.getTitulo());
+        System.out.println(" | ARTISTA: " + obra.getArtista().getNombre());
+        System.out.println("PRECIO DE VENTA: $" + precio);
+        System.out.println("FECHA DE VENTA (AAAA-MM-DD): " + fechaVenta);
+        System.out.println("-------------------------");
     }
 }

@@ -17,7 +17,7 @@ public class Obra {
     private String id; // VUELVE A SER STRING
     private String titulo;
     private Artista artista;
-    private String estado; 
+    private String estado; //DISPONIBLE, VENDIDO, PRESTADO
     private int anio; 
     
     //Constructor 

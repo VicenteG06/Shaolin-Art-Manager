@@ -17,43 +17,40 @@ import java.time.*;
     verificar que el id de la obra a vincular esté en el mapa de obras, y que la obra esté DISPONIBLE, y entregarle el objeto obra al constructor de Subasta
 */
 
-public class Subasta {
-    private Obra obraASubastar;
-    //private ArrayList<Cliente> listaClientes;
-    //private ArrayList<Oferta> listaOfertas;
-    private Oferta mejorOferta;
+public class Subasta extends Venta {
     private int precioInicial;
-    private LocalDate fechaVenta;
+    private Oferta mejorOferta;
 
+//public Venta(LocalDate fechaVenta, Cliente cliente, Obra obraVendida, int precio){
     //crear subasta con fecha tipo LocalDate
     public Subasta(Obra obra, int precioInicial, LocalDate fechaVenta){
+        super(fechaVenta, null, obra, precioInicial);
         this.precioInicial = precioInicial;
         mejorOferta = null;
-        this.fechaVenta = fechaVenta;
-        obraASubastar = obra;
     }
-    
-    //crear subasta con fecha String (se convierte a LocalDate)
-    public Subasta(Obra obra, int precioInicial, String fechaVenta){
-        this.precioInicial = precioInicial;
-        mejorOferta = null;
-        this.fechaVenta = LocalDate.parse(fechaVenta);
-        obraASubastar = obra;
-    }
-    
+    public int getPrecioInicial() { return precioInicial; }
+    public Oferta getMejorOferta() { return mejorOferta; }
 
 
     public void ofertar(int monto, String rut){
         if (mejorOferta == null || monto > (mejorOferta.getOferta()) ){
+            if ( mejorOferta == null && monto < precioInicial){
+                System.out.println("La primera oferta debe ser mayor o igualal precio inicial")
+                return;
+            }
             Oferta nueva = new Oferta(monto,rut);
             mejorOferta = nueva;
-            System.out.println("Nueva mayor oferta:" + monto + "por Cliente: RUT " + rut);
+            System.out.println("Nueva mayor oferta:" + monto + "por Cliente: RUT " +rut);
         } else {
             System.out.println("Error. ingresar monto mayor a la oferta actual");
         }
     }
+
+
+
+
     //public Venta(LocalDate fechaVenta, Cliente cliente, Obra obraVendida, int precio){
-    public void cerrarSubasta(ArrayList<Venta> registroVentas, HashMap<String, Cliente> clientes){
+    public boolean cerrarSubasta(HashMap<String, Cliente> clientes){
         if(mejorOferta != null){ 
             String rutGanador = mejorOferta.getRut();
             
@@ -63,14 +60,17 @@ public class Subasta {
                 clientes.put(rutGanador, clienteGanador); 
             } 
 
-            Venta nuevaVenta = new Venta(fechaVenta, clienteGanador, obraASubastar, mejorOferta.getOferta());
-            nuevaVenta.registrar();
-            registroVentas.add(nuevaVenta);
+            this.setCliente(clienteGanador); 
+            this.setPrecio(mejorOferta.getOferta()); 
+
+            super.registrar(); // Cambia el estado y agrega al cliente
             
             System.out.println("Subasta cerrada exitosamente.");
+            return true; // Si la subasta se cerró exitosamente, se reotrna true
             
         } else {
             System.out.println("La subasta se cerró sin ninguna oferta.");
+            return false; //Si la subasta no tuvo ninguna oferta, se retorna False
         }
     }
 }
