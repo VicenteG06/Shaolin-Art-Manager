@@ -13,7 +13,7 @@ import java.util.*;
 
 public class IDManager {
     public static String generarID(String nombre, HashMap<String, Object> mapa){
-        int id;
+        int id = 0;
         String idString;
 
         do{

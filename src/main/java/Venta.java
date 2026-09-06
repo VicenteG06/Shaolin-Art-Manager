@@ -40,7 +40,7 @@ public class Venta extends Transaccion {
 
     @Override
     public void registrar() {
-        obra.setEstado("VENDIDO");
+        obra.setEstado("VENDIDA");
         cliente.getListaCompras().add(obra);
         System.out.println("Venta registrada con éxito.");
     }
