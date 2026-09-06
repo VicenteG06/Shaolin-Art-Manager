@@ -48,7 +48,7 @@ public class Menu {
                 Menu.menuArtistas(artistas);
                 break;
             case '3':
-                Menu.menuVentas(ventas, obras, clientes);
+                Menu.menuVentas(ventas, obras, clientes, subastas);
                 break;
             case '4':
                 Menu.menuPrestamos(prestamos, obras, clientes);
@@ -78,7 +78,7 @@ public class Menu {
         System.out.println("4) Eliminar Exposición");
         System.out.println("5) Salir del Menú");
     }
-       public static void mostrarExposiciones(HashMap<String, Exposicion> exposiciones){
+    public static void mostrarExposiciones(HashMap<String, Exposicion> exposiciones){
 
         if(exposiciones.isEmpty()){
             System.out.println("No hay exposiciones actuales.");
@@ -124,7 +124,7 @@ public class Menu {
             System.out.println("Ingrese una fecha válida");
             return;
         }
-        Obra o = Obra.buscarObra(obras);
+        Obra o = Menu.buscarObra(obras);
         Exposicion e = new Exposicion(id, nombre, fechaInicio, fechaTermino, o);
     }
     public static void menuExposiciones(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) throws IOException{
@@ -164,6 +164,27 @@ public class Menu {
         System.out.println("2) Buscar Obras por Artista");
         System.out.println("3) Salir del Menú");
     }
+    public static void mostrarArtistas(HashMap<String, Artista> artistas){
+        System.out.println("========================");
+        System.out.println("        ARTISTAS");
+        System.out.println("========================");
+
+        for(Artista a : artistas.values()){
+            System.out.println("-> " + a.getNombre());
+        }
+    }
+
+    public static void buscarObrasArtista(HashMap<String, Artista> artistas) throws IOException {
+        System.out.println("Ingrese el Artista de las Obras:");
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        String nombre = lector.readLine();
+
+        if(artistas.containsKey(nombre)){
+            Artista a = artistas.get(nombre);
+            a.mostrarObras();
+        }
+        else System.out.println("Este artista no se encuentra en el sistema");
+    }
     public static void menuArtistas(HashMap<String, Artista> artistas) throws IOException{ 
         char opcion;
         
@@ -174,10 +195,10 @@ public class Menu {
             
             switch(opcion){
             case '1':
-                Artista.mostrarArtistas(artistas);
+                Menu.mostrarArtistas(artistas);
                 break;
             case '2':
-                Artista.buscarObrasArtista(artistas);
+                Menu.buscarObrasArtista(artistas);
                 break;
             case '3':
                 System.out.println("Saliendo del menú......");
@@ -199,6 +220,43 @@ public class Menu {
         System.out.println("3) Registrar Obra");
         System.out.println("4) Salir del Menú");
     }
+    public static void mostrarObras(HashMap<String, Obra> obras){
+        for(Obra o: obras.values()){
+            o.mostrarAtributos();
+        }
+    }
+    public static Obra buscarObra(HashMap<String, Obra> obras) throws IOException{
+        System.out.println("Ingrese el ID de la obra:");
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        String idObra = lector.readLine();
+        
+        if(obras.containsKey(idObra)){
+            Obra o = obras.get(idObra);
+            o.mostrarAtributos();
+            return o;
+        }
+        System.out.println("No existe esa obra");
+        return null;
+    }
+    public static void registrarObra(HashMap<String, Obra> obras) throws IOException{
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Ingrese el Nombre de la Obra:");
+        String nombre = lector.readLine();
+
+        String id = IDManager.generarID(nombre);
+        
+        System.out.println("Ingrese el Nombre del Artista:");
+        String nombreArtista = lector.readLine();
+        System.out.println("Ingrese el año de Creación de la Obra:");
+        int anio = Integer.parseInt(lector.readLine());
+        Obra o = new Obra(id, nombre, null, "DISPONIBLE", anio);
+        
+        Artista a = new Artista(nombreArtista, o);
+
+        o.setArtista(a);
+
+        obras.put(id, o);
+    }
     public static void menuObras(HashMap<String, Obra> obras) throws IOException{
         char opcion;
 
@@ -208,13 +266,13 @@ public class Menu {
             opcion = (lector.readLine()).charAt(0);
             switch(opcion){
             case '1': 
-                Obra.mostrarObras(obras);
+                Menu.mostrarObras(obras);
                 break;
             case '2':
-                Obra.buscarObra(obras);
+                Menu.buscarObra(obras);
                 break;
             case '3':
-                // Obra.registrarObra(obras);
+                Menu.registrarObra(obras);
                 break;
             case '4':
                 System.out.println("Saliendo del menú......");
@@ -237,7 +295,7 @@ public class Menu {
         System.out.println("5) Menu Subastas");
         System.out.println("6) Salir del Menú");
     }
-    public static void menuVentas(ArrayList<Venta> ventas, HashMap<String, Obra> obras, HashMap<String, Cliente> clientes) throws IOException{
+    public static void menuVentas(ArrayList<Venta> ventas, HashMap<String, Obra> obras, HashMap<String, Cliente> clientes, ArrayList<Subasta> subastas) throws IOException{
         char opcion;
         do{
             BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
@@ -380,7 +438,7 @@ public class Menu {
                 System.out.println("No se pudo encontrar la venta.");
                 break;
             case '5':
-                Menu.menuSubastas();
+                Menu.menuSubastas(subastas, obras, clientes);
             case '6':
                 System.out.println("Saliendo del menú......");
                 break;

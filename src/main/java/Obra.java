@@ -58,24 +58,4 @@ public class Obra {
         System.out.println("ESTADO: " + estado);
         System.out.println("AÑO: " + anio);
     }
-
-    public static void mostrarObras(HashMap<String, Obra> obras){
-        for(Obra o: obras.values()){
-            o.mostrarAtributos();
-        }
-    }
-
-    public static Obra buscarObra(HashMap<String, Obra> obras) throws IOException{
-        System.out.println("Ingrese el ID de la obra:");
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-        String idObra = lector.readLine();
-        
-        if(obras.containsKey(idObra)){
-            Obra o = obras.get(idObra);
-            o.mostrarAtributos();
-            return o;
-        }
-        System.out.println("No existe esa obra");
-        return null;
-    }
 }
