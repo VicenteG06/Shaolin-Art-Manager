@@ -32,6 +32,7 @@ public class Exposicion {
         this.titulo = titulo;
         this.fechaInicio = fechaInicio;
         this.fechaTermino = fechaTermino;
+        listaObras = new ArrayList<>();
         //Se añade la primera obra 
         this.listaObras.add(obra);
     }
@@ -41,6 +42,7 @@ public class Exposicion {
         this.titulo= titulo;
         this.fechaInicio = LocalDate.parse(fechaInicio);
         this.fechaTermino = LocalDate.parse(fechaTermino);
+        listaObras = new ArrayList<>();
         //Se añade la primera obra 
         this.listaObras.add(obra);
     }
@@ -112,17 +114,6 @@ public class Exposicion {
         }
         for (int i = 0 ; i < listaObras.size() ; i++){
             System.out.printf("%d. TITULO OBRA: '%s' | ARTISTA: %s \n", i+1, (listaObras.get(i)).getTitulo(), (listaObras.get(i)).getArtista());
-        }
-    }
-
-    public static void mostrarExposiciones(HashMap<String, Exposicion> exposiciones){
-
-        if(exposiciones.isEmpty()){
-            System.out.println("No hay exposiciones actuales.");
-            return;
-        }
-        for(Exposicion e: exposiciones.values()){
-            e.mostrarAtributos();
         }
     }
 }

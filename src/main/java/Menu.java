@@ -11,6 +11,8 @@
 
 import java.io.*;
 import java.util.*;
+import java.time.*;
+import java.time.format.*;
 
 public class Menu {
 
@@ -76,6 +78,55 @@ public class Menu {
         System.out.println("4) Eliminar Exposición");
         System.out.println("5) Salir del Menú");
     }
+       public static void mostrarExposiciones(HashMap<String, Exposicion> exposiciones){
+
+        if(exposiciones.isEmpty()){
+            System.out.println("No hay exposiciones actuales.");
+            return;
+        }
+        for(Exposicion e: exposiciones.values()){
+            e.mostrarAtributos();
+        }
+    }
+
+    public static Exposicion buscarExposicion(HashMap<String, Exposicion> exposiciones) throws IOException{
+        System.out.println("Ingrese el ID de la exposición:");
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        String id = lector.readLine();
+        if(exposiciones.containsKey(id)){
+            Exposicion e = exposiciones.get(id);
+            e.mostrarAtributos();
+            return e;
+        }
+        System.out.println("Esta obra no se encuentra en el sistema");
+        return null;
+    }
+    public static void registrarExposicion(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) throws IOException{
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Ingrese el nombre de la Exposición:");
+        String nombre = lector.readLine();
+        
+        String id = IDManager.generarID(nombre);
+
+        System.out.println("Ingrese la Fecha de Inicio de la Exposición:");
+        String fechaInicio = lector.readLine();
+        try{
+            LocalDate.parse(fechaInicio);
+        } catch(DateTimeParseException | NullPointerException e){
+            System.out.println("Ingrese una fecha válida");
+            return;
+        }
+        System.out.println("Ingrese la Fecha de Termino de la Exposición:");
+        String fechaTermino = lector.readLine();
+        try{
+            LocalDate.parse(fechaTermino);
+        } catch(DateTimeParseException | NullPointerException e){
+            System.out.println("Ingrese una fecha válida");
+            return;
+        }
+        Obra o = Obra.buscarObra(obras);
+        Exposicion e = new Exposicion(id, nombre, fechaInicio, fechaTermino, o);
+    }
     public static void menuExposiciones(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) throws IOException{
         char opcion;
 
@@ -85,13 +136,13 @@ public class Menu {
             opcion = (lector.readLine()).charAt(0);
             switch(opcion){
             case '1': 
-                Exposicion.mostrarExposiciones(exposiciones);
+                Menu.mostrarExposiciones(exposiciones);
                 break;
             case '2':
-                //Exposicion.buscarExposicion(exposiciones);
+                Menu.buscarExposicion(exposiciones);
                 break;
             case '3':
-                //Exposicion.registrarExposicion(exposiciones, obras);
+                Menu.registrarExposicion(exposiciones, obras);
                 break;
             case '4':
                 break;
