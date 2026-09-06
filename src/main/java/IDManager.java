@@ -12,17 +12,14 @@
 import java.util.*;
 
 public class IDManager {
-    public static String generarID(String nombre, HashMap<String, Object> mapa){
+    public static String generarID(String nombre){
         int id = 0;
-        String idString;
 
-        do{
-            for(int i = 0; i < nombre.length(); i++){
-                id += ((int) nombre.charAt[0]) * (31 ** i);
-            }
+        for(int i = 0; i < nombre.length(); i++){
+            id += ((int) nombre.charAt(i)) * Math.pow(31, i);
+        }
         
-            idString = "" + (id % 251);
-        } while(mapa.containsKey(idString));
+        String idString = "" + (id % 251);
         return idString;
     }
 }
