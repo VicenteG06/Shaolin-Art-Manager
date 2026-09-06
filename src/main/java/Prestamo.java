@@ -31,9 +31,11 @@ public class Prestamo extends Transacci {
     }
     @Override
     public void registrar() {
-        obra.setEstado("PRESTADA");
-        cliente.getListaPrestamos().add(obra);// Usa el getter exacto de tu Cliente
-        System.out.println("Préstamo registrado con éxito");
+        if (!cliente.agregarPrestamo(obra)){
+            System.out.println("Hubo un error al registrar el préstamo de la obra");
+            return;
+        }
+        System.out.println("Préstamo registrado con éxito.");
     }
     // Métodos get
     public LocalDate getFechaInicio() { return fechaInicio; }

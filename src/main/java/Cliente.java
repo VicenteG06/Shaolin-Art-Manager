@@ -22,12 +22,8 @@ public class Cliente {
     }
     //Metodos GET 
     public String getRut(){ return rut; }
-    public ArrayList<Obra> getListaCompras(){ return listaCompras; }
-    public ArrayList<Obra> getListaPrestamos(){ return listaPrestamos; }
     //Metodos SET 
     public void setRut(String rut){ this.rut= rut; }
-    public void setListaCompras(ArrayList<Obra> nuevaL){ listaCompras= nuevaL; }
-    public void setListaPrestamos(ArrayList<Obra> nuevaL){ listaPrestamos= nuevaL; }
     //Metodo ver lista de obras compradas
     public void mostrarCompras(){
         if (listaCompras.isEmpty()){
@@ -58,5 +54,33 @@ public class Cliente {
         System.out.println("RUT: " + rut);
         System.out.println("OBRAS COMPRADAS: " + listaCompras.size());
         System.out.println("OBRAS PRESTADAS: " + listaPrestamos.size());
+    }
+    //Metodo agregar obra a lista de compras 
+    public boolean agregarCompra(Obra o){
+        if (listaCompras.contains(o)) return false ; 
+        o.setEstado("VENDIDA"); //se cambia el estado de la obra a vendida
+        listaCompras.add(o);
+        return true;
+    }
+    //Metodo agregar obra a lista de prestamos
+    public boolean agregarPrestamo(Obra o){
+        if (listaPrestamos.contains(o)) return false ; 
+        o.setEstado("PRESTADA"); //se cambia el estado de la obra a prestada
+        listaPrestamos.add(o);
+        return true;
+    }
+    //Metodo borrar obra de lista de compras 
+    public boolean elimObComprada(Obra o){ 
+        if (!listaCompras.contains(o)) return false;
+        o.setEstado("DISPONIBLE"); //se cambia el estado de la obra a disponible
+        listaCompras.remove(o);
+        return true;
+    }
+    //Metodo borrar obra de lista de prestamos
+    public boolean elimObPrestada(Obra o){ 
+        if (!listaPrestamos.contains(o)) return false;
+        o.setEstado("DISPONIBLE"); //se cambia el estado de la obra a disponible
+        listaPrestamos.remove(o);
+        return true;
     }
 }

@@ -82,10 +82,10 @@ public class Menu {
                 Exposicion.mostrarExposiciones(exposiciones);
                 break;
             case '2':
-                Exposicion.buscarExposicion(exposiciones);
+                //Exposicion.buscarExposicion(exposiciones);
                 break;
             case '3':
-                Exposicion.registrarExposicion(exposiciones, obras);
+                //Exposicion.registrarExposicion(exposiciones, obras);
                 break;
             case '4':
                 break;
@@ -176,8 +176,9 @@ public class Menu {
         System.out.println("1) Mostrar Ventas");
         System.out.println("2) Buscar Venta");
         System.out.println("3) Registrar Venta");
-        System.out.println("4) Menu Subastas");
-        System.out.println("5) Salir del Menú");
+        System.out.println("4) Eliminar Venta");
+        System.out.println("5) Menu Subastas");
+        System.out.println("6) Salir del Menú");
     }
     public static void menuVentas(ArrayList<Venta> ventas, HashMap<String, Obra> obras, HashMap<String, Cliente> clientes) throws IOException{
         char opcion;
@@ -194,10 +195,10 @@ public class Menu {
                 }
                 //como hay ventas, se recorre la lista y se muestran
                 System.out.println("-> VENTAS:"); //está como medio feo. Arreglar
-                Venta auxV;
+                Venta auxV1;
                 for (int i = 0 ; i < ventas.size() ; i++){
-                    auxV= (Venta) ventas.get(i);
-                    auxV.mostrarAtributos();
+                    auxV1= (Venta) ventas.get(i);
+                    auxV1.mostrarAtributos();
                 }
                 break;
             case '2': //BUSCAR VENTAS
@@ -209,28 +210,28 @@ public class Menu {
                 //se busca la obra vendida. De no existir, se da un aviso y se retorna al menu
                 System.out.println("Ingrese el nombre de la Obra vendida:"); 
                 BufferedReader l = new BufferedReader(new InputStreamReader(System.in));
-                String idObra = l.readLine();
-                if(!obras.containsKey(idObra)){
+                String idObra2 = l.readLine();
+                if(!obras.containsKey(idObra2)){
                     System.out.println("No existe esa obra");
                     break;
                 }
                 //al obtener la obra, si no esta vendida se da un aviso y se retorna al menu
-                Obra o = obras.get(idObra); 
-                if ( !(o.getEstado()).equals("VENDIDA") ){
-                    System.out.printf("La obra '%s' no ha sido vendida.\n", o.getTitulo());
+                Obra o2 = obras.get(idObra2); 
+                if ( !(o2.getEstado()).equals("VENDIDA") ){
+                    System.out.printf("La obra '%s' no ha sido vendida.\n", o2.getTitulo());
                     break;
                 }
                 //como se sabe que esta vendida, se busca y muestra 
                 Venta auxV2; 
                 for (int i = 0 ; i < ventas.size() ; i++ ){
                     auxV2 = (Venta) ventas.get(i);
-                    if (auxV2.getObra() == o){
+                    if (auxV2.getObra() == o2){
                         auxV2.mostrarAtributos();
                         break;
                     }
                 }
                 //si por alguna razón no se encontró, se da aviso 
-                System.out.printf("'%s' sale vendida pero no se encontró en lista ventas.\n", o.getTitulo());
+                System.out.printf("'%s' sale vendida pero no se encontró en lista ventas.\n", o2.getTitulo());
                 break;
             case '3': 
                 //si el mapa de clientes no contiene clientes, se da un aviso y se retorna al menu
@@ -240,30 +241,30 @@ public class Menu {
                 }
                 //se busca la obra que se quiere comprar. De no existir, se da un aviso y se retorna al menu
                 System.out.println("Ingrese el nombre de la Obra que se desea vender:"); 
-                BufferedReader l2 = new BufferedReader(new InputStreamReader(System.in));
-                String idObra2 = l2.readLine();
-                if(!obras.containsKey(idObra2)){
+                BufferedReader l3 = new BufferedReader(new InputStreamReader(System.in));
+                String idObra3 = l3.readLine();
+                if(!obras.containsKey(idObra3)){
                     System.out.println("No existe esa obra");
                     break;
                 }
                 //al obtener la obra, se verifica que esta obra no este ya vendida
-                Obra o2 = obras.get(idObra2); 
-                if ( (o2.getEstado()).equals("VENDIDA") ){
-                    System.out.printf("La obra '%s' ya ha sido vendida.\n", o2.getTitulo());
+                Obra o3 = obras.get(idObra3); 
+                if ( (o3.getEstado()).equals("VENDIDA") ){
+                    System.out.printf("La obra '%s' ya ha sido vendida.\n", o3.getTitulo());
                     break;
                 }
-                else if ( (o2.getEstado()).equals("PRESTADA") ){
-                    System.out.printf("La obra '%s' está actualmente prestada, por lo que no se puede vender.\n", o2.getTitulo());
+                else if ( (o3.getEstado()).equals("PRESTADA") ){
+                    System.out.printf("La obra '%s' está actualmente prestada, por lo que no se puede vender.\n", o3.getTitulo());
                     break;
                 }
                 //como está a la venta, se registra su venta y se da un aviso
                 System.out.println("Ingrese la fecha de la venta (formato: 'AAAA-MM-DD'):");
-                String fechaS = l2.readLine(); 
+                String fechaS = l3.readLine(); 
                 //VERIFICAR SI SE INGRESO CORRECTAMENTE LA FECHA (TRY-CATCH)****
-                System.out.printf("Ingrese el rut SIN GUIÓN del cliente que desea comprar '%s' : \n", o2.getTitulo());
+                System.out.printf("Ingrese el rut SIN GUIÓN del cliente que desea comprar '%s' : \n", o3.getTitulo());
                 System.out.println("**EL CLIENTE DEBE ESTAR PREVIAMENTE REGISTRADO. DE NO ESTARLO, NO SE REALIZARÁ LA VENTA.");
                 System.out.println("SI DESEA REGISTRAR UN NUEVO CLIENTE, INGRESE '0' (cero) PARA VOLVER AL MENÚ DE VENTAS.**");
-                String rutC = l2.readLine();
+                String rutC = l3.readLine();
                 if (rutC.equals("0")) break;
                 if (!clientes.containsKey(rutC)){
                     System.out.printf("El cliente de rut %s no se encuentra registrado.\n", rutC);
@@ -271,27 +272,67 @@ public class Menu {
                     break;
                 }
                 Cliente c = (Cliente) clientes.get(rutC);
+                //se ingresa la obra a la lista de compras del cliente
+                if (!c.agregarCompra(o3)){ //si la obra ya fue comprada por el cliente, se da aviso y se retorna al menu
+                    System.out.printf("El cliente %s ya posee la obra '%s'.\n", c.getRut(), o3.getTitulo());
+                    break;
+                }
                 System.out.println("Ingrese el precio de la venta:");
-                int p = Integer.parseInt(l2.readLine());
+                int p = Integer.parseInt(l3.readLine());
                 do {
                     if (p >= 0) break;
                     System.out.println("Ingrese un precio válido: ");
-                    p = Integer.parseInt(l2.readLine());
+                    p = Integer.parseInt(l3.readLine());
                 } while ( p < 0);
-                Venta n = new Venta(fechaS, c, o2, p);
+                Venta n = new Venta(fechaS, c, o3, p);
                 n.registrar();
                 break;
             case '4':
-                //Menu.menuSubastas(subastas); 
+                //si no hay ventas, se da un aviso y se retorna al menu
+                if (ventas.size() == 0){ 
+                    System.out.println("No hay ventas registradas.");
+                    break;
+                }
+                //se busca la obra vendida. De no existir, se da un aviso y se retorna al menu
+                System.out.println("Ingrese el nombre de la Obra vendida:"); 
+                BufferedReader l4 = new BufferedReader(new InputStreamReader(System.in));
+                String idObra4 = l4.readLine();
+                if(!obras.containsKey(idObra4)){
+                    System.out.println("No existe esa obra");
+                    break;
+                }
+                //al obtener la obra, si no esta vendida se da un aviso y se retorna al menu
+                Obra o4 = obras.get(idObra4); 
+                if ( !(o4.getEstado()).equals("VENDIDA") ){
+                    System.out.printf("La obra '%s' no ha sido vendida.\n", o4.getTitulo());
+                    break;
+                }
+                //como se sabe que esta vendida, se busca, se elimina y se da un aviso de ello
+                Venta auxV4; 
+                for (int i = 0 ; i < ventas.size() ; i++ ){
+                    auxV4= (Venta) ventas.get(i);
+                    if (auxV4.getObra() == o4){
+                        Cliente cl = auxV4.getCliente(); //se obtiene el cliente de la venta 
+                        if (!cl.elimObComprada(o4)){ //se elimina la obra de la lista de obras compradas del cliente 
+                            System.out.printf("Hubo un problema al eliminar la obra de la lista de compras del cliente %s (el cliente no es dueño de la obra)\n", cl.getRut());
+                        } 
+                        ventas.remove(auxV4); //se elimina la venta de la lista de ventas 
+                        System.out.printf("La venta de %s ha sido eliminada con éxito.\n", o4.getTitulo());
+                        break;
+                    }
+                }
+                System.out.println("No se pudo encontrar la venta.");
                 break;
             case '5':
+                //Menu.menuSubastas();
+            case '6':
                 System.out.println("Saliendo del menú......");
                 break;
             default:
                 System.out.println("Opción no válida, intente nuevamente.");
                 break;
             }
-        } while(opcion != '5');
+        } while(opcion != '6');
     }
     
     

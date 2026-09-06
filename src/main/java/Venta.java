@@ -40,8 +40,10 @@ public class Venta extends Transacci {
 
     @Override
     public void registrar() {
-        obra.setEstado("VENDIDA");
-        cliente.getListaCompras().add(obra);
+        if (!cliente.agregarCompra(obra)){
+            System.out.println("Hubo un error al registrar la compra de la obra");
+            return;
+        }
         System.out.println("Venta registrada con éxito.");
     }
     
