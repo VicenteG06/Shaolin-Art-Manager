@@ -134,6 +134,16 @@ public class Menu {
         Obra o = Menu.buscarObra(obras);
         Exposicion e = new Exposicion(id, nombre, fechaInicio, fechaTermino, o);
     }
+    public static void eliminarExposicion(HashMap<String, Exposicion> exposiciones) throws IOException{
+        System.out.println("Ingrese el id de la Exposición a Eliminar:");
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        String id = lector.readLine();
+        if(exposiciones.containsKey(id)){
+            exposiciones.remove(id);
+        }
+        System.out.println("No existe esa Exposición.");
+    }
+
     public static void menuExposiciones(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) throws IOException, EmptyEntryException{
         char opcion = ' ';
 
@@ -157,6 +167,7 @@ public class Menu {
                     Menu.registrarExposicion(exposiciones, obras);
                     break;
                 case '4':
+                    
                     break;
                 case '5':
                     System.out.println("Saliendo del menú......");
