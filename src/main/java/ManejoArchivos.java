@@ -12,7 +12,7 @@
 import java.io.*;
 import java.util.*;
 
-public class CargarObras {
+public class ManejoArchivos {
     private static HashMap<String, Artista> mapaArtistas = new HashMap<>();
     public static HashMap<String, Obra> cargarDesdeCsv(String rutaArchivo) {
         HashMap<String,Obra> mapaObras = new HashMap<>();
