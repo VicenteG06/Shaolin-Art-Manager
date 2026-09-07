@@ -12,7 +12,7 @@
 import java.util.*;
 import java.time.*;
 
-public class Venta extends Transacci {
+public class Venta extends Transaccion {
     private LocalDate fechaVenta;
     private int precio;
     public Venta(){

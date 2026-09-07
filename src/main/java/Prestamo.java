@@ -11,7 +11,7 @@
 
 import java.time.*;
 
-public class Prestamo extends Transacci {
+public class Prestamo extends Transaccion {
     private String id;
     private LocalDate fechaInicio;
     private LocalDate fechaRetorno;

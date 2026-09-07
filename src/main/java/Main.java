@@ -13,7 +13,7 @@ import java.io.*;
 import java.util.*;
 
 public class Main {
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws IOException, EmptyEntryException{
         // Se cargan las obras del archivo .csv.
         HashMap<String, Obra> obras = CargarObras.cargarDesdeCsv("data/obras_de_arte.csv");
         // Se obtiene el mapa de artistas de las obras cargadas del .csv
