@@ -40,13 +40,12 @@ public class Prestamo extends Transaccion {
     }
     
     @Override
-    public void registrar() {
+    public boolean registrar() {
         //getCliente y getObra por cambio de variables en clase padre a private
         if (!getCliente().agregarPrestamo(getObra())){
-            System.out.println("Hubo un error al registrar el préstamo de la obra");
-            return;
+            return false;
         }
-        System.out.println("Préstamo registrado con éxito.");
+        return true;
     }
     // Métodos get
     public LocalDate getFechaInicio() { return fechaInicio; }

@@ -21,10 +21,11 @@ public class MenuObras {
         System.out.println("3) Registrar Obra");
         System.out.println("4) Salir del Menú");
     }
-    public static void mostrarObras(HashMap<String, Obra> obras){
+    public static void mostrarObras(HashMap<String, Obra> obras) throws IOException{
         for(Obra o: obras.values()){
             o.mostrarAtributos();
         }
+        PresioneTeclaParaContinuar.ptpc();
     }
     public static Obra buscarObra(HashMap<String, Obra> obras) throws IOException{
         System.out.println("Ingrese el ID de la obra:");

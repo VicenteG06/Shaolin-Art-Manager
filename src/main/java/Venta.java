@@ -38,13 +38,12 @@ public class Venta extends Transaccion {
     }
 
     @Override
-    public void registrar() {
+    public boolean registrar() {
         //USAMOS GET.CLIENTE por cambio de variables de padre de protected a private
         if (!getCliente().agregarCompra(getObra())){
-            System.out.println("Hubo un error al registrar la compra de la obra");
-            return;
+            return false;
         }
-        System.out.println("Venta registrada con éxito.");
+        return true;
     }
     
     // Métodos get

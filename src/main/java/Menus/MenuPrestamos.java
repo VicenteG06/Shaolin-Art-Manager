@@ -36,6 +36,7 @@ public class MenuPrestamos {
             auxP= prestamos.get(i);
             auxP.mostrarAtributos();
         }
+        PresioneTeclaParaContinuar.ptpc();
     }
     public static void buscarPrestamos(ArrayList<Prestamo> prestamos, HashMap<String, Obra> obras) throws IOException
 {
@@ -124,7 +125,10 @@ public class MenuPrestamos {
         String nId= IDManager.generarID(rutC); // Se genera el ID
         Prestamo n = new Prestamo(nId, c, o, fInicioObj, fRetornoObj);
         //se ingresa la obra a la lista de prestamos del cliente en el mismo metodo de registro
-        n.registrar();
+        if(n.registrar()){
+            System.out.println("Venta registrada con éxito");
+        }
+        else { System.out.println("Hubo un error al registrar la compra de la obra"); }
         prestamos.add(n); // AGREGAR AL ARRAYLIST DE PRESTAMOS
     }
     public static void eliminarPrestamo(ArrayList<Prestamo> prestamos, HashMap<String, Obra> obras) throws IOException{

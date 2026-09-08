@@ -67,33 +67,30 @@ public class Exposicion {
         this.fechaTermino = LocalDate.parse(fechaTermino);
     }
     //Añadir obra a la lista
-    public void anadirObra(Obra obra){
+    public boolean anadirObra(Obra obra){
         //Si la obra ya se encuentra en la exposicion, se da un aviso y se retorna
         if ( listaObras.contains(obra) == true){
-            System.out.println("La obra ya se encuentra en la exposición.");
-            return;
+            return false;
         }
         listaObras.add(obra);
-        System.out.printf("La obra '%s' ha sido añadida exitosamente.\n", obra.getTitulo());
+        return true;
     }
     //Eliminar obra de la lista
-    public void eliminarObra(Obra obra){
+    public boolean eliminarObra(Obra obra){
         //Si la obra NO se encuentra en la exposicion, se da un aviso y se retorna
         if ( listaObras.contains(obra) == false){
-            System.out.println("La obra NO se encuentra en la exposición.");
-            return;
+            return false;
         }
         listaObras.remove(obra);
-        System.out.printf("La obra '%s' ha sido eliminada exitosamente.\n", obra.getTitulo());
+        return true;
     }
     //Vaciar lista 
-    public void vaciarLista(){
+    public boolean vaciarLista(){
         if ( listaObras.isEmpty() == true ){
-            System.out.println("La lista de obras ya se encuentra vacía. ");
-            return;
+            return false;
         }
         listaObras.clear(); 
-        System.out.println("Se ha vaciado la lista de obras exitosamente.");
+        return true;
     }
     //Buscar una obra (saber si la obra se encuentra en la lista)   
     public boolean obraEstaEnLista(Obra obra){
@@ -113,7 +110,8 @@ public class Exposicion {
             return;
         }
         for (int i = 0 ; i < listaObras.size() ; i++){
-            System.out.printf("%d. TITULO OBRA: '%s' | ARTISTA: %s \n", i+1, (listaObras.get(i)).getTitulo(), (listaObras.get(i)).getArtista());
+            System.out.printf("%d. TITULO OBRA: '%s' | ARTISTA: %s \n", i+1, (listaObras.get(i)).getTitulo(), ((listaObras.get(i)).getArtista()).getNombre());
         }
+        PresioneTeclaParaContinuar.ptpc();
     }
 }

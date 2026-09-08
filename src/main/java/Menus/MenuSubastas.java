@@ -23,7 +23,7 @@ public class MenuSubastas {
         System.out.println("4) Cerrar Subasta Activa");
         System.out.println("5) Salir del Menú");
     }
-    public static void mostrarSubastasCerradas(ArrayList<Subasta> subastas){
+    public static void mostrarSubastasCerradas(ArrayList<Subasta> subastas) throws IOException{
         if (subastas.isEmpty()){
             System.out.println("No hay subastas finalizadas");
         } else {
@@ -33,6 +33,7 @@ public class MenuSubastas {
                 auxS= (Subasta) subastas.get(i);
                 auxS.mostrarAtributos();
             }
+            PresioneTeclaParaContinuar.ptpc();
         }
     }
     public static void iniciarNuevaSubasta(ArrayList<Subasta> subastas, HashMap<String, Obra> obras) throws IOException{

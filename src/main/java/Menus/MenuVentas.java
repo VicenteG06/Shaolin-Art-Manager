@@ -26,7 +26,7 @@ public class MenuVentas {
         System.out.println("6) Salir del Menú");
     }
 
-    public static void mostrarVentas(ArrayList<Venta> ventas){
+    public static void mostrarVentas(ArrayList<Venta> ventas) throws IOException{
         //si no hay ventas, se da un aviso y se retorna al menu
         if (ventas.size() == 0){ 
             System.out.println("No hay ventas registradas.");
@@ -39,6 +39,7 @@ public class MenuVentas {
             auxV1= (Venta) ventas.get(i);
             auxV1.mostrarAtributos();
         }
+        PresioneTeclaParaContinuar.ptpc();
     }
     
     public static void buscarVenta(ArrayList<Venta> ventas, HashMap<String, Obra> obras) throws IOException{
@@ -115,7 +116,10 @@ public class MenuVentas {
                 
         Venta n = new Venta(fechaVentaObj, c, o, p);
         //se ingresa la obra a la lista de compras del cliente en el mismo metodo de registro
-        n.registrar();
+        if(n.registrar()){
+            System.out.println("Venta registrada con éxito");
+        }
+        else { System.out.println("Hubo un error al registrar la compra de la obra"); }
         ventas.add(n); // AGREGA AL ARRAYLIS DE VENTAS
         return;
     }

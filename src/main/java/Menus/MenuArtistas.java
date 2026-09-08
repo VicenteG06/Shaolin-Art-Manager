@@ -20,7 +20,7 @@ public class MenuArtistas {
         System.out.println("2) Buscar Obras por Artista");
         System.out.println("3) Salir del Menú");
     }
-    public static void mostrarArtistas(HashMap<String, Artista> artistas){
+    public static void mostrarArtistas(HashMap<String, Artista> artistas) throws IOException{
         System.out.println("========================");
         System.out.println("         ARTISTAS");
         System.out.println("========================");
@@ -28,6 +28,7 @@ public class MenuArtistas {
         for(Artista a : artistas.values()){
             System.out.println("-> " + a.getNombre());
         }
+        PresioneTeclaParaContinuar.ptpc();
     }
 
     public static void buscarObrasArtista(HashMap<String, Artista> artistas) throws IOException {

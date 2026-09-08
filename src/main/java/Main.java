@@ -26,8 +26,37 @@ public class Main {
         ArrayList<Prestamo> registroPrestamos = new ArrayList<>();
         ArrayList<Subasta> registroSubastas = new ArrayList<>();
         
-        MenuPrincipal.menuPrincipal(obras, artistas, exposiciones, registroVentas, clientes, registroPrestamos, registroSubastas);
-        
+        char opcion = ' ';
+       
+        BufferedReader lector = new BufferedReader (new InputStreamReader(System.in));
+        System.out.println("========================");
+        System.out.println("Shaolin Art Manager");
+        System.out.println("========================");
+        System.out.println("Seleccione el modo de ejecución:");
+        System.out.println("1) Modo Consola");
+        System.out.println("2) Modo Ventana");
+        try{
+            String entrada = lector.readLine();
+            if(entrada == null || entrada.trim().isEmpty()){
+                throw new EmptyEntryException();
+            }
+            opcion = entrada.charAt(0);
+            switch(opcion){
+            case '1':
+                MenuPrincipal.menuPrincipal(obras, artistas, exposiciones, registroVentas, clientes, registroPrestamos, registroSubastas);
+                break;
+            case '2':
+                new MenuPrincipalVentana().setVisible(true);
+                break;
+            default:
+                System.out.println("Opción no válida, intente nuevamente.");
+                break;
+            }
+        } catch (EmptyEntryException e) {
+            System.out.println(e.getMessage() + "\n");
+        } catch (IOException e) {
+            System.out.println("Error de lectura: " + e.getMessage());
+            return;
+        }
     }
-    
 }

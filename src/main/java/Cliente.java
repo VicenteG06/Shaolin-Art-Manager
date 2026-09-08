@@ -25,7 +25,7 @@ public class Cliente {
     //Metodos SET 
     public void setRut(String rut){ this.rut= rut; }
     //Metodo ver lista de obras compradas
-    public void mostrarCompras(){
+    public void mostrarCompras() throws IOException{
         if (listaCompras.isEmpty()){
             System.out.println("El cliente no ha comprado ninguna obra.");
             return;
@@ -33,11 +33,12 @@ public class Cliente {
         System.out.println("= OBRAS COMPRADAS =");
         for (int i = 0 ; i < listaCompras.size() ; i++){
             System.out.print("Obra Comprada: " + (listaCompras.get(i)).getTitulo());
-            System.out.println(" | Artista: " + (listaCompras.get(i)).getArtista().getNombre());
+            System.out.println(" | Artista: " + ((listaCompras.get(i)).getArtista()).getNombre());
         }
+        PresioneTeclaParaContinuar.ptpc();
     }
     //Metodo ver lista de obras prestadas
-    public void mostrarPrestamos(){
+    public void mostrarPrestamos() throws IOException{
         if (listaPrestamos.isEmpty()){
             System.out.println("Al cliente no se le ha prestado ninguna obra.");
             return;
@@ -45,8 +46,9 @@ public class Cliente {
         System.out.println("= OBRAS PRESTADAS =");
         for (int i = 0 ; i < listaPrestamos.size() ; i++){
             System.out.print("Obra Prestada: " + (listaPrestamos.get(i)).getTitulo());
-            System.out.println(" | Artista: " + (listaPrestamos.get(i)).getArtista().getNombre());
+            System.out.println(" | Artista: " + ((listaPrestamos.get(i)).getArtista()).getNombre());
         }
+        PresioneTeclaParaContinuar.ptpc();
     }
     //Mostrar Atributos
     public void mostrarAtributos(){

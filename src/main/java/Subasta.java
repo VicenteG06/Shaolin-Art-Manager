@@ -41,7 +41,7 @@ public class Subasta extends Venta {
     public void ofertar(int monto, String rut){
         if (mejorOferta == null || monto > (mejorOferta.getOferta()) ){
             if ( mejorOferta == null && monto < precioInicial){
-                System.out.println("La primera oferta debe ser mayor o igualal precio inicial");
+                System.out.println("La primera oferta debe ser mayor o igual al precio inicial");
                 return;
             }
             Oferta nueva = new Oferta(monto,rut);

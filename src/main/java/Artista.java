@@ -1,4 +1,4 @@
-/**
+    /**
  *
  * @author Vicente
  */
@@ -30,17 +30,15 @@ public class Artista {
 
     // Se define el método de añadir obra y solo si esta no existe en la lista.
     public boolean anadirObra(Obra obra){
-        for(int i = 0; i < obras.size(); i++){
-            if((obras.get(i)).getId() == obra.getId()){
-                return false;
-            }
+        if(obras.contains(obra)){
+            return false;      
         }
         obras.add(obra);
         return true;
     }
 
     // Se define el método para mostrar las obras del artista.
-    public void mostrarObras(){
+    public void mostrarObras() throws IOException{
         //Si no hay obras en la lista, se da un aviso y se retorna.
         if(obras.size() == 0){
             System.out.println("Este artista no tiene obras.");
@@ -50,5 +48,6 @@ public class Artista {
         for(int i = 0; i < obras.size(); i++){
             obras.get(i).mostrarAtributos();
         }
+        PresioneTeclaParaContinuar.ptpc();
     }
 }
