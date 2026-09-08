@@ -37,22 +37,10 @@ public class Subasta extends Venta {
     public int getPrecioInicial() { return precioInicial; }
     public Oferta getMejorOferta() { return mejorOferta; }
 
-
     public void ofertar(int monto, String rut){
-        if (mejorOferta == null || monto > (mejorOferta.getOferta()) ){
-            if ( mejorOferta == null && monto < precioInicial){
-                System.out.println("La primera oferta debe ser mayor o igual al precio inicial");
-                return;
-            }
-            Oferta nueva = new Oferta(monto,rut);
-            mejorOferta = nueva;
-            System.out.println("Nueva mayor oferta:" + monto + " por Cliente: RUT " +rut);
-        } else {
-            System.out.println("Error. ingresar monto mayor a la oferta actual");
-        }
+        Oferta nueva = new Oferta(monto, rut);
+        mejorOferta = nueva;
     }
-
-
 
 
     //public Venta(LocalDate fechaVenta, Cliente cliente, Obra obraVendida, int precio){

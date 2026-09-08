@@ -25,7 +25,7 @@ public class Cliente {
     //Metodos SET 
     public void setRut(String rut){ this.rut= rut; }
     //Metodo ver lista de obras compradas
-    public void mostrarCompras() throws IOException{
+    public void mostrarCompras()  {
         if (listaCompras.isEmpty()){
             System.out.println("El cliente no ha comprado ninguna obra.");
             return;
@@ -38,7 +38,7 @@ public class Cliente {
         PresioneTeclaParaContinuar.ptpc();
     }
     //Metodo ver lista de obras prestadas
-    public void mostrarPrestamos() throws IOException{
+    public void mostrarPrestamos() {
         if (listaPrestamos.isEmpty()){
             System.out.println("Al cliente no se le ha prestado ninguna obra.");
             return;

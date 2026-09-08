@@ -23,7 +23,7 @@ public class MenuSubastas {
         System.out.println("4) Cerrar Subasta Activa");
         System.out.println("5) Salir del Menú");
     }
-    public static void mostrarSubastasCerradas(ArrayList<Subasta> subastas) throws IOException{
+    public static void mostrarSubastasCerradas(ArrayList<Subasta> subastas){
         if (subastas.isEmpty()){
             System.out.println("No hay subastas finalizadas");
         } else {
@@ -33,7 +33,6 @@ public class MenuSubastas {
                 auxS= (Subasta) subastas.get(i);
                 auxS.mostrarAtributos();
             }
-            PresioneTeclaParaContinuar.ptpc();
         }
     }
     public static void iniciarNuevaSubasta(ArrayList<Subasta> subastas, HashMap<String, Obra> obras) throws IOException{
@@ -65,6 +64,7 @@ public class MenuSubastas {
         MenuPrincipal.subastaActiva = new Subasta(o, precioInicial, fSubastaObj);
         System.out.println("Subasta iniciada con éxito");
     }
+
     public static void registrarNuevaOferta(ArrayList<Subasta> subastas) throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         if (MenuPrincipal.subastaActiva == null) {
@@ -73,11 +73,44 @@ public class MenuSubastas {
         }     
         String rutOfertador = Validaciones.pedirRut(lector, "Ingrese el RUT del cliente que oferta (Sin guión, incluyendo dígito verificador) o '0' para cancelar:");
         if (rutOfertador.equals("0")) return; //0 para retornar al menú y no quedar en loop inifinito
-                
-        int monto = Validaciones.pedirEnteroPositivo(lector, "Ingrese el monto de la oferta:");
-                
+        
+        //--------------------------------------------------------------- se hacen las validaciones correspondientes para añadir la oferta
+        boolean ofertaValida = false; 
+        int monto = 0;
+        
+        while (!ofertaValida) {
+
+            monto = Validaciones.pedirEnteroPositivo(lector, "Ingrese el monto de la oferta:");
+            
+            Oferta ofertaActual = MenuPrincipal.subastaActiva.getMejorOferta();
+            int precioInicial = MenuPrincipal.subastaActiva.getPrecioInicial();
+            //si es la primera oferta
+            if (ofertaActual == null) {
+                if (monto < precioInicial) {
+                    System.out.println("Error: La primera oferta debe ser mayor o igual al precio inicial ($" + precioInicial + ").");
+                } else {
+                    ofertaValida = true;
+                }
+            } 
+            // Si ya existen ofertas
+            else {
+
+                if (monto <= ofertaActual.getOferta()) { 
+                    System.out.println("Error: Debe ingresar un monto mayor a la oferta actual ($" + ofertaActual.getOferta() + ")");
+
+                } else {
+                    ofertaValida = true;
+                }
+            }
+        }
+        
+        // si sale del ciclo, la oferta es valida y podemos añadirla
         MenuPrincipal.subastaActiva.ofertar(monto, rutOfertador);
+        System.out.println("Nueva mayor oferta: $" + monto + " por Cliente RUT: " + rutOfertador);
+
+
     }
+
     public static void cerrarSubastaActiva(ArrayList<Subasta> subastas, HashMap<String, Cliente> clientes){
         if (MenuPrincipal.subastaActiva == null) { //verificar que haya una subasta activa
             System.out.println("No hay ninguna subasta activa para cerrar.");

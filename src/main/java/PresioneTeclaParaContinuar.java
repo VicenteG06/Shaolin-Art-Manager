@@ -12,10 +12,14 @@
 import java.io.*;
 
 public class PresioneTeclaParaContinuar {
-    public static void ptpc() throws IOException{
-        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Presione Una Tecla Para Contiunar.....");
-        String linea = lector.readLine();
-        return;
+    public static void ptpc(){
+        try {
+            BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+            System.out.println("Presione ENTER Para Contiunar.....");
+            lector.readLine();
+        } catch (IOException e) {}
     }
+
 }
+
+

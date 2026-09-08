@@ -23,8 +23,9 @@ public class Transaccion {
         this.obra = obra;
     }
     
-    public void registrar() {
+    public boolean registrar() {
         System.out.println("Registrando transacción");
+        return true;
     }
     
     public Cliente getCliente() { return cliente; }
