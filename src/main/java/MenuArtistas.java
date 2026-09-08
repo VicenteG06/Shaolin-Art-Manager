@@ -10,8 +10,6 @@
 
 import java.io.*;
 import java.util.*;
-import java.time.*;
-import java.time.format.*;
 
 public class MenuArtistas {
     public static void mostrarMenuArtistas(){
@@ -24,7 +22,7 @@ public class MenuArtistas {
     }
     public static void mostrarArtistas(HashMap<String, Artista> artistas){
         System.out.println("========================");
-        System.out.println("        ARTISTAS");
+        System.out.println("         ARTISTAS");
         System.out.println("========================");
 
         for(Artista a : artistas.values()){
@@ -37,8 +35,10 @@ public class MenuArtistas {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         String nombre = lector.readLine();
 
-        if(artistas.containsKey(nombre)){
-            Artista a = artistas.get(nombre);
+        //SE DEBE USAR to lowercase porque los artistas se almacenan en minúscula, para que la validación no sea case sensitive
+        if(artistas.containsKey(nombre.toLowerCase())){
+
+            Artista a = artistas.get(nombre.toLowerCase());
             a.mostrarObras();
         }
         else System.out.println("Este artista no se encuentra en el sistema");

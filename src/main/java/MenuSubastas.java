@@ -11,7 +11,6 @@
 import java.io.*;
 import java.util.*;
 import java.time.*;
-import java.time.format.*;
 
 public class MenuSubastas {
      public static void mostrarMenuSubastas(){
@@ -56,15 +55,13 @@ public class MenuSubastas {
             System.out.println("La obra no está disponible para ser subastada.");
             return;
         }
+     
+        int precioInicial = Validaciones.pedirEnteroPositivo(lector, "Ingrese el precio inicial de la obra:");
                 
-        System.out.println("Ingrese el precio inicial de la obra:");
-        int precioInicial = Integer.parseInt(lector.readLine()); 
-                
-        System.out.println("Ingrese la fecha de la subasta (formato AAAA-MM-DD):");
-        String fechaS = (lector.readLine());
+        LocalDate fSubastaObj = Validaciones.pedirFecha(lector, "Ingrese la fecha de la subasta (formato AAAA-MM-DD):");
                 
         // INICIALIZAR VARIABLE GLOABL DE MENU 
-        MenuPrincipal.subastaActiva = new Subasta(o, precioInicial, fechaS);
+        MenuPrincipal.subastaActiva = new Subasta(o, precioInicial, fSubastaObj);
         System.out.println("Subasta iniciada con éxito");
     }
     public static void registrarNuevaOferta(ArrayList<Subasta> subastas) throws IOException{
@@ -73,11 +70,10 @@ public class MenuSubastas {
             System.out.println("No hay ninguna subasta activa en este momento.");
             return;
         }     
-        System.out.println("Ingrese el RUT del cliente que oferta (Sin guión, incluyendo dígito verificador):");
-        String rutOfertador = lector.readLine();
+        String rutOfertador = Validaciones.pedirRut(lector, "Ingrese el RUT del cliente que oferta (Sin guión, incluyendo dígito verificador) o '0' para cancelar:");
+        if (rutOfertador.equals("0")) return; //0 para retornar al menú y no quedar en loop inifinito
                 
-        System.out.println("Ingrese el monto de la oferta:");
-        int monto = Integer.parseInt(lector.readLine());
+        int monto = Validaciones.pedirEnteroPositivo(lector, "Ingrese el monto de la oferta:");
                 
         MenuPrincipal.subastaActiva.ofertar(monto, rutOfertador);
     }

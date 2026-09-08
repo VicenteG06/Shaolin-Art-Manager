@@ -9,8 +9,9 @@
  * @author Netaxion
  */
 public class Transaccion {
-    protected Cliente cliente;
-    protected Obra obra; 
+    //cambio de variables protected a private
+    private Cliente cliente;
+    private Obra obra; 
     
     public Transaccion() {
         this.cliente = null;

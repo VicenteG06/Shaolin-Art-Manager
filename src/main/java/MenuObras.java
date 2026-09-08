@@ -10,8 +10,6 @@
 
 import java.io.*;
 import java.util.*;
-import java.time.*;
-import java.time.format.*;
 
 public class MenuObras {
     public static void mostrarMenuObras(){
@@ -50,8 +48,9 @@ public class MenuObras {
         
         System.out.println("Ingrese el Nombre del Artista:");
         String nombreArtista = lector.readLine();
-        System.out.println("Ingrese el año de Creación de la Obra:");
-        int anio = Integer.parseInt(lector.readLine());
+        
+        int anio = Validaciones.pedirEnteroPositivo(lector, "Ingrese el año de Creación de la Obra:");
+        
         Obra o = new Obra(id, nombre, null, "Disponible", anio);
         
         Artista a = new Artista(nombreArtista, o);

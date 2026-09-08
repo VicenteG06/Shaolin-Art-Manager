@@ -41,7 +41,8 @@ public class Prestamo extends Transaccion {
     
     @Override
     public void registrar() {
-        if (!cliente.agregarPrestamo(obra)){
+        //getCliente y getObra por cambio de variables en clase padre a private
+        if (!getCliente().agregarPrestamo(getObra())){
             System.out.println("Hubo un error al registrar el préstamo de la obra");
             return;
         }
@@ -60,9 +61,10 @@ public class Prestamo extends Transaccion {
     public void mostrarAtributos(){
         System.out.println("= ATRIBUTOS DEL PRÉSTAMO =");
         System.out.println("ID: " + id);
-        System.out.println("CLIENTE: " + cliente.getRut());
-        System.out.print("OBRA PRESTADA: " + obra.getTitulo() );
-        System.out.println(" | ARTISTA: " + obra.getArtista().getNombre() );
+        // getCliente y getObra por cambio de variables en clase padre a private
+        System.out.println("CLIENTE: " + getCliente().getRut());
+        System.out.print("OBRA PRESTADA: " + getObra().getTitulo() );
+        System.out.println(" | ARTISTA: " + getObra().getArtista().getNombre() );
         System.out.println("FECHA DE INICIO (AAAA/MM/DD): " + fechaInicio);
         System.out.println("FECHA DE RETORNO (AAAA/MM/DD): " + fechaRetorno);
     }

@@ -11,7 +11,6 @@
 import java.io.*;
 import java.util.*;
 import java.time.*;
-import java.time.format.*;
 
 public class MenuPrestamos {
     // menu prestamos
@@ -91,8 +90,10 @@ public class MenuPrestamos {
             return;
         }
         //como está disponible, se puede prestar 
-        System.out.printf("Ingrese el rut SIN GUIÓN Y CON DÍGITO VERIFICADOR del cliente que desea pedir prestado '%s' : \n", o.getTitulo());
-        String rutC = l.readLine();
+        
+
+        String mensajeRut = "Ingrese el rut SIN GUIÓN Y CON DÍGITO VERIFICADOR del cliente que desea pedir prestado '" + o.getTitulo() + "':\n(Ingrese '0' y enter para cancelar la operación)";
+        String rutC = Validaciones.pedirRut(l, mensajeRut);
         if (rutC.equals("0")) return;
                 
         Cliente c; //CREAR CLIENTE
@@ -106,28 +107,22 @@ public class MenuPrestamos {
             System.out.println("Cliente encontrado en el sistema.");
         }
 
-
-        //se pide la fecha de inicio y de retorno del prestamo
-        System.out.println("Ingrese la fecha de INICIO del préstamo:");
-        String fechaI = l.readLine();
-         // Se verifica si se ingresó correctamente la fecha.
-        try{
-            LocalDate.parse(fechaI);
-        } catch(DateTimeParseException | NullPointerException e){
-            System.out.println("Ingrese una fecha válida");
-            return;
+        LocalDate fInicioObj = Validaciones.pedirFecha(l, "Ingrese la fecha de INICIO del préstamo (formato: AAAA-MM-DD):");
+        
+        LocalDate fRetornoObj = null;
+        while (fRetornoObj == null) {
+            fRetornoObj = Validaciones.pedirFecha(l, "Ingrese la fecha de RETORNO del préstamo (no debe superar el AÑO, formato: AAAA-MM-DD) :");
+            if (fRetornoObj.isBefore(fInicioObj)) {
+                System.out.println("Error: La fecha de retorno no puede ser anterior a la fecha de inicio.");
+                fRetornoObj = null; 
+            } else if (fInicioObj.plusYears(1).isBefore(fRetornoObj)) {
+                System.out.println("Error: el retorno debe ser como máximo un año después.");
+                fRetornoObj = null;
+            }
         }
-        System.out.println("Ingrese la fecha de RETORNO del préstamo (no debe superar el AÑO):");
-        String fechaR = l.readLine();
-        // Se verifica si se ingresó correctamente la fecha.
-        try{
-            LocalDate.parse(fechaR);
-        } catch(DateTimeParseException | NullPointerException e){
-            System.out.println("Ingrese una fecha válida");
-            return;
-        }
+        
         String nId= IDManager.generarID(rutC); // Se genera el ID
-        Prestamo n = new Prestamo(nId, c, o, fechaI, fechaR);
+        Prestamo n = new Prestamo(nId, c, o, fInicioObj, fRetornoObj);
         //se ingresa la obra a la lista de prestamos del cliente en el mismo metodo de registro
         n.registrar();
         prestamos.add(n); // AGREGAR AL ARRAYLIST DE PRESTAMOS

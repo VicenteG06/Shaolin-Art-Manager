@@ -11,7 +11,6 @@
 import java.io.*;
 import java.util.*;
 import java.time.*;
-import java.time.format.*;
 
 public class MenuVentas {
         // menu ventas
@@ -94,12 +93,11 @@ public class MenuVentas {
             return;
         }
         //como está a la venta, se registra su venta 
-        System.out.println("Ingrese la fecha de la venta (formato: 'AAAA-MM-DD'):");
-        String fechaS = l.readLine(); 
-        //VERIFICAR SI SE INGRESO CORRECTAMENTE LA FECHA (TRY-CATCH)****
-        System.out.printf("Ingrese el rut SIN GUIÓN Y CON DÍGITO VERIFICADOR del cliente que desea comprar '%s' : \n", o.getTitulo());
-                
-        String rutC = l.readLine();
+        LocalDate fechaVentaObj = Validaciones.pedirFecha(l, "Ingrese la fecha de la venta (formato: AAAA-MM-DD):");
+        
+        String mensajeRut = "Ingrese el rut SIN GUIÓN Y CON DÍGITO VERIFICADOR del cliente que desea comprar '" + o.getTitulo() + "':\n(Ingrese '0' para cancelar la operación)";
+        String rutC = Validaciones.pedirRut(l, mensajeRut);
+        if (rutC.equals("0")) return; // si usiario ingresa "0", se devuelve al menú para no quedar en loop infinito
                 
         // Crear cliente
         Cliente c;
@@ -113,15 +111,9 @@ public class MenuVentas {
             System.out.println("Cliente encontrado en el sistema.");
         }
 
-        System.out.println("Ingrese el precio de la venta:");
-        int p = Integer.parseInt(l.readLine());
-        do {
-            if (p >= 0) break;
-            System.out.println("Ingrese un precio válido: ");
-            p = Integer.parseInt(l.readLine());
-        } while ( p < 0);
+        int p = Validaciones.pedirEnteroPositivo(l, "Ingrese el precio de la venta:");
                 
-        Venta n = new Venta(fechaS, c, o, p);
+        Venta n = new Venta(fechaVentaObj, c, o, p);
         //se ingresa la obra a la lista de compras del cliente en el mismo metodo de registro
         n.registrar();
         ventas.add(n); // AGREGA AL ARRAYLIS DE VENTAS

@@ -39,7 +39,8 @@ public class Venta extends Transaccion {
 
     @Override
     public void registrar() {
-        if (!cliente.agregarCompra(obra)){
+        //USAMOS GET.CLIENTE por cambio de variables de padre de protected a private
+        if (!getCliente().agregarCompra(getObra())){
             System.out.println("Hubo un error al registrar la compra de la obra");
             return;
         }
@@ -67,14 +68,15 @@ public class Venta extends Transaccion {
     // Mostrar los atributos de la venta
     public void mostrarAtributos(){
         System.out.println("= DETALLES DE LA VENTA =");
-        if (cliente != null) {
-            System.out.println("CLIENTE COMPRADOR RUT: " + cliente.getRut());
+        //USAMOS GET.CLIENTE por cambio de variables de padre de protected a private
+        if (getCliente() != null) {
+            System.out.println("CLIENTE COMPRADOR RUT: " + getCliente().getRut());
         } else {
             System.out.println("CLIENTE COMPRADOR RUT: Ninguno");
         }
         
-        System.out.print("OBRA VENDIDA: " + obra.getTitulo());
-        System.out.println(" | ARTISTA: " + obra.getArtista().getNombre());
+        System.out.print("OBRA VENDIDA: " + getObra().getTitulo());
+        System.out.println(" | ARTISTA: " + (getObra().getArtista()).getNombre());
         System.out.println("PRECIO DE VENTA: $" + precio);
         System.out.println("FECHA DE VENTA (AAAA-MM-DD): " + fechaVenta);
         System.out.println("-------------------------");

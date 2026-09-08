@@ -37,8 +37,15 @@ public class MenuExposiciones {
     }
 
     public static Exposicion buscarExposicion(HashMap<String, Exposicion> exposiciones) throws IOException{
+        //PARA QUE SI el mapa está vacío, se muestre un mensaje y no se busque la exposición 
+        if (exposiciones.isEmpty()) {
+            System.out.println("No hay exposiciones registradas en el sistema");
+            return null;
+        }
+        
         System.out.println("Ingrese el ID de la exposición:");
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+
         String id = lector.readLine();
         if(exposiciones.containsKey(id)){
             Exposicion e = exposiciones.get(id);
@@ -55,24 +62,24 @@ public class MenuExposiciones {
         
         String id = IDManager.generarID(nombre);
 
-        System.out.println("Ingrese la Fecha de Inicio de la Exposición:");
-        String fechaInicio = lector.readLine();
-        try{
-            LocalDate.parse(fechaInicio);
-        } catch(DateTimeParseException | NullPointerException e){
-            System.out.println("Ingrese una fecha válida");
-            return;
+
+        LocalDate fInicio = Validaciones.pedirFecha(lector, "Ingrese la fecha de inicio de la exposición (formato: AAAA-MM-DD):");
+        
+        //validacvión para que la fecha de termino sea después de la de inicio
+        LocalDate fTermino = null;
+        while (fTermino == null) {
+            fTermino = Validaciones.pedirFecha(lector, "Ingrese la fecha de termino de la exposición (formato: AAAA-MM-DD) :");
+            if (fTermino.isBefore(fInicio)) {
+                System.out.println("Error: La fecha de término no puede ser anterior a la de inicio");
+                fTermino = null; // """"reiniciar""" para que vuelva a preguntar
+            }
         }
-        System.out.println("Ingrese la Fecha de Termino de la Exposición:");
-        String fechaTermino = lector.readLine();
-        try{
-            LocalDate.parse(fechaTermino);
-        } catch(DateTimeParseException | NullPointerException e){
-            System.out.println("Ingrese una fecha válida");
-            return;
-        }
+        
         Obra o = MenuObras.buscarObra(obras);
-        Exposicion e = new Exposicion(id, nombre, fechaInicio, fechaTermino, o);
+        
+        //------------------- CAMBIO: Se envían directo los toString() de las LocalDate si tu clase Exposicion recibe Strings
+        Exposicion e = new Exposicion(id, nombre, fInicio.toString(), fTermino.toString(), o);
+        exposiciones.put(id, e);
     }
     public static void eliminarExposicion(HashMap<String, Exposicion> exposiciones) throws IOException{
         System.out.println("Ingrese el id de la Exposición a Eliminar:");
