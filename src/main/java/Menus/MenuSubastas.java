@@ -37,15 +37,15 @@ public class MenuSubastas {
     }
     public static void iniciarNuevaSubasta(ArrayList<Subasta> subastas, HashMap<String, Obra> obras) throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-        if (MenuPrincipal.subastaActiva != null) {
+        if (MenuPrincipal.subastaActiva != null) { //Si hay una subastaActiva, no se abre una nueva hasta que la activa se cierre
             System.out.println("Ya hay una subasta en curso.");
             return;
         }
                 
         System.out.println("Ingrese el ID de la Obra a subastar:");
 
-        String idObra = lector.readLine();
-        if(!obras.containsKey(idObra) ){
+        String idObra = lector.readLine(); 
+        if(!obras.containsKey(idObra) ){ //Se verifica que la obra esté registrada
             System.out.println("No existe esa obra .");
             return;
         }
@@ -56,10 +56,11 @@ public class MenuSubastas {
             return;
         }
      
-        int precioInicial = Validaciones.pedirEnteroPositivo(lector, "Ingrese el precio inicial de la obra:");
+        int precioInicial = Validaciones.pedirEnteroPositivo(lector, "Ingrese el precio inicial de la obra:"); //Se pide el método a Validaciones para ingresar un precio inicial válido
                 
+        //se pide el método a Validaciones para ingresar una fecha de la subasta válida
         LocalDate fSubastaObj = Validaciones.pedirFecha(lector, "Ingrese la fecha de la subasta (formato AAAA-MM-DD):");
-                
+        
         // INICIALIZAR VARIABLE GLOABL DE MENU 
         MenuPrincipal.subastaActiva = new Subasta(o, precioInicial, fSubastaObj);
         System.out.println("Subasta iniciada con éxito");
@@ -67,7 +68,7 @@ public class MenuSubastas {
 
     public static void registrarNuevaOferta(ArrayList<Subasta> subastas) throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-        if (MenuPrincipal.subastaActiva == null) {
+        if (MenuPrincipal.subastaActiva == null) { //Si no hay una subasta activa, no se puede registrar una oferta
             System.out.println("No hay ninguna subasta activa en este momento.");
             return;
         }     
@@ -78,24 +79,24 @@ public class MenuSubastas {
         boolean ofertaValida = false; 
         int monto = 0;
         
-        while (!ofertaValida) {
+        while (!ofertaValida) { // mientras no haya una oferta válida
 
             monto = Validaciones.pedirEnteroPositivo(lector, "Ingrese el monto de la oferta:");
             
-            Oferta ofertaActual = MenuPrincipal.subastaActiva.getMejorOferta();
-            int precioInicial = MenuPrincipal.subastaActiva.getPrecioInicial();
+            Oferta ofertaActual = MenuPrincipal.subastaActiva.getMejorOferta(); //se obtiene la mejor oferta
+            int precioInicial = MenuPrincipal.subastaActiva.getPrecioInicial(); // se obtiene el precio inicial 
             //si es la primera oferta
-            if (ofertaActual == null) {
-                if (monto < precioInicial) {
+            if (ofertaActual == null) { 
+                if (monto < precioInicial) { //Se verifica que la oferta sea mayor al precio inicial
                     System.out.println("Error: La primera oferta debe ser mayor o igual al precio inicial ($" + precioInicial + ").");
                 } else {
-                    ofertaValida = true;
+                    ofertaValida = true; //si lo es, se cambia el estado de Oferta Valida
                 }
             } 
             // Si ya existen ofertas
             else {
 
-                if (monto <= ofertaActual.getOferta()) { 
+                if (monto <= ofertaActual.getOferta()) {  //se valida que se ingrese una oferta mayor a la mejor oferta actual
                     System.out.println("Error: Debe ingresar un monto mayor a la oferta actual ($" + ofertaActual.getOferta() + ")");
 
                 } else {
@@ -117,10 +118,10 @@ public class MenuSubastas {
             return;
         }
         System.out.println("Cerrando subasta...");
-        boolean exito = MenuPrincipal.subastaActiva.cerrarSubasta(clientes);
+        boolean exito = MenuPrincipal.subastaActiva.cerrarSubasta(clientes); 
                 
-        if (exito) {
-            subastas.add(MenuPrincipal.subastaActiva);
+        if (exito) {//Si se logró cerrar la subasta con éxito (con al menos una oferta registrada)
+            subastas.add(MenuPrincipal.subastaActiva); //se añade la subasta al ArrayList de subastas cerradas
         }
         // Reiniciamos la variable de subastaActiva
         MenuPrincipal.subastaActiva = null;

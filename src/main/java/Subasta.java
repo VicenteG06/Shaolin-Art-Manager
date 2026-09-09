@@ -34,6 +34,7 @@ public class Subasta extends Venta {
         this.precioInicial = precioInicial;
         mejorOferta = null;
     }
+//Métodos get
     public int getPrecioInicial() { return precioInicial; }
     public Oferta getMejorOferta() { return mejorOferta; }
 

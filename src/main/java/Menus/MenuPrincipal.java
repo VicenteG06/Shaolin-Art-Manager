@@ -46,7 +46,7 @@ public class MenuPrincipal {
                 opcion = entrada.charAt(0);
                 switch(opcion){
                 case '1': 
-                    MenuObras.menuObras(obras);
+                    MenuObras.menuObras(obras, artistas);
                     break;
                 case '2':
                     MenuArtistas.menuArtistas(artistas);

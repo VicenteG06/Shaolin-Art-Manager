@@ -36,12 +36,12 @@ public class Validaciones {
 
     // Pedir fechas y validar errores
     public static LocalDate pedirFecha(BufferedReader lector, String mensaje) throws IOException {
-        LocalDate fecha = null;
-        while (fecha == null) {
+        LocalDate fecha = null; //Sse inicia la fecha en NULL, para cambiarla solo si se ingresa una fecha válida en el formato válido
+        while (fecha == null) { 
             System.out.println(mensaje);
-            String entrada = lector.readLine().trim();
-            try {
-                fecha = LocalDate.parse(entrada);
+            String entrada = lector.readLine().trim(); 
+            try { 
+                fecha = LocalDate.parse(entrada); 
             } catch(DateTimeParseException | NullPointerException e){
                 System.out.println("Error: Ingrese una fecha válida respetando el formato AAAA-MM-DD");
             }

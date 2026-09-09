@@ -21,11 +21,10 @@ public class MenuObras {
         System.out.println("3) Registrar Obra");
         System.out.println("4) Salir del Menú");
     }
-    public static void mostrarObras(HashMap<String, Obra> obras) throws IOException{
+    public static void mostrarObras(HashMap<String, Obra> obras){
         for(Obra o: obras.values()){
             o.mostrarAtributos();
         }
-        PresioneTeclaParaContinuar.ptpc();
     }
     public static Obra buscarObra(HashMap<String, Obra> obras) throws IOException{
         System.out.println("Ingrese el ID de la obra:");
@@ -40,7 +39,9 @@ public class MenuObras {
         System.out.println("No existe esa obra");
         return null;
     }
-    public static void registrarObra(HashMap<String, Obra> obras) throws IOException{
+    
+    //------------------- CAMBIO: Se añadió HashMap<String, Artista> artistas como parámetro
+    public static void registrarObra(HashMap<String, Obra> obras, HashMap<String, Artista> artistas) throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Ingrese el Nombre de la Obra:");
         String nombre = lector.readLine();
@@ -54,13 +55,28 @@ public class MenuObras {
         
         Obra o = new Obra(id, nombre, null, "Disponible", anio);
         
-        Artista a = new Artista(nombreArtista, o);
-
+        String nombreArtistaLower = nombreArtista.toLowerCase(); 
+        Artista a;
+        
+        if (artistas.containsKey(nombreArtistaLower)) {
+            // Como el artista ya existe, lo buscamos en el mapa
+            a = artistas.get(nombreArtistaLower);
+            a.anadirObra(o); // y añadimos la obra a su lista de obras asociada
+            System.out.println("Artista existente encontrado. Obra añadida a su registro.");
+        } else {
+            // Como el artista no existe, lo creamos
+            a = new Artista(nombreArtista, o);
+            artistas.put(nombreArtistaLower, a); // y lo metemos al mapa global
+            System.out.println("Nuevo artista registrado en el sistema con éxito.");
+        }
+        
         o.setArtista(a);
 
         obras.put(id, o);
+        System.out.println("La obra " + nombre + " fue registrada con éxito.") ;
     }
-    public static void menuObras(HashMap<String, Obra> obras) throws IOException, EmptyEntryException{
+    
+    public static void menuObras(HashMap<String, Obra> obras, HashMap<String, Artista> artistas) throws IOException, EmptyEntryException{
         char opcion = ' ';
 
         do{
@@ -80,7 +96,7 @@ public class MenuObras {
                     MenuObras.buscarObra(obras);
                     break;
                 case '3':
-                    MenuObras.registrarObra(obras);
+                    MenuObras.registrarObra(obras, artistas);
                     break;
                 case '4':
                     System.out.println("Saliendo del menú......");
