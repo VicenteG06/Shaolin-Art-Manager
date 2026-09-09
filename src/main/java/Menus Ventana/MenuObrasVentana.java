@@ -17,7 +17,7 @@ public class MenuObrasVentana extends javax.swing.JFrame {
      * Creates new form MenuObrasVentana
      */
     private static HashMap<String, Obra> obras = ManejoArchivos.cargarDesdeCsv("data/obras_de_arte.csv");
-    
+    private static HashMap<String, Artista> artistas = ManejoArchivos.getMapaArtistas();
     public MenuObrasVentana() {
         initComponents();
     }
@@ -111,7 +111,9 @@ public class MenuObrasVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_VolverMenuPrincipalActionPerformed
 
     private void BuscarObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarObraActionPerformed
-        // TODO add your handling code here:
+        BuscarObraVentana buscar = new BuscarObraVentana(obras);
+        buscar.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_BuscarObraActionPerformed
 
     private void MostrarObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarObrasActionPerformed
@@ -121,7 +123,9 @@ public class MenuObrasVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_MostrarObrasActionPerformed
 
     private void RegistrarObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarObraActionPerformed
-
+        RegistrarObraVentana registrar = new RegistrarObraVentana(obras, artistas);
+        registrar.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_RegistrarObraActionPerformed
 
     /**
