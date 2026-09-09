@@ -5,6 +5,7 @@
 
 import java.util.*;
 import java.io.*;
+import javax.swing.table.DefaultTableModel;
 
 public class Artista {
     // Se crean los parametros de la clase.
@@ -49,5 +50,16 @@ public class Artista {
             obras.get(i).mostrarAtributos();
         }
         PresioneTeclaParaContinuar.ptpc();
+    }
+    
+    public DefaultTableModel obtenerObras(){
+        String[] columnas = {"ID", "TITULO", "ARTISTA", "ESTADO", "AÑO"};
+        DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+        for(int i = 0; i < obras.size(); i++){
+            Object[] fila = {(obras.get(i)).getId(), (obras.get(i)).getTitulo(), ((obras.get(i)).getArtista()).getNombre(), (obras.get(i)).getEstado(), (obras.get(i)).getAnio()};
+            modeloTabla.addRow(fila);
+        }
+        
+        return modeloTabla;
     }
 }

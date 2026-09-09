@@ -1,3 +1,6 @@
+
+import java.util.*;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,6 +16,8 @@ public class MenuObrasVentana extends javax.swing.JFrame {
     /**
      * Creates new form MenuObrasVentana
      */
+    private static HashMap<String, Obra> obras = ManejoArchivos.cargarDesdeCsv("data/obras_de_arte.csv");
+    
     public MenuObrasVentana() {
         initComponents();
     }
@@ -110,13 +115,13 @@ public class MenuObrasVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_BuscarObraActionPerformed
 
     private void MostrarObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarObrasActionPerformed
-        // TODO add your handling code here:
+        MostrarObrasVentana mostrar = new MostrarObrasVentana(obras);
+        mostrar.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_MostrarObrasActionPerformed
 
     private void RegistrarObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarObraActionPerformed
-        MenuPrincipalVentana v1 = new MenuPrincipalVentana();
-        v1.setVisible(true);
-        this.setVisible(false);
+
     }//GEN-LAST:event_RegistrarObraActionPerformed
 
     /**

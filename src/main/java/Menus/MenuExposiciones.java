@@ -11,7 +11,6 @@
 import java.io.*;
 import java.util.*;
 import java.time.*;
-import java.time.format.*;
 
 public class MenuExposiciones {
     // menu exposiciones
@@ -23,8 +22,9 @@ public class MenuExposiciones {
         System.out.println("2) Buscar Exposición");
         System.out.println("3) Registrar Exposición");
         System.out.println("4) Eliminar Exposición");
-        System.out.println("5) Añadir Obras a Exposición");
-        System.out.println("6) Salir del Menú");
+        System.out.println("5) Añadir Obra a Exposición");
+        System.out.println("6) Eliminar Obra de Exposición");
+        System.out.println("7) Salir del Menú");
     }
     public static void mostrarExposiciones(HashMap<String, Exposicion> exposiciones) throws IOException{
 
@@ -117,6 +117,30 @@ public class MenuExposiciones {
         return;
     }
 
+    public static void eliminarObraExposicion(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) throws IOException{
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+        System.out.println("Ingrese el ID de la Exposición:");
+        String idExpo = lector.readLine();
+        if(!exposiciones.containsKey(idExpo)){
+            System.out.println("Esa Exposición no existe.");
+            return;
+        }
+        Exposicion e = exposiciones.get(idExpo);
+        System.out.println("Ingrese el ID de la Obra que desea eliminar la Exposición:");
+        String idObra = lector.readLine();
+        if(obras.containsKey(idObra)){
+            Obra o = obras.get(idObra);
+            if(e.eliminarObra(o)){
+                System.out.println("La obra: " + o.getTitulo() + " ha sido eliminada correctamente.");
+                return;
+            }
+        }
+        System.out.println("La obra no existe dentro del sistema.");
+        return;
+
+
+    }
+
     public static void menuExposiciones(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) throws IOException, EmptyEntryException{
         char opcion = ' ';
 
@@ -144,7 +168,11 @@ public class MenuExposiciones {
                     break;
                 case '5': 
                     MenuExposiciones.anadirObraExposicion(exposiciones, obras);
+                    break;
                 case '6':
+                    MenuExposiciones.eliminarObraExposicion(exposiciones, obras);
+                    break;
+                case '7':
                     System.out.println("Saliendo del menú......");
                     break;
                 default:
@@ -157,6 +185,6 @@ public class MenuExposiciones {
                 System.out.println("Error de lectura: " + e.getMessage());
                 break;
             }
-        } while(opcion != '6');
+        } while(opcion != '7');
     }
 }

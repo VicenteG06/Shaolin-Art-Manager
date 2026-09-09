@@ -8,11 +8,16 @@
  *
  * @author Vicente
  */
+
+import java.util.*;
+
 public class MenuArtistasVentana extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuArtistasVentana
      */
+    private static HashMap<String, Artista> artistas = ManejoArchivos.getMapaArtistas();
+    
     public MenuArtistasVentana() {
         initComponents();
     }
@@ -61,9 +66,9 @@ public class MenuArtistasVentana extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(205, 205, 205)
-                .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(204, Short.MAX_VALUE))
+                .addGap(201, 201, 201)
+                .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(201, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(200, 200, 200)
@@ -78,8 +83,8 @@ public class MenuArtistasVentana extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(317, Short.MAX_VALUE)
-                .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(96, 96, 96))
+                .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(88, 88, 88))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(103, 103, 103)
@@ -101,11 +106,15 @@ public class MenuArtistasVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_VolverMenuPrincipalActionPerformed
 
     private void BuscarObrasPorArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarObrasPorArtistaActionPerformed
-        // TODO add your handling code here:
+        BuscarObrasArtistaVentana buscar = new BuscarObrasArtistaVentana(artistas);
+        buscar.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_BuscarObrasPorArtistaActionPerformed
 
     private void MostrarArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarArtistasActionPerformed
-        // TODO add your handling code here:
+        MostrarArtistasVentana mostrar = new MostrarArtistasVentana(artistas);
+        mostrar.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_MostrarArtistasActionPerformed
 
     /**
