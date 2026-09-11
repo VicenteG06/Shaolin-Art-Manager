@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author Vicente
- */
+ * @archivo: PresioneTeclaParaContinuar.java
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Clase para hacer que el programa no avance hasta que el usuario presione una tecla
+ * @author Antonia Avello, Vicente Gamboa
+ * @Lenguaje: Java
+**/
 
 import java.io.*;
 

@@ -1,13 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author Netaxion
- */
+ * @archivo: Transaccion.java
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Clase para declarar los atributos y métodos del objeto Transaccion
+ * @author Antonia Avello
+ * @Lenguaje: Java
+*/
+
 public class Transaccion {
     //cambio de variables protected a private
     private Cliente cliente;

@@ -1,13 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author Ale
- */
+ * @archivo: Exposicion.java
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Clase para declarar los atributos y métodos del objeto Exposición
+ * @author Alexia Gallardo
+ * @Lenguaje: Java
+*/
+
 import java.util.*;
 import java.time.*;
 

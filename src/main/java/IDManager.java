@@ -1,24 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
+ * @archivo: IDManager.java
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Clase para crear IDs
  * @author Vicente Gamboa
- */
-
-import java.util.*;
+ * @Lenguaje: Java
+*/
 
 public class IDManager {
-    public static String generarID(String nombre){
+    public static String generarID(String cadena){
         int id = 0;
-
-        for(int i = 0; i < nombre.length(); i++){
-            id += ((int) nombre.charAt(i)) * Math.pow(31, i);
+        // Se genera el ID mediante una función Hash.
+        for(int i = 0; i < cadena.length(); i++){
+            id += ((int) cadena.charAt(i)) * Math.pow(31, i);
         }
-        
+        // Se pasa el id a String
         String idString = "" + (id % 251);
         return idString;
     }

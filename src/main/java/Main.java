@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
- * @author Vicente
- */
+ * @archivo: Main.java
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Clase Main del Proyecto
+ * @author Vicente Gamboa
+ * @Lenguaje: Java
+*/
 
 import java.io.*;
 import java.util.*;
@@ -26,6 +23,7 @@ public class Main {
         ArrayList<Prestamo> registroPrestamos = new ArrayList<>();
         ArrayList<Subasta> registroSubastas = new ArrayList<>();
         
+        // Se imprime por pantalla y se declara el menú de selección de modo de ejecución
         char opcion = ' ';
        
         BufferedReader lector = new BufferedReader (new InputStreamReader(System.in));
@@ -53,8 +51,10 @@ public class Main {
                 break;
             }
         } catch (EmptyEntryException e) {
+            // Excepción por si el usuario no ingresó nada por pantalla
             System.out.println(e.getMessage() + "\n");
         } catch (IOException e) {
+            // Excepción por si ocurió un error de lectura
             System.out.println("Error de lectura: " + e.getMessage());
             return;
         }

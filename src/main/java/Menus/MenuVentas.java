@@ -1,12 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
- *
- * @author Vicente
- */
+ * @archivo: MenuVentas.java
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Clase para manejar el menú de Ventas
+ * @author Alexia Gallardo
+ * @Lenguaje: Java
+*/
+
 
 import java.io.*;
 import java.util.*;

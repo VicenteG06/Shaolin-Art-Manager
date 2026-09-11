@@ -1,7 +1,10 @@
-    /**
- *
- * @author Vicente
- */
+/**
+ * @archivo: Artista.java
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Clase para declarar los atributos y métodos del objeto Artista
+ * @author Vicente Gamboa
+ * @Lenguaje: Java
+*/
 
 import java.util.*;
 import java.io.*;
@@ -51,7 +54,8 @@ public class Artista {
         }
         PresioneTeclaParaContinuar.ptpc();
     }
-    
+
+    // Se crea una tabla de todas las obras del artista para luego ser mostrada por una Ventana
     public DefaultTableModel obtenerObras(){
         String[] columnas = {"ID", "TITULO", "ARTISTA", "ESTADO", "AÑO"};
         DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
