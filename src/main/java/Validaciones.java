@@ -34,7 +34,7 @@ public class Validaciones {
 
     // Pedir fechas y validar errores
     public static LocalDate pedirFecha(BufferedReader lector, String mensaje) throws IOException {
-        LocalDate fecha = null; //Sse inicia la fecha en NULL, para cambiarla solo si se ingresa una fecha válida en el formato válido
+        LocalDate fecha = null; //Se inicia la fecha en NULL, para cambiarla solo si se ingresa una fecha válida en el formato válido
         while (fecha == null) { 
             System.out.println(mensaje);
             String entrada = lector.readLine().trim(); 

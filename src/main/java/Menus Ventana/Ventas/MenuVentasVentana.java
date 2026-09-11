@@ -8,13 +8,38 @@
  *
  * @author Vicente
  */
+import java.util.*;
+
 public class MenuVentasVentana extends javax.swing.JFrame {
 
     /**
      * Creates new form MenuVentasVentana
      */
+    ArrayList<Venta> ventas;
+    HashMap<String, Obra> obras;
+    HashMap<String, Cliente> clientes;
+    ArrayList<Subasta> subastas;
+    
     public MenuVentasVentana() {
         initComponents();
+    }
+    public MenuVentasVentana(ArrayList<Venta> ventas, HashMap<String, Obra> obras){
+        initComponents();
+        this.obras = obras;
+        this.ventas = ventas;
+    }
+    public MenuVentasVentana(ArrayList<Venta> ventas, HashMap<String, Obra> obras, HashMap<String, Cliente> clientes){
+        initComponents();
+        this.obras = obras;
+        this.ventas = ventas;
+        this.clientes = clientes;
+    }
+    public MenuVentasVentana(ArrayList<Venta> ventas, HashMap<String, Obra> obras, HashMap<String, Cliente> clientes, ArrayList<Subasta> subastas){
+        initComponents();
+        this.obras = obras;
+        this.ventas = ventas;
+        this.clientes = clientes;
+        this.subastas = subastas;
     }
 
     /**
@@ -93,18 +118,14 @@ public class MenuVentasVentana extends javax.swing.JFrame {
                         .addComponent(BuscarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(EliminarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(RegistrarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(MenuSubastas, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(MenuSubastas, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(185, 185, 185))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(205, Short.MAX_VALUE)
-                    .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(185, 185, 185)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+                .addContainerGap(22, Short.MAX_VALUE)
                 .addComponent(MenuVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(MostrarVentas, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -116,19 +137,18 @@ public class MenuVentasVentana extends javax.swing.JFrame {
                 .addComponent(EliminarVenta, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MenuSubastas, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                    .addContainerGap(439, Short.MAX_VALUE)
-                    .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(21, 21, 21)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegistrarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarVentaActionPerformed
-
+        RegistrarVentaVentana registrar = new RegistrarVentaVentana(ventas, obras, clientes);
+        registrar.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_RegistrarVentaActionPerformed
 
     private void VolverMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuPrincipalActionPerformed
@@ -146,11 +166,13 @@ public class MenuVentasVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarVentaActionPerformed
 
     private void BuscarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarVentaActionPerformed
-        // TODO add your handling code here:
+        BuscarVentaVentana buscar = new BuscarVentaVentana(ventas, obras);
+        buscar.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_BuscarVentaActionPerformed
 
     private void MostrarVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarVentasActionPerformed
-        MostrarVentas mostrar = new MostrarVentas();
+        MostrarVentasVentana mostrar = new MostrarVentasVentana(ventas);
         mostrar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MostrarVentasActionPerformed

@@ -16,10 +16,14 @@ public class MenuArtistasVentana extends javax.swing.JFrame {
     /**
      * Creates new form MenuArtistasVentana
      */
-    private static HashMap<String, Artista> artistas = ManejoArchivos.getMapaArtistas();
-    
-    public MenuArtistasVentana() {
+    private HashMap<String, Artista> artistas;
+    public MenuArtistasVentana(){
         initComponents();
+    }
+    
+    public MenuArtistasVentana(HashMap<String, Artista> artistas) {
+        initComponents();
+        this.artistas = artistas;
     }
 
     /**

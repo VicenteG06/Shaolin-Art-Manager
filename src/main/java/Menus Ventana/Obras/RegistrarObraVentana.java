@@ -127,7 +127,7 @@ public class RegistrarObraVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverMenuObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuObrasActionPerformed
-        MenuObrasVentana menu = new MenuObrasVentana();
+        MenuObrasVentana menu = new MenuObrasVentana(obras, artistas);
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_VolverMenuObrasActionPerformed
@@ -135,11 +135,12 @@ public class RegistrarObraVentana extends javax.swing.JFrame {
     private void RegistrarObraBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarObraBotonActionPerformed
         String titulo = IngresarTituloObra.getText();
         String id = IDManager.generarID(titulo);
-        int contador = 1;
+        Random random = new Random();
         while (obras.containsKey(id)){
-            id = IDManager.generarID(titulo + "" + contador);
-            contador++;
+            int num = random.nextInt(1000);
+            id = IDManager.generarID(titulo + "" + num);
         }
+
         String nombreArtista = IngresarArtistaObra.getText();
         int anio = Integer.parseInt(IngresarAnioObra.getText());
         

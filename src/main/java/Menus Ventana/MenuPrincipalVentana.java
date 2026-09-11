@@ -1,3 +1,6 @@
+
+import java.util.*;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,9 +16,30 @@ public class MenuPrincipalVentana extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrincipalVentana
      */
+    HashMap<String, Obra> obras;
+    HashMap<String, Artista> artistas;
+    HashMap<String, Exposicion> exposiciones;
+    ArrayList<Venta> ventas;
+    HashMap<String, Cliente> clientes;
+    ArrayList<Prestamo> prestamos;
+    ArrayList<Subasta> subastas;
+    
     public MenuPrincipalVentana() {
         initComponents();
     }
+    public MenuPrincipalVentana(HashMap<String, Obra> obras, HashMap<String, Artista> artistas, 
+                       HashMap<String, Exposicion> exposiciones, ArrayList<Venta> ventas, 
+                       HashMap<String, Cliente> clientes, ArrayList<Prestamo> prestamos, ArrayList<Subasta> subastas){
+        initComponents();
+        this.obras = obras;
+        this.artistas = artistas;
+        this.exposiciones = exposiciones;
+        this.ventas = ventas;
+        this.clientes = clientes;
+        this.prestamos = prestamos;
+        this.subastas = subastas;
+    }
+            
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -124,7 +148,7 @@ public class MenuPrincipalVentana extends javax.swing.JFrame {
 
     private void MenuObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuObrasActionPerformed
         // TODO add your handling code here:
-        MenuObrasVentana v1 = new MenuObrasVentana();
+        MenuObrasVentana v1 = new MenuObrasVentana(obras, artistas);
         v1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MenuObrasActionPerformed
@@ -142,13 +166,13 @@ public class MenuPrincipalVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuExposicionesActionPerformed
 
     private void MenuArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuArtistasActionPerformed
-        MenuArtistasVentana v2 = new MenuArtistasVentana();
+        MenuArtistasVentana v2 = new MenuArtistasVentana(artistas);
         v2.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MenuArtistasActionPerformed
 
     private void MenuVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVentasActionPerformed
-        MenuVentasVentana v3 = new MenuVentasVentana();
+        MenuVentasVentana v3 = new MenuVentasVentana(ventas, obras, clientes, subastas);
         v3.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MenuVentasActionPerformed

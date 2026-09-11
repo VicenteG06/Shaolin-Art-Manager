@@ -44,7 +44,7 @@ public class Main {
                 MenuPrincipal.menuPrincipal(obras, artistas, exposiciones, registroVentas, clientes, registroPrestamos, registroSubastas);
                 break;
             case '2':
-                new MenuPrincipalVentana().setVisible(true);
+                new MenuPrincipalVentana(obras, artistas, exposiciones, registroVentas, clientes, registroPrestamos, registroSubastas).setVisible(true);
                 break;
             default:
                 System.out.println("Opción no válida, intente nuevamente.");

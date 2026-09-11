@@ -1,7 +1,3 @@
-
-import java.util.*;
-import javax.swing.table.DefaultTableModel;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -11,26 +7,21 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Vicente
  */
-public class MostrarObrasVentana extends javax.swing.JFrame {
 
-    /** Creates new form MostrarObrasVentana
-     * @param obras */
-    public MostrarObrasVentana(){
+import java.util.*;
+import javax.swing.table.DefaultTableModel;
+
+public class BuscarObraVentana extends javax.swing.JFrame {
+
+    private HashMap<String, Obra> obras;
+    /** Creates new form BuscarObraVentana */
+    public BuscarObraVentana() {
         initComponents();
     }
-    
-    public MostrarObrasVentana(HashMap<String, Obra> obras) {
+    public BuscarObraVentana(HashMap<String, Obra> obras){
         initComponents();
-        
-        String[] columnas = {"ID", "TITULO", "ARTISTA", "ESTADO", "AÑO"};
-        DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
-        for(Obra o: obras.values()){
-            Object[] fila = {o.getId(), o.getTitulo(), (o.getArtista()).getNombre(), o.getEstado(), o.getAnio()};
-            modeloTabla.addRow(fila);
-        }
-        jTable1.setModel(modeloTabla);
+        this.obras = obras;
     }
-
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -40,12 +31,23 @@ public class MostrarObrasVentana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        IngresarIDObra = new javax.swing.JTextField();
+        BuscarObraPorID = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         VolverMenuObras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("ID:");
+
+        BuscarObraPorID.setText("Buscar Obra");
+        BuscarObraPorID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarObraPorIDActionPerformed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -60,8 +62,6 @@ public class MostrarObrasVentana extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel1.setText("Lista de Obras");
-
         VolverMenuObras.setText("Menu Obras");
         VolverMenuObras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -75,38 +75,55 @@ public class MostrarObrasVentana extends javax.swing.JFrame {
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
                 .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
-                        .addContainerGap())
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
                     .add(layout.createSequentialGroup()
                         .add(jLabel1)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(IngresarIDObra, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 131, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
+                        .add(BuscarObraPorID)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(VolverMenuObras, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 131, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(28, 28, 28))))
+                        .add(VolverMenuObras))
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 452, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+            .add(layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
-                    .add(VolverMenuObras, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 39, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .add(31, 31, 31)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(IngresarIDObra, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(BuscarObraPorID)
+                    .add(VolverMenuObras))
+                .add(18, 18, 18)
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void BuscarObraPorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarObraPorIDActionPerformed
+        String id = IngresarIDObra.getText();
+        if(!obras.containsKey(id)){
+            javax.swing.JOptionPane.showMessageDialog(this, "No existe esa Obra", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;  
+        }
+        Obra o = obras.get(id.toLowerCase());
+        String[] columnas = {"ID", "TITULO", "ARTISTA", "ESTADO", "AÑO"};
+        DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+        Object[] fila = {o.getId(), o.getTitulo(), (o.getArtista()).getNombre(), o.getEstado(), o.getAnio()};
+        modeloTabla.addRow(fila);
+        jTable1.setModel(modeloTabla);
+    }//GEN-LAST:event_BuscarObraPorIDActionPerformed
+
     private void VolverMenuObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuObrasActionPerformed
-        MenuObrasVentana menu = new MenuObrasVentana();
+        MenuObrasVentana menu = new MenuObrasVentana(obras);
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_VolverMenuObrasActionPerformed
 
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -124,25 +141,27 @@ public class MostrarObrasVentana extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MostrarObrasVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarObraVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MostrarObrasVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarObraVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MostrarObrasVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarObraVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MostrarObrasVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarObraVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MostrarObrasVentana().setVisible(true);
+                new BuscarObraVentana().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BuscarObraPorID;
+    private javax.swing.JTextField IngresarIDObra;
     private javax.swing.JButton VolverMenuObras;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

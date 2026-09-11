@@ -16,10 +16,19 @@ public class MenuObrasVentana extends javax.swing.JFrame {
     /**
      * Creates new form MenuObrasVentana
      */
-    private static HashMap<String, Obra> obras = ManejoArchivos.cargarDesdeCsv("data/obras_de_arte.csv");
-    private static HashMap<String, Artista> artistas = ManejoArchivos.getMapaArtistas();
+    private static HashMap<String, Obra> obras;
+    private static HashMap<String, Artista> artistas;
     public MenuObrasVentana() {
         initComponents();
+    }
+    public MenuObrasVentana(HashMap<String, Obra> obras){
+        initComponents();
+        this.obras = obras;
+    }
+    public MenuObrasVentana(HashMap<String, Obra> obras, HashMap<String, Artista> artistas){
+        initComponents();
+        this.obras = obras;
+        this.artistas = artistas;
     }
 
     /**
