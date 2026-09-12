@@ -16,9 +16,9 @@ import java.util.*;
 public class RegistrarVentaVentana extends javax.swing.JFrame {
 
     /** Creates new form RegistrarVentaVentana */
-    ArrayList<Venta> ventas;
-    HashMap<String, Obra> obras;
-    HashMap<String, Cliente> clientes;
+    private ArrayList<Venta> ventas;
+    private HashMap<String, Obra> obras;
+    private HashMap<String, Cliente> clientes;
     
     public RegistrarVentaVentana() {
         initComponents();
@@ -144,52 +144,47 @@ public class RegistrarVentaVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegistrarVentaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarVentaBotonActionPerformed
-        String idObra = IngresarIDObra.getText();
+        String idObra = IngresarIDObra.getText().trim();
         if(!obras.containsKey(idObra)){
             javax.swing.JOptionPane.showMessageDialog(this, "No existe esa Obra", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
             return;
         }
         Obra o = obras.get(idObra.toLowerCase());
-        if(!(o.getEstado()).equals("DISPONIBLE")){
+        if(!(o.getEstado()).equals("Disponible")){
             javax.swing.JOptionPane.showMessageDialog(this, "La obra ya ha sido vendida", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
             return;
         }
         
-        String rut = "";
-        while (rut.trim().isEmpty() || rut.trim().length() < 8 || rut.trim().length() > 9) {
-            rut = IngresarRutCliente.getText().trim();
+        String rut = IngresarRutCliente.getText().trim();
             
-            // Si el usuario presiona 0 y enter, se termina el ciclo y se devuelve al menú para no quedar en loop infinito
-            if (rut.equals("0")) {
-                MenuVentasVentana menu = new MenuVentasVentana(ventas, obras, clientes);
-                menu.setVisible(true);
-                this.setVisible(false);
-            }
+        // Si el usuario presiona 0 y enter, se termina el ciclo y se devuelve al menú para no quedar en loop infinito
+        if (rut.equals("0")) {
+            MenuVentasVentana menu = new MenuVentasVentana(ventas, obras, clientes);
+            menu.setVisible(true);
+            this.setVisible(false);
+        }
             
-            if (rut.trim().isEmpty() || rut.trim().length() < 8 || rut.trim().length() > 9) {
-                javax.swing.JOptionPane.showMessageDialog(this, "Ingrese un RUT válido", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
-            }
+        if (rut.trim().isEmpty() || rut.trim().length() < 8 || rut.trim().length() > 9) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Ingrese un RUT válido", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
         }
         
+        
         LocalDate fecha = null; //Se inicia la fecha en NULL, para cambiarla solo si se ingresa una fecha válida en el formato válido
-        while (fecha == null) {
-            String entrada = IngresarFechaVenta.getText(); 
-            try { 
-                fecha = LocalDate.parse(entrada); 
-            } catch(DateTimeParseException | NullPointerException e){
-                javax.swing.JOptionPane.showMessageDialog(this, "Ingrese una fecha válida", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
-            }
+        String entrada = IngresarFechaVenta.getText(); 
+        try { 
+            fecha = LocalDate.parse(entrada); 
+        } catch(DateTimeParseException | NullPointerException e){
+            javax.swing.JOptionPane.showMessageDialog(this, "Ingrese una fecha válida", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
         }
         int monto = -1;
-        while (monto < 0) {
-            try {
-                monto = Integer.parseInt(IngresarMontoVenta.getText().trim());
-                if (monto < 0) {
-                    javax.swing.JOptionPane.showMessageDialog(this, "Ingrese un monto válido", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
-                }
-            } catch (NumberFormatException e) {
+        try {
+            monto = Integer.parseInt(IngresarMontoVenta.getText().trim());
+            if (monto < 0) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Ingrese un monto válido", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
             }
+        } catch (NumberFormatException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Ingrese un monto válido", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
         }
         Cliente c;
         if(!clientes.containsKey(rut)){

@@ -15,7 +15,7 @@ public class MostrarVentasVentana extends javax.swing.JFrame {
     /**
      * Creates new form MostrarVentasVentana
      */
-    ArrayList<Venta> ventas;
+    private ArrayList<Venta> ventas;
     public MostrarVentasVentana() {
         initComponents();
     }

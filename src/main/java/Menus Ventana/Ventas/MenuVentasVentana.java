@@ -15,10 +15,10 @@ public class MenuVentasVentana extends javax.swing.JFrame {
     /**
      * Creates new form MenuVentasVentana
      */
-    ArrayList<Venta> ventas;
-    HashMap<String, Obra> obras;
-    HashMap<String, Cliente> clientes;
-    ArrayList<Subasta> subastas;
+    private ArrayList<Venta> ventas;
+    private HashMap<String, Obra> obras;
+    private HashMap<String, Cliente> clientes;
+    private ArrayList<Subasta> subastas;
     
     public MenuVentasVentana() {
         initComponents();
@@ -158,11 +158,15 @@ public class MenuVentasVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_VolverMenuPrincipalActionPerformed
 
     private void MenuSubastasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuSubastasActionPerformed
-        // TODO add your handling code here:
+        MenuSubastasVentana subastas = new MenuSubastasVentana();
+        subastas.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_MenuSubastasActionPerformed
 
     private void EliminarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarVentaActionPerformed
-        // TODO add your handling code here:
+        EliminarVentaVentana eliminar = EliminarVentaVentana(ventas, obras);
+        eliminar.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_EliminarVentaActionPerformed
 
     private void BuscarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarVentaActionPerformed

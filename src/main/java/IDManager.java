@@ -1,3 +1,4 @@
+
 /**
  * @archivo: IDManager.java
  * @Proyecto: Shaolin Art Manager 

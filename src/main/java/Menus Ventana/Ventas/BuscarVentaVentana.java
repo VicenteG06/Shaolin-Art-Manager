@@ -14,8 +14,8 @@ import javax.swing.table.DefaultTableModel;
 public class BuscarVentaVentana extends javax.swing.JFrame {
 
     /** Creates new form BuscarVentaVentana */
-    ArrayList<Venta> ventas;
-    HashMap<String, Obra> obras;
+    private ArrayList<Venta> ventas;
+    private HashMap<String, Obra> obras;
     
     public BuscarVentaVentana() {
         initComponents();

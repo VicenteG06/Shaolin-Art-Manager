@@ -13,8 +13,18 @@ public class MenuPrestamosVentana extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrestamosVentana
      */
+    private ArrayList<Prestamo> prestamos;
+    private HashMap<String, Obra> obras;
+    private HashMap<String, Cliente> clientes;
+
     public MenuPrestamosVentana() {
         initComponents();
+    }
+    public MenuPrestamosVentana(ArrayList<Prestamo> prestamos, HashMap<String, Obra> obras, HashMap<String, Cliente> clientes) {
+        initComponents();
+        this.prestamos = prestamos;
+        this.obras = obras;
+        this.clientes = clientes;
     }
 
     /**
