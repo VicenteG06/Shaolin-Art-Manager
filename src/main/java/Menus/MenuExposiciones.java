@@ -2,14 +2,14 @@
  * @archivo: MenuExposiciones.java
  * @Proyecto: Shaolin Art Manager 
  * @Descripción: Clase para manejar el menú de Exposiciones
- * @author Vicente Gamboa
+ * @author Antonia Avello, Vicente Gamboa
  * @Lenguaje: Java
 */
-
+ 
 import java.io.*;
 import java.util.*;
 import java.time.*;
-
+ 
 public class MenuExposiciones {
     // menu exposiciones
     public static void mostrarMenuExposiciones(){
@@ -25,7 +25,7 @@ public class MenuExposiciones {
         System.out.println("7) Salir del Menú");
     }
     public static void mostrarExposiciones(HashMap<String, Exposicion> exposiciones) throws IOException{
-
+ 
         if(exposiciones.isEmpty()){
             System.out.println("No hay exposiciones actuales.");
             return;
@@ -35,7 +35,7 @@ public class MenuExposiciones {
         }
         PresioneTeclaParaContinuar.ptpc();
     }
-
+ 
     public static Exposicion buscarExposicion(HashMap<String, Exposicion> exposiciones) throws IOException{
         //PARA QUE SI el mapa está vacío, se muestre un mensaje y no se busque la exposición 
         if (exposiciones.isEmpty()) {
@@ -45,27 +45,31 @@ public class MenuExposiciones {
         
         System.out.println("Ingrese el ID de la exposición:");
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-
+ 
         String id = lector.readLine();
-        if(exposiciones.containsKey(id)){
-            Exposicion e = exposiciones.get(id);
+        if(id != null && exposiciones.containsKey(id.trim())){
+            Exposicion e = exposiciones.get(id.trim());
             e.mostrarAtributos();
             return e;
         }
-        System.out.println("Esta obra no se encuentra en el sistema");
+        System.out.println("Esa exposición no se encuentra en el sistema");
         return null;
     }
     public static void registrarExposicion(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Ingrese el nombre de la Exposición:");
         String nombre = lector.readLine();
-        
+        if (nombre == null || nombre.trim().isEmpty()){
+            System.out.println("El nombre de la exposición no puede estar vacío.");
+            return;
+        }
+        nombre = nombre.trim();
+ 
         String id = IDManager.generarID(nombre);
-
-
+ 
         LocalDate fInicio = Validaciones.pedirFecha(lector, "Ingrese la fecha de inicio de la exposición (formato: AAAA-MM-DD):");
         
-        //validacvión para que la fecha de termino sea después de la de inicio
+        //validación para que la fecha de termino sea después de la de inicio
         LocalDate fTermino = null;
         while (fTermino == null) {
             fTermino = Validaciones.pedirFecha(lector, "Ingrese la fecha de termino de la exposición (formato: AAAA-MM-DD) :");
@@ -75,73 +79,94 @@ public class MenuExposiciones {
             }
         }
         
+        System.out.println("Ahora indique la primera obra de la exposición.");
         Obra o = MenuObras.buscarObra(obras);
+        //si la obra no existe, no se guarda dentro de la exposición
+        if (o == null){
+            System.out.println("No se registró la exposición porque esa obra no existe.");
+            return;
+        }
+ 
+        // se verifica el estado de la obra -------------
+        String estado = o.getEstado();
+        if ( !estado.equalsIgnoreCase("DISPONIBLE") ){
+            System.out.printf("La obra '%s' no está disponible para exponerse (estado: %s). No se registró la exposición.\n", o.getTitulo(), estado);
+            return;
+        }
         
-        //------------------- CAMBIO: Se envían directo los toString() de las LocalDate si tu clase Exposicion recibe Strings
         Exposicion e = new Exposicion(id, nombre, fInicio.toString(), fTermino.toString(), o);
         exposiciones.put(id, e);
+        System.out.println("Exposición registrada con éxito (ID: " + id + ").");
     }
     public static void eliminarExposicion(HashMap<String, Exposicion> exposiciones) throws IOException{
         System.out.println("Ingrese el id de la Exposición a Eliminar:");
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         String id = lector.readLine();
-        if(exposiciones.containsKey(id)){
-            exposiciones.remove(id);
+        if(id != null && exposiciones.containsKey(id.trim())){
+            exposiciones.remove(id.trim());
+            System.out.println("Exposición eliminada con éxito.");
+            return; 
         }
         System.out.println("No existe esa Exposición.");
     }
-
+ 
     public static void anadirObraExposicion(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Ingrese el ID de la Exposición a la que desea añadir una obra:");
         String idExpo = lector.readLine();
-        if(!exposiciones.containsKey(idExpo)){
+        if(idExpo == null || !exposiciones.containsKey(idExpo.trim())){
             System.out.println("Esa Exposición no existe.");
             return;
         }
-        Exposicion e = exposiciones.get(idExpo);
+        Exposicion e = exposiciones.get(idExpo.trim());
         System.out.println("Ingrese el ID de la Obra a añadir a la Exposición:");
         String idObra = lector.readLine();
-        if(obras.containsKey(idObra)){
-            Obra o = obras.get(idObra);
-            if(e.anadirObra(o)){
-                System.out.println("La obra: " + o.getTitulo() + " ha sido añadida correctamente.");
-                return;
-            }
-            System.out.println("La obra ya se encuentra en esta exposición.");
+        if(idObra == null || !obras.containsKey(idObra.trim())){
+            System.out.println("La obra no existe dentro del sistema.");
             return;
         }
-        System.out.println("La obra no existe dentro del sistema.");
-        return;
+        Obra o = obras.get(idObra.trim());
+ 
+        // se verifica el estado de la obra -------------
+        String estado = o.getEstado();
+        if ( !estado.equalsIgnoreCase("DISPONIBLE") ){
+            System.out.printf("La obra '%s' no está disponible para exponerse (estado: %s).\n", o.getTitulo(), estado);
+            return;
+        }
+ 
+        if(e.anadirObra(o)){
+            System.out.println("La obra: " + o.getTitulo() + " ha sido añadida correctamente.");
+            return;
+        }
+        System.out.println("La obra ya se encuentra en esta exposición.");
     }
-
+ 
     public static void eliminarObraExposicion(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) throws IOException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Ingrese el ID de la Exposición:");
         String idExpo = lector.readLine();
-        if(!exposiciones.containsKey(idExpo)){
+        if(idExpo == null || !exposiciones.containsKey(idExpo.trim())){
             System.out.println("Esa Exposición no existe.");
             return;
         }
-        Exposicion e = exposiciones.get(idExpo);
-        System.out.println("Ingrese el ID de la Obra que desea eliminar la Exposición:");
+        Exposicion e = exposiciones.get(idExpo.trim());
+        System.out.println("Ingrese el ID de la Obra que desea eliminar de la Exposición:");
         String idObra = lector.readLine();
-        if(obras.containsKey(idObra)){
-            Obra o = obras.get(idObra);
-            if(e.eliminarObra(o)){
-                System.out.println("La obra: " + o.getTitulo() + " ha sido eliminada correctamente.");
-                return;
-            }
+        if(idObra == null || !obras.containsKey(idObra.trim())){
+            System.out.println("La obra no existe dentro del sistema.");
+            return;
         }
-        System.out.println("La obra no existe dentro del sistema.");
-        return;
-
-
+        Obra o = obras.get(idObra.trim());
+        if(e.eliminarObra(o)){
+            System.out.println("La obra: " + o.getTitulo() + " ha sido eliminada correctamente.");
+            return;
+        }
+        System.out.println("Esa obra no se encuentra en esta exposición.");
     }
-
+ 
     public static void menuExposiciones(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) throws IOException, EmptyEntryException{
         char opcion = ' ';
-
+ 
         do{
             BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
             MenuExposiciones.mostrarMenuExposiciones();
@@ -186,3 +211,4 @@ public class MenuExposiciones {
         } while(opcion != '7');
     }
 }
+

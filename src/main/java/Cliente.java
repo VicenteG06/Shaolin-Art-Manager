@@ -1,3 +1,4 @@
+
 /**
  * @archivo: Cliente.java
  * @Proyecto: Shaolin Art Manager 
@@ -71,15 +72,22 @@ public class Cliente {
     //Metodo borrar obra de lista de compras 
     public boolean elimObComprada(Obra o){ 
         if (!listaCompras.contains(o)) return false;
-        o.setEstado("DISPONIBLE"); //se cambia el estado de la obra a disponible
+        o.setEstado("Disponible"); //se cambia el estado de la obra a disponible
         listaCompras.remove(o);
         return true;
     }
     //Metodo borrar obra de lista de prestamos
     public boolean elimObPrestada(Obra o){ 
         if (!listaPrestamos.contains(o)) return false;
-        o.setEstado("DISPONIBLE"); //se cambia el estado de la obra a disponible
+        o.setEstado("Disponible"); //se cambia el estado de la obra a disponible
         listaPrestamos.remove(o);
         return true;
     }
+    public ArrayList<Obra> getListaPrestamos(){
+        return listaPrestamos;
+    }
+    public ArrayList<Obra> getListaCompras(){
+        return listaCompras;
+    }
 }
+

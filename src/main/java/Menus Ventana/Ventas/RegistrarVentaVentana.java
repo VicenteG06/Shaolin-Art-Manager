@@ -144,7 +144,7 @@ public class RegistrarVentaVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void RegistrarVentaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarVentaBotonActionPerformed
-        String idObra = IngresarIDObra.getText().trim();
+        String idObra = IngresarIDObra.getText();
         if(!obras.containsKey(idObra)){
             javax.swing.JOptionPane.showMessageDialog(this, "No existe esa Obra", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
             return;

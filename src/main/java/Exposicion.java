@@ -112,4 +112,7 @@ public class Exposicion {
         }
         PresioneTeclaParaContinuar.ptpc();
     }
+    public ArrayList<Obra> getListaObras(){
+        return listaObras;
+    }
 }

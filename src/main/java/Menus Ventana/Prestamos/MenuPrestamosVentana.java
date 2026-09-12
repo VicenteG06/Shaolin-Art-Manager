@@ -8,6 +8,8 @@
  *
  * @author Vicente
  */
+
+import java.util.*;
 public class MenuPrestamosVentana extends javax.swing.JFrame {
 
     /**
