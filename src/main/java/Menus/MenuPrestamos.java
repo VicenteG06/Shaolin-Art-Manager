@@ -5,12 +5,12 @@
  * @author Alexia Gallardo
  * @Lenguaje: Java
 */
-
+ 
 
 import java.io.*;
 import java.util.*;
 import java.time.*;
-
+ 
 public class MenuPrestamos {
     // menu prestamos
     public static void mostrarMenuPrestamos(){
@@ -29,7 +29,7 @@ public class MenuPrestamos {
             System.out.println("No hay préstamos registrados.");
             return;
         }
-        System.out.println("-> PRÉSTAMOS:"); //está como medio feo. Arreglar
+        System.out.println("-> PRÉSTAMOS:");
         Prestamo auxP;
         for (int i = 0 ; i < prestamos.size() ; i++){
             auxP= prestamos.get(i);
@@ -48,13 +48,13 @@ public class MenuPrestamos {
         System.out.println("Ingrese el ID de la Obra prestada:"); 
         BufferedReader l2 = new BufferedReader(new InputStreamReader(System.in));
         String idObra2 = l2.readLine();
-        if(!obras.containsKey(idObra2)){
+        if(idObra2 == null || !obras.containsKey(idObra2.trim())){
             System.out.println("No existe esa obra");
             return;
         }
         //al obtener la obra, si no esta prestada se da un aviso y se retorna al menu
-        Obra o2 = obras.get(idObra2); 
-        if ( !(o2.getEstado()).equals("PRESTADA") ){
+        Obra o2 = obras.get(idObra2.trim());
+        if ( !(o2.getEstado()).equalsIgnoreCase("PRESTADA") ){
             System.out.printf("La obra '%s' no ha sido prestada.\n", o2.getTitulo());
             return;
         }
@@ -75,22 +75,20 @@ public class MenuPrestamos {
         System.out.println("Ingrese el ID de la Obra que se desea pedir prestada:"); 
         BufferedReader l = new BufferedReader(new InputStreamReader(System.in));
         String idObra = l.readLine();
-        if(!obras.containsKey(idObra)){
+        if(idObra == null || !obras.containsKey(idObra.trim())){
             System.out.println("No existe esa obra");
             return;
         }
-        //al obtener la obra, se verifica que esta obra no este ya vendida ni prestada 
-        Obra o = obras.get(idObra); 
-        if ( (o.getEstado()).equals("VENDIDA") ){
-            System.out.printf("La obra '%s' está vendida, por lo que no se puede prestar.\n", o.getTitulo());
-            return;
-        }
-        else if ( (o.getEstado()).equals("PRESTADA") ){
-            System.out.printf("La obra '%s' ya está actualmente prestada.\n", o.getTitulo());
+        Obra o = obras.get(idObra.trim());
+ 
+        // se verifica el estado de la obra -------------
+        String estado = o.getEstado();
+        if ( !estado.equalsIgnoreCase("DISPONIBLE") ){
+            System.out.printf("La obra '%s' no está disponible para préstamo (estado: %s).\n", o.getTitulo(), estado);
             return;
         }
         //como está disponible, se puede prestar 
-        
+ 
 
         String mensajeRut = "Ingrese el rut SIN GUIÓN Y CON DÍGITO VERIFICADOR del cliente que desea pedir prestado '" + o.getTitulo() + "':\n(Ingrese '0' y enter para cancelar la operación)";
         String rutC = Validaciones.pedirRut(l, mensajeRut);
@@ -106,7 +104,7 @@ public class MenuPrestamos {
             c = clientes.get(rutC);
             System.out.println("Cliente encontrado en el sistema.");
         }
-
+ 
         LocalDate fInicioObj = Validaciones.pedirFecha(l, "Ingrese la fecha de INICIO del préstamo (formato: AAAA-MM-DD):");
         
         LocalDate fRetornoObj = null;
@@ -125,10 +123,10 @@ public class MenuPrestamos {
         Prestamo n = new Prestamo(nId, c, o, fInicioObj, fRetornoObj);
         //se ingresa la obra a la lista de prestamos del cliente en el mismo metodo de registro
         if(n.registrar()){
-            System.out.println("Venta registrada con éxito");
+            prestamos.add(n); // el préstamo se guarda SOLO SI se registró bien
+            System.out.println("Préstamo registrado con éxito");
         }
-        else { System.out.println("Hubo un error al registrar la compra de la obra"); }
-        prestamos.add(n); // AGREGAR AL ARRAYLIST DE PRESTAMOS
+        else { System.out.println("Hubo un error al registrar el préstamo de la obra. El préstamo no se guardó."); }
     }
     public static void eliminarPrestamo(ArrayList<Prestamo> prestamos, HashMap<String, Obra> obras) throws IOException{
         //si no hay prestamos, se da un aviso y se retorna al menu
@@ -140,13 +138,13 @@ public class MenuPrestamos {
         System.out.println("Ingrese el ID de la Obra prestada:"); 
         BufferedReader l = new BufferedReader(new InputStreamReader(System.in));
         String idObra = l.readLine();
-        if(!obras.containsKey(idObra)){
+        if(idObra == null || !obras.containsKey(idObra.trim())){
             System.out.println("No existe esa obra");
             return;
         }
         //al obtener la obra, si no esta prestada se da un aviso y se retorna al menu
-        Obra o = obras.get(idObra); 
-        if ( !(o.getEstado()).equals("PRESTADA") ){
+        Obra o = obras.get(idObra.trim());
+        if ( !(o.getEstado()).equalsIgnoreCase("PRESTADA") ){ //ignora mayúsculas al comparar el estado de la obra
             System.out.printf("La obra '%s' no ha sido prestada.\n", o.getTitulo());
             return;
         }
@@ -156,8 +154,8 @@ public class MenuPrestamos {
             auxP = (Prestamo) prestamos.get(i);
             if (auxP.getObra() == o){
                 Cliente cl = auxP.getCliente(); //se obtiene el cliente del prestamo 
-                if (!cl.elimObPrestada(o)){ //se elimina la obra de la lista de obras prestadas del cliente 
-                    System.out.printf("Hubo un problema al eliminar la obra de la lista de préstamos del cliente %s (el cliente no ha pedido prestada la obra)\n", cl.getRut());
+                if (cl == null || !cl.elimObPrestada(o)){ //se elimina la obra de la lista de obras prestadas del cliente 
+                    System.out.printf("Hubo un problema al eliminar la obra de la lista de préstamos del cliente (el cliente no ha pedido prestada la obra)\n");
                 } 
                 prestamos.remove(auxP); //se elimina el prestamo de la lista de prestamos 
                 System.out.printf("El préstamo de %s ha sido eliminado con éxito.\n", o.getTitulo());
@@ -179,7 +177,7 @@ public class MenuPrestamos {
                     throw new EmptyEntryException();
                 }
                 opcion = entrada.charAt(0);
-
+ 
                 switch(opcion){
                 case '1': //mostrar 
                     MenuPrestamos.mostrarPrestamos(prestamos);

@@ -43,14 +43,17 @@ public class MenuSubastas {
         System.out.println("Ingrese el ID de la Obra a subastar:");
 
         String idObra = lector.readLine(); 
-        if(!obras.containsKey(idObra) ){ //Se verifica que la obra esté registrada
+        if(idObra == null || !obras.containsKey(idObra.trim()) ){ //Se verifica que la obra esté registrada
             System.out.println("No existe esa obra .");
             return;
         }
                 
-        Obra o = obras.get(idObra); //REVISAR SI LA OBRA TIENE ESTADO "DISPONIBLE"
-        if (!o.getEstado().equals("Disponible")) { 
-            System.out.println("La obra no está disponible para ser subastada.");
+        Obra o = obras.get(idObra.trim());
+
+        // se verifica el estado de la obra -------------
+        String estado = o.getEstado();
+        if ( !estado.equalsIgnoreCase("DISPONIBLE") ){
+            System.out.printf("La obra '%s' no está disponible para ser subastada (estado: %s).\n", o.getTitulo(), estado);
             return;
         }
      
@@ -61,7 +64,12 @@ public class MenuSubastas {
         
         // INICIALIZAR VARIABLE GLOABL DE MENU 
         MenuPrincipal.subastaActiva = new Subasta(o, precioInicial, fSubastaObj);
-        System.out.println("Subasta iniciada con éxito");
+
+        // la obra queda bloqueada mientras dure la subasta, así no se puede
+        // vender, prestar ni añadir a una exposición
+        o.setEstado("SUBASTANDO");
+
+        System.out.printf("Subasta iniciada con éxito. La obra '%s' queda en estado SUBASTANDO.\n", o.getTitulo());
     }
 
     public static void registrarNuevaOferta(ArrayList<Subasta> subastas) throws IOException{
@@ -115,11 +123,22 @@ public class MenuSubastas {
             System.out.println("No hay ninguna subasta activa para cerrar.");
             return;
         }
+
+        // se guarda la obra antes de cerrar, para poder liberarla si es que no hubo ofertas
+        Obra obraSubastada = MenuPrincipal.subastaActiva.getObra();
+
         System.out.println("Cerrando subasta...");
         boolean exito = MenuPrincipal.subastaActiva.cerrarSubasta(clientes); 
                 
         if (exito) {//Si se logró cerrar la subasta con éxito (con al menos una oferta registrada)
             subastas.add(MenuPrincipal.subastaActiva); //se añade la subasta al ArrayList de subastas cerradas
+        }
+        else {
+            // sino hubo ofertas, la obra vuelve a estar disponible
+            if (obraSubastada != null && obraSubastada.getEstado().equalsIgnoreCase("SUBASTANDO")) {
+                obraSubastada.setEstado("DISPONIBLE");
+                System.out.printf("La obra '%s' vuelve a estar DISPONIBLE.\n", obraSubastada.getTitulo());
+            }
         }
         // Reiniciamos la variable de subastaActiva
         MenuPrincipal.subastaActiva = null;

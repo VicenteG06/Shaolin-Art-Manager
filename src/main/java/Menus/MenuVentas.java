@@ -9,7 +9,7 @@
 import java.io.*;
 import java.util.*;
 import java.time.*;
-
+ 
 public class MenuVentas {
         // menu ventas
     public static void mostrarMenuVentas(){
@@ -23,7 +23,7 @@ public class MenuVentas {
         System.out.println("5) Menu Subastas");
         System.out.println("6) Salir del Menú");
     }
-
+ 
     public static void mostrarVentas(ArrayList<Venta> ventas) throws IOException{
         //si no hay ventas, se da un aviso y se retorna al menu
         if (ventas.size() == 0){ 
@@ -31,7 +31,7 @@ public class MenuVentas {
             return;
         }
         //como hay ventas, se recorre la lista y se muestran
-        System.out.println("-> VENTAS:"); //está como medio feo. Arreglar
+        System.out.println("-> VENTAS:");
         Venta auxV1;
         for (int i = 0 ; i < ventas.size() ; i++){
             auxV1= (Venta) ventas.get(i);
@@ -50,13 +50,13 @@ public class MenuVentas {
         System.out.println("Ingrese el ID de la Obra vendida:"); 
         BufferedReader l = new BufferedReader(new InputStreamReader(System.in));
         String idObra = l.readLine();
-        if(!obras.containsKey(idObra)){
+        if(idObra == null || !obras.containsKey(idObra.trim())){
             System.out.println("No existe esa obra");
             return;
         }
         //al obtener la obra, si no esta vendida se da un aviso y se retorna al menu
-        Obra o = obras.get(idObra); 
-        if ( !(o.getEstado()).equals("VENDIDA") ){
+        Obra o = obras.get(idObra.trim());
+        if ( !(o.getEstado()).equalsIgnoreCase("VENDIDA") ){
             System.out.printf("La obra '%s' no ha sido vendida.\n", o.getTitulo());
             return;
         }
@@ -77,26 +77,25 @@ public class MenuVentas {
         System.out.println("Ingrese el ID de la Obra que se desea vender:"); 
         BufferedReader l = new BufferedReader(new InputStreamReader(System.in));
         String idObra = l.readLine();
-        if(!obras.containsKey(idObra)){
+        if(idObra == null || !obras.containsKey(idObra.trim())){
             System.out.println("No existe esa obra");
             return;
         }
-        //al obtener la obra, se verifica que esta obra no este ya vendida ni prestada
-        Obra o = obras.get(idObra); 
-        if ( (o.getEstado()).equals("VENDIDA") ){
-            System.out.printf("La obra '%s' ya ha sido vendida.\n", o.getTitulo());
+        Obra o = obras.get(idObra.trim());
+ 
+        // Verificar estado de la obra antes de venderla
+        String estado = o.getEstado();
+        if ( !estado.equalsIgnoreCase("DISPONIBLE") ){
+            System.out.printf("La obra '%s' no está disponible para la venta (estado: %s).\n", o.getTitulo(), estado);
             return;
         }
-        else if ( (o.getEstado()).equals("PRESTADA") ){
-            System.out.printf("La obra '%s' está actualmente prestada, por lo que no se puede vender.\n", o.getTitulo());
-            return;
-        }
+ 
         //como está a la venta, se registra su venta 
         LocalDate fechaVentaObj = Validaciones.pedirFecha(l, "Ingrese la fecha de la venta (formato: AAAA-MM-DD):");
         
         String mensajeRut = "Ingrese el rut SIN GUIÓN Y CON DÍGITO VERIFICADOR del cliente que desea comprar '" + o.getTitulo() + "':\n(Ingrese '0' para cancelar la operación)";
         String rutC = Validaciones.pedirRut(l, mensajeRut);
-        if (rutC.equals("0")) return; // si usiario ingresa "0", se devuelve al menú para no quedar en loop infinito
+        if (rutC.equals("0")) return; // si usuario ingresa "0", se devuelve al menú para no quedar en loop infinito
                 
         // Crear cliente
         Cliente c;
@@ -109,17 +108,16 @@ public class MenuVentas {
             c = clientes.get(rutC);
             System.out.println("Cliente encontrado en el sistema.");
         }
-
+ 
         int p = Validaciones.pedirEnteroPositivo(l, "Ingrese el precio de la venta:");
                 
         Venta n = new Venta(fechaVentaObj, c, o, p);
         //se ingresa la obra a la lista de compras del cliente en el mismo metodo de registro
         if(n.registrar()){
+            ventas.add(n); // la venta se guarda SOLO si se registró bien
             System.out.println("Venta registrada con éxito");
         }
-        else { System.out.println("Hubo un error al registrar la compra de la obra"); }
-        ventas.add(n); // AGREGA AL ARRAYLIS DE VENTAS
-        return;
+        else { System.out.println("Hubo un error al registrar la compra de la obra. La venta no se guardó."); }
     }
     public static void eliminarVenta(ArrayList<Venta> ventas, HashMap<String, Obra> obras) throws IOException{
         //si no hay ventas, se da un aviso y se retorna al menu
@@ -131,13 +129,13 @@ public class MenuVentas {
         System.out.println("Ingrese el ID de la Obra vendida:"); 
         BufferedReader l = new BufferedReader(new InputStreamReader(System.in));
         String idObra = l.readLine();
-        if(!obras.containsKey(idObra)){
+        if(idObra == null || !obras.containsKey(idObra.trim())){
             System.out.println("No existe esa obra");
             return;
         }
         //al obtener la obra, si no esta vendida se da un aviso y se retorna al menu
-        Obra o = obras.get(idObra); 
-        if ( !(o.getEstado()).equals("VENDIDA") ){
+        Obra o = obras.get(idObra.trim());
+        if ( !(o.getEstado()).equalsIgnoreCase("VENDIDA") ){
             System.out.printf("La obra '%s' no ha sido vendida.\n", o.getTitulo());
             return;
         }
@@ -147,12 +145,12 @@ public class MenuVentas {
             auxV = (Venta) ventas.get(i);
             if (auxV.getObra() == o){
                 Cliente cl = auxV.getCliente(); //se obtiene el cliente de la venta 
-                if (!cl.elimObComprada(o)){ //se elimina la obra de la lista de obras compradas del cliente 
-                    System.out.printf("Hubo un problema al eliminar la obra de la lista de compras del cliente %s (el cliente no es dueño de la obra)\n", cl.getRut());
+                if (cl == null || !cl.elimObComprada(o)){ //se elimina la obra de la lista de obras compradas del cliente 
+                    System.out.printf("Hubo un problema al eliminar la obra de la lista de compras del cliente (el cliente no es dueño de la obra)\n");
                 } 
                 ventas.remove(auxV); //se elimina la venta de la lista de ventas 
                 System.out.printf("La venta de %s ha sido eliminada con éxito.\n", o.getTitulo());
-                o.setEstado("Disponible");
+                o.setEstado("DISPONIBLE"); //la obra vuelve al catálogo
                 return;
             }
         }
@@ -184,6 +182,7 @@ public class MenuVentas {
                     break;
                 case '5':
                     MenuSubastas.menuSubastas(subastas, obras, clientes);
+                    break;
                 case '6':
                     System.out.println("Saliendo del menú......");
                     break;

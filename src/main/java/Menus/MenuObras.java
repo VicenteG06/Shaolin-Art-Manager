@@ -1,4 +1,3 @@
-
 /**
  * @archivo: MenuObras.java
  * @Proyecto: Shaolin Art Manager 
@@ -6,11 +5,11 @@
  * @author Vicente Gamboa
  * @Lenguaje: Java
 */
-
+ 
 
 import java.io.*;
 import java.util.*;
-
+ 
 public class MenuObras {
     public static void mostrarMenuObras(){
         System.out.println("========================");
@@ -22,6 +21,10 @@ public class MenuObras {
         System.out.println("4) Salir del Menú");
     }
     public static void mostrarObras(HashMap<String, Obra> obras){
+        if (obras.isEmpty()){
+            System.out.println("No hay obras registradas.");
+            return;
+        }
         for(Obra o: obras.values()){
             o.mostrarAtributos();
         }
@@ -31,8 +34,8 @@ public class MenuObras {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         String idObra = lector.readLine();
         
-        if(obras.containsKey(idObra)){
-            Obra o = obras.get(idObra);
+        if(idObra != null && obras.containsKey(idObra.trim())){
+            Obra o = obras.get(idObra.trim());
             o.mostrarAtributos();
             return o;
         }
@@ -45,11 +48,21 @@ public class MenuObras {
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Ingrese el Nombre de la Obra:");
         String nombre = lector.readLine();
-
+        if (nombre == null || nombre.trim().isEmpty()){
+            System.out.println("El nombre de la obra no puede estar vacío.");
+            return;
+        }
+        nombre = nombre.trim();
+ 
         String id = IDManager.generarID(nombre);
         
         System.out.println("Ingrese el Nombre del Artista:");
         String nombreArtista = lector.readLine();
+        if (nombreArtista == null || nombreArtista.trim().isEmpty()){
+            System.out.println("El nombre del artista no puede estar vacío.");
+            return;
+        }
+        nombreArtista = nombreArtista.trim();
         
         int anio = Validaciones.pedirEnteroPositivo(lector, "Ingrese el año de Creación de la Obra:");
         
@@ -71,14 +84,14 @@ public class MenuObras {
         }
         
         o.setArtista(a);
-
+ 
         obras.put(id, o);
-        System.out.println("La obra " + nombre + " fue registrada con éxito.") ;
+        System.out.println("La obra " + nombre + " fue registrada con éxito (ID: " + id + ").") ;
     }
     
     public static void menuObras(HashMap<String, Obra> obras, HashMap<String, Artista> artistas) throws IOException, EmptyEntryException{
         char opcion = ' ';
-
+ 
         do{
             BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
             MenuObras.mostrarMenuObras();
