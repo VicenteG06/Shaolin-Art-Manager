@@ -6,8 +6,9 @@
 
 /**
  *
- * @author Vicente
+ * @author Alexia Gallardo
  */
+import java.util.*;
 public class MenuPrestamosVentana extends javax.swing.JFrame {
 
     /**
@@ -136,21 +137,27 @@ public class MenuPrestamosVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_VolverMenuPrincipalActionPerformed
 
     private void RegistrarPréstamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarPréstamoActionPerformed
-        MenuPrincipalVentana v1 = new MenuPrincipalVentana();
-        v1.setVisible(true);
-        this.setVisible(false);
+        RegistrarPrestamoVentana reg = new RegistrarPrestamoVentana(prestamos, clientes, obras);
+        reg.setVisible(true); 
+        this.setVisible(false); 
     }//GEN-LAST:event_RegistrarPréstamoActionPerformed
 
     private void EliminarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarPrestamoActionPerformed
-        // TODO add your handling code here:
+        EliminarPrestamoVentana eliminar = new EliminarPrestamoVentana(prestamos, obras);
+        eliminar.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_EliminarPrestamoActionPerformed
 
     private void BuscarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarPrestamoActionPerformed
-        // TODO add your handling code here:
+        BuscarPrestamosVentana buscar = new BuscarPrestamosVentana(prestamos, obras);
+        buscar.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_BuscarPrestamoActionPerformed
 
     private void MostrarPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarPrestamosActionPerformed
-        // TODO add your handling code here:
+        MostrarPrestamosVentana mostrar = new MostrarPrestamosVentana(prestamos);
+        mostrar.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_MostrarPrestamosActionPerformed
 
     /**

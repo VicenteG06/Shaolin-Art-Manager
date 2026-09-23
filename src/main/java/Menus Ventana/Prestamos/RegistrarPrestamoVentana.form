@@ -23,13 +23,131 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="400" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="VolverMenuPrestamos" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="AnioCreacionObra1" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="AnioCreacionObra" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="NombreArtistaObra" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="IDObra" alignment="1" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="IngresarFechaTermino" alignment="1" max="32767" attributes="0"/>
+                          <Component id="IngresarFechaInicio" alignment="0" pref="258" max="32767" attributes="0"/>
+                          <Component id="IngresarIDObra" alignment="0" max="32767" attributes="0"/>
+                          <Component id="IngresarRutCliente" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace min="0" pref="172" max="32767" attributes="0"/>
+              <Component id="RegistrarPrestamoBoton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="VolverMenuPrestamos" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="IDObra" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="IngresarIDObra" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="NombreArtistaObra" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="IngresarRutCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="AnioCreacionObra" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="IngresarFechaInicio" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="AnioCreacionObra1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="IngresarFechaTermino" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="RegistrarPrestamoBoton" min="-2" pref="37" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
   </Layout>
+  <SubComponents>
+    <Component class="javax.swing.JTextField" name="IngresarFechaTermino">
+    </Component>
+    <Component class="javax.swing.JTextField" name="IngresarRutCliente">
+    </Component>
+    <Component class="javax.swing.JLabel" name="AnioCreacionObra">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fecha de INICIO pr&#xe9;stamo:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="IngresarFechaInicio">
+    </Component>
+    <Component class="javax.swing.JButton" name="RegistrarPrestamoBoton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Registrar Pr&#xe9;stamo"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RegistrarPrestamoBotonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="VolverMenuPrestamos">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Menu Pr&#xe9;stamos"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VolverMenuPrestamosActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Generar Pr&#xe9;stamo"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="IDObra">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ID de la Obra:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="IngresarIDObra">
+    </Component>
+    <Component class="javax.swing.JLabel" name="NombreArtistaObra">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Rut Cliente:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="AnioCreacionObra1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Fecha T&#xc9;RMINO pr&#xe9;stamo:"/>
+      </Properties>
+    </Component>
+  </SubComponents>
 </Form>
