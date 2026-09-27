@@ -12,7 +12,7 @@ import java.time.*;
  
 public class MenuExposiciones {
     // menu exposiciones
-    public static void mostrarMenuExposiciones(){
+    public static void mostrarMenuExposiciones(HashMap<String, Exposicion> exposiciones){
         System.out.println("========================");
         System.out.println("       Exposiciones");
         System.out.println("========================");
@@ -22,7 +22,12 @@ public class MenuExposiciones {
         System.out.println("4) Eliminar Exposición");
         System.out.println("5) Añadir Obra a Exposición");
         System.out.println("6) Eliminar Obra de Exposición");
-        System.out.println("7) Salir del Menú");
+
+        if(!exposiciones.isEmpty()){
+            System.out.println("7) Modificar Exposición");
+        }
+        System.out.println("8) Salir del Menú");
+        
     }
     public static void mostrarExposiciones(HashMap<String, Exposicion> exposiciones) throws IOException{
  
@@ -169,7 +174,7 @@ public class MenuExposiciones {
  
         do{
             BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-            MenuExposiciones.mostrarMenuExposiciones();
+            MenuExposiciones.mostrarMenuExposiciones(exposiciones);
             try{
                 String entrada = lector.readLine();
                 if(entrada == null || entrada.trim().isEmpty()){
@@ -196,6 +201,15 @@ public class MenuExposiciones {
                     MenuExposiciones.eliminarObraExposicion(exposiciones, obras);
                     break;
                 case '7':
+                    if(exposiciones.isEmpty()){//se verifica de nuevo porque el usuario puede teclear el 7 aunque la opción no se haya mostrado
+                        System.out.println("Opción no válida, intente nuevamente.");
+                        break;
+                    }
+
+                    MenuModificarExposiciones.menuModificarExposiciones(exposiciones); //si hay exposiciones registradas, se va al menú modificación
+                    break;
+
+                case '8':
                     System.out.println("Saliendo del menú......");
                     break;
                 default:
@@ -208,7 +222,7 @@ public class MenuExposiciones {
                 System.out.println("Error de lectura: " + e.getMessage());
                 break;
             }
-        } while(opcion != '7');
+        } while(opcion != '8');
     }
 }
 

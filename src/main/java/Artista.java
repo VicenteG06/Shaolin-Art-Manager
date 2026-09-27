@@ -57,8 +57,8 @@ public class Artista {
 
     // Se crea una tabla de todas las obras del artista para luego ser mostrada por una Ventana
     public DefaultTableModel obtenerObras(){
-        String[] columnas = {"ID", "TITULO", "ARTISTA", "ESTADO", "AÑO"};
-        DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+         String[] columnas = {"ID", "TITULO", "ARTISTA", "ESTADO", "AÑO"};
+       DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
         for(int i = 0; i < obras.size(); i++){
             Object[] fila = {(obras.get(i)).getId(), (obras.get(i)).getTitulo(), ((obras.get(i)).getArtista()).getNombre(), (obras.get(i)).getEstado(), (obras.get(i)).getAnio()};
             modeloTabla.addRow(fila);

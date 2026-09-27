@@ -16,7 +16,8 @@ public class Validaciones {
     //pedir y validar ruts
     public static String pedirRut(BufferedReader lector, String mensaje) throws IOException {
         String rut = "";
-        while (rut.trim().isEmpty() || rut.trim().length() < 8 || rut.trim().length() > 9) {
+        boolean rutValido = false;
+        while (!rutValido) {
             System.out.println(mensaje);
             rut = lector.readLine().trim();
             
@@ -25,8 +26,13 @@ public class Validaciones {
                 return rut; 
             }
             
-            if (rut.trim().isEmpty() || rut.trim().length() < 8 || rut.trim().length() > 9) {
-                System.out.println("Error: El RUT ingresado es inválido .");
+            try {
+                if (rut.isEmpty() || rut.length() < 8 || rut.length() > 9) {
+                    throw new FormatoRutException();
+                }
+                rutValido = true;
+            } catch (FormatoRutException e) {
+                System.out.println(e.getMessage());
             }
         }
         return rut;

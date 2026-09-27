@@ -112,6 +112,36 @@ public class Exposicion {
         }
         PresioneTeclaParaContinuar.ptpc();
     }
+    
+        //Método para cambiar el titulo de la exposición 
+    public boolean cambiarTitulo(String nuevoTitulo){
+        if (nuevoTitulo == null || nuevoTitulo.trim().isEmpty() ){ //validando que no sea vacio
+            return false;
+        }
+        this.titulo = nuevoTitulo.trim(); // si no es nulo ni una entrada vacía, se cambia el título al nuevo ingresado 
+
+        return true;
+    }
+    //Cambiar fecha de inicio 
+    public boolean cambiarFechaInicio(LocalDate nuevaFecha){
+        if (nuevaFecha == null) return false;
+        if (fechaTermino != null && nuevaFecha.isAfter(fechaTermino)){ // Validar que no sea después de la fecha de término de la exposición
+            return false;
+        }
+
+        this.fechaInicio = nuevaFecha; //si es válida, se cammbia la fecha de inicio a la nueva
+        return true;
+    }
+    //Cambiar fecha de termino 
+    public boolean cambiarFechaTermino(LocalDate nuevaFecha){
+        if (nuevaFecha == null) return false;
+        if (fechaInicio != null && nuevaFecha.isBefore(fechaInicio)){ // Validar q ue la fecha no sea anterior a la fecha de inicio
+            return false;
+        }
+        this.fechaTermino = nuevaFecha; // si es válida, se cambia la fecha de término a la fecha ingresada por el usuario
+        return true;
+    }
+    
     public ArrayList<Obra> getListaObras(){
         return listaObras;
     }
