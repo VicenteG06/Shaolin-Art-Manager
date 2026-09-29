@@ -135,12 +135,6 @@ public class RegistrarObraVentana extends javax.swing.JFrame {
     private void RegistrarObraBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarObraBotonActionPerformed
         String titulo = IngresarTituloObra.getText();
         String id = IDManager.generarID(titulo);
-        Random random = new Random();
-        while (obras.containsKey(id)){
-            int num = random.nextInt(1000);
-            id = IDManager.generarID(titulo + "" + num);
-        }
-
         String nombreArtista = IngresarArtistaObra.getText();
         int anio = Integer.parseInt(IngresarAnioObra.getText());
         

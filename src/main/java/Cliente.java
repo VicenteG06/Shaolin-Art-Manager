@@ -83,11 +83,27 @@ public class Cliente {
         listaPrestamos.remove(o);
         return true;
     }
-    public ArrayList<Obra> getListaPrestamos(){
-        return listaPrestamos;
+    public ArrayList<String> getIdsPrestamos(){
+        ArrayList<String> ids = new ArrayList<>();
+        if(listaPrestamos.size() == 0){
+            return null;
+        }
+        for(int i =0; i < listaPrestamos.size(); i++){
+            Obra o = listaPrestamos.get(i);
+            ids.add(o.getId());        
+        }
+        return ids;
     }
-    public ArrayList<Obra> getListaCompras(){
-        return listaCompras;
+    public ArrayList<String> getIdsCompras(){
+        ArrayList<String> ids = new ArrayList<>();
+        if(listaCompras.size() == 0){
+            return null;
+        }
+        for(int i =0; i < listaCompras.size(); i++){
+            Obra o = listaCompras.get(i);
+            ids.add(o.getId());        
+        }
+        return ids;
     }
 }
 

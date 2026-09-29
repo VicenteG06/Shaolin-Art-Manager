@@ -11,6 +11,7 @@ import java.time.*;
 
 public class ManejoArchivos {
     private static HashMap<String, Artista> mapaArtistas = new HashMap<>();
+
     public static HashMap<String, Obra> cargarObrasDesdeCsv(String rutaArchivo) {
         HashMap<String,Obra> mapaObras = new HashMap<>();
         
@@ -69,10 +70,11 @@ public class ManejoArchivos {
             
                 // Unir IDs de obras compradas separadas por coma
                 StringBuilder comprasStr = new StringBuilder();
-                if (cliente.getListaCompras() != null) {
-                    for (int i = 0; i < cliente.getListaCompras().size(); i++) {
-                        comprasStr.append(cliente.getListaCompras().get(i).getId());
-                        if (i < cliente.getListaCompras().size() - 1) {
+                ArrayList<String> listaIdsCompras = cliente.getIdsCompras();
+                if (listaIdsCompras != null) {
+                    for (int i = 0; i < listaIdsCompras.size(); i++) {
+                        comprasStr.append(listaIdsCompras.get(i));
+                        if (i < listaIdsCompras.size() - 1) {
                         comprasStr.append(",");
                         }
                     }
@@ -80,7 +82,8 @@ public class ManejoArchivos {
 
                 // Unir IDs de obras prestadas separadas por coma
                 StringBuilder prestamosStr = new StringBuilder();
-                if (cliente.getListaPrestamos() != null) {
+                ArrayList<String> listaIdsPrestamos = cliente.getIdsPrestamos();
+                if (listaIdsPrestamos != null) {
                     for (int i = 0; i < cliente.getListaPrestamos().size(); i++) {
                         prestamosStr.append(cliente.getListaPrestamos().get(i).getId());
                         if (i < cliente.getListaPrestamos().size() - 1) {
@@ -121,7 +124,7 @@ public class ManejoArchivos {
                         for (String idObra : arrayIds) {
                             Obra obra = mapaObras.get(idObra.trim());
                             if (obra != null) {
-                                cliente.getListaCompras().add(obra);
+                                cliente.agregarCompra(obra);
                             }
                         }
                     }
@@ -132,7 +135,7 @@ public class ManejoArchivos {
                         for (String idObra : arrayIds) {
                             Obra obra = mapaObras.get(idObra.trim());
                             if (obra != null) {
-                                cliente.getListaPrestamos().add(obra);
+                                cliente.agregarPrestamo(obra);
                             }
                         }
                     }
