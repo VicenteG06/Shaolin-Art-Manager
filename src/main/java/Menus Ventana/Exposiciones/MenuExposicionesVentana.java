@@ -13,8 +13,17 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
     /**
      * Creates new form MenuExposicionesVentana
      */
+    
+    private java.util.HashMap<String, Exposicion> exposiciones;
+    private java.util.HashMap<String, Obra> obras;
+    
     public MenuExposicionesVentana() {
         initComponents();
+    }
+    public MenuExposicionesVentana(java.util.HashMap<String, Exposicion> exposiciones, java.util.HashMap<String, Obra> obras) {
+        initComponents();
+        this.exposiciones = exposiciones;
+        this.obras = obras;
     }
 
     /**
@@ -32,6 +41,7 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
         BuscarExposicion = new javax.swing.JButton();
         MenuExposiciones = new javax.swing.JLabel();
         MostrarExposciones = new javax.swing.JButton();
+        ModificarExposicion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,38 +82,47 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
             }
         });
 
+        ModificarExposicion.setText("Modificar Exposicion");
+        ModificarExposicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarExposicionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(249, 249, 249)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(254, 254, 254)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(MenuExposiciones, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(MostrarExposciones, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                        .addComponent(RegistrarExposicion, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                        .addComponent(EliminarExposicion, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)
-                        .addComponent(BuscarExposicion, javax.swing.GroupLayout.DEFAULT_SIZE, 179, Short.MAX_VALUE)))
-                .addContainerGap(248, Short.MAX_VALUE))
+                    .addComponent(MostrarExposciones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(BuscarExposicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(RegistrarExposicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(EliminarExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ModificarExposicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(227, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(28, Short.MAX_VALUE)
-                .addComponent(MenuExposiciones, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(43, Short.MAX_VALUE)
+                .addComponent(MenuExposiciones, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(MostrarExposciones, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(MostrarExposciones, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
-                .addComponent(BuscarExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(RegistrarExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(13, 13, 13)
-                .addComponent(EliminarExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(BuscarExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(RegistrarExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addComponent(EliminarExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ModificarExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24))
+                .addGap(35, 35, 35))
         );
 
         pack();
@@ -118,7 +137,7 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
     private void EliminarExposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarExposicionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_EliminarExposicionActionPerformed
-
+       
     private void RegistrarExposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarExposicionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_RegistrarExposicionActionPerformed
@@ -128,10 +147,14 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_BuscarExposicionActionPerformed
 
     private void MostrarExposcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarExposcionesActionPerformed
-        MenuPrincipalVentana v1 = new MenuPrincipalVentana();
+        
+    }//GEN-LAST:event_MostrarExposcionesActionPerformed
+
+    private void ModificarExposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarExposicionActionPerformed
+        MenuModificarExposicionesVentana v1 = new MenuModificarExposicionesVentana(exposiciones,obras);
         v1.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_MostrarExposcionesActionPerformed
+    }//GEN-LAST:event_ModificarExposicionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -149,22 +172,16 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuExposicionesVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuExposicionesVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuExposicionesVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(MenuExposicionesVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
+        
+        //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuExposicionesVentana().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new MenuExposicionesVentana().setVisible(true);
         });
     }
 
@@ -172,6 +189,7 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
     private javax.swing.JButton BuscarExposicion;
     private javax.swing.JButton EliminarExposicion;
     private javax.swing.JLabel MenuExposiciones;
+    private javax.swing.JButton ModificarExposicion;
     private javax.swing.JButton MostrarExposciones;
     private javax.swing.JButton RegistrarExposicion;
     private javax.swing.JButton VolverMenuPrincipal;

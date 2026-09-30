@@ -145,6 +145,14 @@ public class Exposicion {
         this.fechaTermino = nuevaFecha;
         return true;
     }
+    
+    public boolean cambiarFechas(LocalDate nuevaInicio, LocalDate nuevaTermino){
+        if (nuevaInicio == null || nuevaTermino == null) return false;
+        if (nuevaTermino.isBefore(nuevaInicio)) return false;
+        this.fechaInicio = nuevaInicio;
+        this.fechaTermino = nuevaTermino;
+        return true;
+    }
    
     public ArrayList<Obra> getListaObras(){
         return listaObras;

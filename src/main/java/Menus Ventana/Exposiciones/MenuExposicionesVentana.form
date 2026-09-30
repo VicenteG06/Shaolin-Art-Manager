@@ -23,38 +23,39 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="249" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="MenuExposiciones" min="-2" pref="179" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="VolverMenuPrincipal" max="32767" attributes="0"/>
-                      <Component id="MostrarExposciones" alignment="0" pref="179" max="32767" attributes="0"/>
-                      <Component id="RegistrarExposicion" pref="179" max="32767" attributes="0"/>
-                      <Component id="EliminarExposicion" pref="179" max="32767" attributes="0"/>
-                      <Component id="BuscarExposicion" alignment="0" pref="179" max="32767" attributes="0"/>
-                  </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace min="-2" pref="254" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="2" attributes="0">
+                  <Component id="MenuExposiciones" alignment="2" min="-2" pref="179" max="-2" attributes="0"/>
+                  <Component id="MostrarExposciones" alignment="2" max="32767" attributes="0"/>
+                  <Component id="BuscarExposicion" alignment="2" max="32767" attributes="0"/>
+                  <Component id="RegistrarExposicion" alignment="2" max="32767" attributes="0"/>
+                  <Component id="EliminarExposicion" alignment="2" min="-2" pref="204" max="-2" attributes="0"/>
+                  <Component id="ModificarExposicion" alignment="2" max="32767" attributes="0"/>
+                  <Component id="VolverMenuPrincipal" alignment="2" min="-2" pref="179" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="248" max="32767" attributes="0"/>
+              <EmptySpace pref="227" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="28" max="32767" attributes="0"/>
-              <Component id="MenuExposiciones" min="-2" pref="64" max="-2" attributes="0"/>
+              <EmptySpace pref="43" max="32767" attributes="0"/>
+              <Component id="MenuExposiciones" min="-2" pref="39" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+              <Component id="MostrarExposciones" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="MostrarExposciones" min="-2" pref="57" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="11" max="-2" attributes="0"/>
-              <Component id="BuscarExposicion" min="-2" pref="57" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="RegistrarExposicion" min="-2" pref="57" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-              <Component id="EliminarExposicion" min="-2" pref="57" max="-2" attributes="0"/>
+              <Component id="BuscarExposicion" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="RegistrarExposicion" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+              <Component id="EliminarExposicion" min="-2" pref="36" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="ModificarExposicion" min="-2" pref="36" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="VolverMenuPrincipal" min="-2" pref="54" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -103,6 +104,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MostrarExposcionesActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="ModificarExposicion">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modificar Exposicion"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ModificarExposicionActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -160,7 +160,7 @@ public class MenuPrincipalVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuPrestamosActionPerformed
 
     private void MenuExposicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuExposicionesActionPerformed
-        MenuExposicionesVentana v5 = new MenuExposicionesVentana();
+        MenuExposicionesVentana v5 = new MenuExposicionesVentana(exposiciones,obras);
         v5.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MenuExposicionesActionPerformed

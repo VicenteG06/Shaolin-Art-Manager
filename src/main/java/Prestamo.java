@@ -42,6 +42,7 @@ public class Prestamo extends Transaccion {
         if (!getCliente().agregarPrestamo(getObra())){
             return false;
         }
+        System.out.println("Registrando transacción");
         return true;
     }
     // Métodos get

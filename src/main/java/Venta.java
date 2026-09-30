@@ -40,6 +40,7 @@ public class Venta extends Transaccion {
         if (!getCliente().agregarCompra(getObra())){
             return false;
         }
+        System.out.println("Registrando transacción");
         return true;
     }
     
