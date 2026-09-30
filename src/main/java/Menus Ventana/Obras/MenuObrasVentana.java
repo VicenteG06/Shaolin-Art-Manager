@@ -45,6 +45,7 @@ public class MenuObrasVentana extends javax.swing.JFrame {
         MostrarObras = new javax.swing.JButton();
         MenuObras = new javax.swing.JLabel();
         RegistrarObra = new javax.swing.JButton();
+        ModificarObra = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -78,6 +79,13 @@ public class MenuObrasVentana extends javax.swing.JFrame {
             }
         });
 
+        ModificarObra.setText("Modificar Obra");
+        ModificarObra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ModificarObraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -86,6 +94,7 @@ public class MenuObrasVentana extends javax.swing.JFrame {
                 .addContainerGap(203, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ModificarObra, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addComponent(MenuObras, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -105,9 +114,11 @@ public class MenuObrasVentana extends javax.swing.JFrame {
                 .addComponent(BuscarObra, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RegistrarObra, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ModificarObra, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pack();
@@ -136,6 +147,13 @@ public class MenuObrasVentana extends javax.swing.JFrame {
         registrar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_RegistrarObraActionPerformed
+
+    private void ModificarObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarObraActionPerformed
+        // TODO add your handling code here:
+        MenuModificarObraVentana mod= new MenuModificarObraVentana(obras,artistas);
+        mod.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_ModificarObraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -175,6 +193,7 @@ public class MenuObrasVentana extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BuscarObra;
     private javax.swing.JLabel MenuObras;
+    private javax.swing.JButton ModificarObra;
     private javax.swing.JButton MostrarObras;
     private javax.swing.JButton RegistrarObra;
     private javax.swing.JButton VolverMenuPrincipal;

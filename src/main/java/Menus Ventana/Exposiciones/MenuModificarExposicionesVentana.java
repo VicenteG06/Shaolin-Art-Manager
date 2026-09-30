@@ -26,6 +26,7 @@ public class MenuModificarExposicionesVentana extends javax.swing.JFrame {
         initComponents();
         this.exposiciones = exposiciones;
         this.exposicionActual = null;
+        this.obras=obras;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -60,7 +61,6 @@ public class MenuModificarExposicionesVentana extends javax.swing.JFrame {
         });
 
         IDExposicion.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        IDExposicion.setText("ID de la exposición a modificar");
         IDExposicion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 IDExposicionActionPerformed(evt);

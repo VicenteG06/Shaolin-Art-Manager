@@ -26,7 +26,8 @@
           <Group type="102" alignment="1" attributes="0">
               <EmptySpace pref="203" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="VolverMenuPrincipal" alignment="1" min="-2" pref="179" max="-2" attributes="0"/>
+                  <Component id="VolverMenuPrincipal" min="-2" pref="179" max="-2" attributes="0"/>
+                  <Component id="ModificarObra" min="-2" pref="179" max="-2" attributes="0"/>
                   <Group type="103" alignment="1" groupAlignment="1" attributes="0">
                       <Component id="MenuObras" alignment="1" min="-2" pref="179" max="-2" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="1" attributes="0">
@@ -51,9 +52,11 @@
               <Component id="BuscarObra" min="-2" pref="57" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="RegistrarObra" min="-2" pref="57" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="ModificarObra" min="-2" pref="64" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="VolverMenuPrincipal" min="-2" pref="64" max="-2" attributes="0"/>
-              <EmptySpace pref="111" max="32767" attributes="0"/>
+              <EmptySpace pref="34" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -94,6 +97,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="RegistrarObraActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="ModificarObra">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Modificar Obra"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ModificarObraActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
