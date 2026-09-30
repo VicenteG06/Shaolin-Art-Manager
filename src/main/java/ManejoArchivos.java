@@ -12,6 +12,14 @@ import java.time.*;
 public class ManejoArchivos {
     private static HashMap<String, Artista> mapaArtistas = new HashMap<>();
 
+    public static void guardarArchivos(ArrayList<Prestamo> registroPrestamos, ArrayList<Venta> registroVentas, HashMap<String, Cliente> clientes, HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras){
+        ManejoArchivos.guardarPrestamosCsv(registroPrestamos, "data/prestamos.csv");
+        ManejoArchivos.guardarVentasCsv(registroVentas, "data/ventas.csv");
+        ManejoArchivos.guardarClientesCsv(clientes, "data/clientes.csv");
+        ManejoArchivos.guardarExposicionesCsv(exposiciones, "data/exposiciones.csv");
+        ManejoArchivos.guardarObras(obras, "data/obras_de_arte.csv");
+    }
+
     public static HashMap<String, Obra> cargarObrasDesdeCsv(String rutaArchivo) {
         HashMap<String,Obra> mapaObras = new HashMap<>();
         
@@ -62,6 +70,24 @@ public class ManejoArchivos {
     // Método para obtener el mapa de artistas y poder ser manejado en las demás clases
     public static HashMap<String, Artista> getMapaArtistas() {
         return mapaArtistas;
+    }
+
+    public static void guardarObras(HashMap<String, Obra> obras, String rutaArchivo){
+        try(PrintWriter escritor = new PrintWriter(new FileWriter(rutaArchivo))){
+            escritor.println("id,titulo,artista,ano_creacion,estilo,tipo_obra,ubicacion_actual,precio_estimado_usd,estado");
+            for(Obra o : obras.values()){
+                escritor.println(
+                    o.getId() + "," + 
+                    "\"" + o.getTitulo() + "\"" + "," + 
+                    "\"" + (o.getArtista()).getNombre() + "\"" + "," + 
+                    o.getAnio() + "," + 
+                    "x,x,x,x," + 
+                    o.getEstado());
+            }
+            
+        } catch(IOException e){
+            System.err.println("Error al escribir el archivo csv de las obras: " + e.getMessage());
+        }
     }
 
     public static void guardarObrasPrestadasCliente(HashMap<String, Cliente> mapaClientes, String rutaArchivo){

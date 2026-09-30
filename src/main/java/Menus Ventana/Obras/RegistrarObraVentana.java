@@ -134,7 +134,7 @@ public class RegistrarObraVentana extends javax.swing.JFrame {
 
     private void RegistrarObraBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarObraBotonActionPerformed
         String titulo = IngresarTituloObra.getText();
-        String id = IDManager.generarID(titulo);
+        String id = IDManager.generarID(titulo, obras);
         String nombreArtista = IngresarArtistaObra.getText();
         int anio = Integer.parseInt(IngresarAnioObra.getText());
         

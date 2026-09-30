@@ -59,9 +59,6 @@ public class Main {
             return;
         }
         MenuSubastas.cerrarSubastaActiva(registroSubastas, clientes);
-        ManejoArchivos.guardarPrestamosCsv(registroPrestamos, "data/prestamos.csv");
-        ManejoArchivos.guardarVentasCsv(registroVentas, "data/ventas.csv");
-        ManejoArchivos.guardarClientesCsv(clientes, "data/clientes.csv");
-        ManejoArchivos.guardarExposicionesCsv(exposiciones, "data/exposiciones.csv");
+        ManejoArchivos.guardarArchivos(registroPrestamos, registroVentas, clientes, exposiciones, obras);
     }
 }
