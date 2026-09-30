@@ -38,7 +38,6 @@ public class MenuExposiciones {
         for(Exposicion e: exposiciones.values()){
             e.mostrarAtributos();
         }
-        PresioneTeclaParaContinuar.ptpc();
     }
  
     public static Exposicion buscarExposicion(HashMap<String, Exposicion> exposiciones) throws IOException{

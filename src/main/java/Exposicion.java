@@ -31,8 +31,10 @@ public class Exposicion {
         this.fechaInicio = fechaInicio;
         this.fechaTermino = fechaTermino;
         listaObras = new ArrayList<>();
+        if(obra != null){
         //Se añade la primera obra 
-        this.listaObras.add(obra);
+            this.listaObras.add(obra);
+        }
     }
     public Exposicion(String id, String titulo, String fechaInicio,
                       String fechaTermino, Obra obra){
@@ -41,8 +43,10 @@ public class Exposicion {
         this.fechaInicio = LocalDate.parse(fechaInicio);
         this.fechaTermino = LocalDate.parse(fechaTermino);
         listaObras = new ArrayList<>();
+        if(obra != null){
         //Se añade la primera obra 
         this.listaObras.add(obra);
+        }
     }
     //  Metodos GET 
     public String getId(){ return id; }
@@ -154,7 +158,15 @@ public class Exposicion {
         return true;
     }
    
-    public ArrayList<Obra> getListaObras(){
-        return listaObras;
+    public ArrayList<String> getIdsObras(){
+        ArrayList<String> ids = new ArrayList<>();
+        if(listaObras.size() == 0){
+            return null;
+        }
+        for(int i =0; i < listaObras.size(); i++){
+            Obra o = listaObras.get(i);
+            ids.add(o.getId());        
+        }
+        return ids;
     }
 }

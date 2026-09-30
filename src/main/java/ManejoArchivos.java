@@ -63,11 +63,33 @@ public class ManejoArchivos {
     public static HashMap<String, Artista> getMapaArtistas() {
         return mapaArtistas;
     }
-    public static void guardarClientesCsv(HashMap<String, Cliente> mapaClientes, String rutaArchivo) {
-        try (PrintWriter escritor = new PrintWriter(new FileWriter(rutaArchivo))) {
-            escritor.println("rut,obrasCompradas,obrasPrestadas");
-            for (Cliente cliente : mapaClientes.values()) {
-            
+
+    public static void guardarObrasPrestadasCliente(HashMap<String, Cliente> mapaClientes, String rutaArchivo){
+        try(PrintWriter escritor = new PrintWriter(new FileWriter(rutaArchivo))){
+            escritor.println("rut,obras prestadas");
+            for(Cliente cliente : mapaClientes.values()){
+                // Unir IDs de obras compradas separadas por coma
+                StringBuilder prestamosStr = new StringBuilder();
+                ArrayList<String> listaIdsPrestamos = cliente.getIdsPrestamos();
+                if (listaIdsPrestamos != null) {
+                    for (int i = 0; i < listaIdsPrestamos.size(); i++) {
+                        prestamosStr.append(listaIdsPrestamos.get(i));
+                        if (i < listaIdsPrestamos.size() - 1) {
+                        prestamosStr.append(",");
+                        }
+                    }
+                }
+                escritor.println(cliente.getRut() + "," + prestamosStr.toString());
+            }
+        } catch(IOException e){
+            System.err.println("Error al escribir el archivo csv de obras prestadas: " + e.getMessage());
+        }
+    }
+
+    public static void guardarObrasCompradasCliente(HashMap<String, Cliente> mapaClientes, String rutaArchivo){
+        try(PrintWriter escritor = new PrintWriter(new FileWriter(rutaArchivo))){
+            escritor.println("rut,obras compradas");
+            for(Cliente cliente : mapaClientes.values()){
                 // Unir IDs de obras compradas separadas por coma
                 StringBuilder comprasStr = new StringBuilder();
                 ArrayList<String> listaIdsCompras = cliente.getIdsCompras();
@@ -79,65 +101,97 @@ public class ManejoArchivos {
                         }
                     }
                 }
+                escritor.println(cliente.getRut() + ","  + comprasStr.toString());
+            }
+        } catch(IOException e){
+            System.err.println("Error al escribir el archivo csv de obras compradas: " + e.getMessage());
+        }
+    }
 
-                // Unir IDs de obras prestadas separadas por coma
-                StringBuilder prestamosStr = new StringBuilder();
-                ArrayList<String> listaIdsPrestamos = cliente.getIdsPrestamos();
-                if (listaIdsPrestamos != null) {
-                    for (int i = 0; i < cliente.getListaPrestamos().size(); i++) {
-                        prestamosStr.append(cliente.getListaPrestamos().get(i).getId());
-                        if (i < cliente.getListaPrestamos().size() - 1) {
-                            prestamosStr.append(",");
-                        }
-                    }
-                }
+    public static void guardarClientesCsv(HashMap<String, Cliente> mapaClientes, String rutaArchivo) {
+        ManejoArchivos.guardarObrasPrestadasCliente(mapaClientes, "data/obras_prestadas_clientes.csv");
+        ManejoArchivos.guardarObrasCompradasCliente(mapaClientes, "data/obras_compradas_clientes.csv");
 
-                // Se guardan entre comillas para que las comas internas no rompan el formato de las columnas del CSV
-                escritor.println(
-                    cliente.getRut() + "," +
-                    "\"" + comprasStr.toString() + "\"," +
-                    "\"" + prestamosStr.toString() + "\""
-                );
+        try (PrintWriter escritor = new PrintWriter(new FileWriter(rutaArchivo))) {
+            escritor.println("rut");
+            for (Cliente cliente : mapaClientes.values()) {
+                // Se guarda el rut del cliente
+                escritor.println(cliente.getRut());
             }
         } catch (IOException e) {
             System.err.println("Error al escribir el archivo csv de clientes: " + e.getMessage());
         }
     }
 
+    public static HashMap<String, ArrayList<String>> obtenerMapaIdsObrasCompradas(String rutaArchivo){
+        HashMap<String, ArrayList<String>> mapaIdsObrasCompradas = new HashMap<>();
+        try (BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo))){
+            lector.readLine(); // Saltar Encabezado
+            String linea = "";
+            while ((linea = lector.readLine()) != null){
+                String[] campos = linea.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                String rut = campos[0].trim();
+                ArrayList<String> idsObrasCompradas = new ArrayList<>();
+                if (campos.length >= 1){
+                    for(int i = 1; i < campos.length; i ++){
+                        idsObrasCompradas.add(campos[i]);
+                    }
+                }
+                mapaIdsObrasCompradas.put(rut, idsObrasCompradas);
+            }
+            
+        } catch(IOException e) {
+            System.err.println("Error al leer el archivo csv de obras compradas: " + e.getMessage());
+        }
+        return mapaIdsObrasCompradas;
+    }
+
+    public static HashMap<String, ArrayList<String>> obtenerMapaIdsObrasPrestamos(String rutaArchivo){
+        HashMap<String, ArrayList<String>> mapaIdsObrasPrestamos = new HashMap<>();
+        try (BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo))){
+            lector.readLine(); // Saltar Encabezado
+            String linea = "";
+            while ((linea = lector.readLine()) != null){
+                String[] campos = linea.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                String rut = campos[0].trim();
+                ArrayList<String> idsObrasPrestamos = new ArrayList<>();
+                if (campos.length >= 1){
+                    for(int i = 1; i < campos.length; i ++){
+                        idsObrasPrestamos.add(campos[i]);
+                    }
+                }
+                mapaIdsObrasPrestamos.put(rut, idsObrasPrestamos);
+            }
+        } catch(IOException e) {
+            System.err.println("Error al leer el archivo csv de obras prestadas: " + e.getMessage());
+        }
+        return mapaIdsObrasPrestamos;
+    }
+
     public static HashMap<String, Cliente> cargarClientesDesdeCsv(String rutaArchivo, HashMap<String, Obra> mapaObras) {
+        HashMap<String, ArrayList<String>> mapaIdsObrasCompradas = ManejoArchivos.obtenerMapaIdsObrasCompradas("data/obras_compradas_clientes.csv");
+        HashMap<String, ArrayList<String>> mapaIdsObrasPrestadas = ManejoArchivos.obtenerMapaIdsObrasPrestamos("data/obras_prestadas_clientes.csv");
+
         HashMap<String, Cliente> mapaClientes = new HashMap<>();
         try (BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo))) {
             lector.readLine(); // Saltar encabezado
             String linea = "";
             while ((linea = lector.readLine()) != null) {
                 String[] campos = linea.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-                if (campos.length >= 3) {
+                if (campos.length == 1) {
                     String rut = campos[0].trim();
-                    String idsCompras = campos[1].replace("\"", "").trim();
-                    String idsPrestamos = campos[2].replace("\"", "").trim();
 
                     Cliente cliente = new Cliente(rut);
-
-                    // Reconstruir lista de compras buscando por ID en el mapa de obras
-                    if (!idsCompras.isEmpty()) {
-                        String[] arrayIds = idsCompras.split(",");
-                        for (String idObra : arrayIds) {
-                            Obra obra = mapaObras.get(idObra.trim());
-                            if (obra != null) {
-                                cliente.agregarCompra(obra);
-                            }
-                        }
+                    
+                    ArrayList<String> idsObrasCompradas = mapaIdsObrasCompradas.get(rut);
+                    ArrayList<String> idsObrasPrestamos = mapaIdsObrasPrestadas.get(rut);
+                    
+                    for(int i = 0; i < idsObrasCompradas.size(); i++) {
+                        cliente.agregarCompra(mapaObras.get(idsObrasCompradas.get(i)));                        
                     }
 
-                    // Reconstruir lista de préstamos buscando por ID en el mapa de obras
-                    if (!idsPrestamos.isEmpty()) {
-                        String[] arrayIds = idsPrestamos.split(",");
-                        for (String idObra : arrayIds) {
-                            Obra obra = mapaObras.get(idObra.trim());
-                            if (obra != null) {
-                                cliente.agregarPrestamo(obra);
-                            }
-                        }
+                    for(int i = 0; i < idsObrasPrestamos.size(); i++) {
+                        cliente.agregarPrestamo(mapaObras.get(idsObrasPrestamos.get(i)));
                     }
 
                     mapaClientes.put(rut, cliente);
@@ -148,63 +202,88 @@ public class ManejoArchivos {
         }
         return mapaClientes;
     }
-    public static void guardarExposicionesCsv(HashMap<String, Exposicion> mapaExposiciones, String rutaArchivo) {
-        try (PrintWriter escritor = new PrintWriter(new FileWriter(rutaArchivo))) {
-            escritor.println("id,titulo,fechaInicio,fechaTermino,obras");
-            for (Exposicion expo : mapaExposiciones.values()) {
-            
-                // Unir IDs de obras de la exposición separadas por coma
+
+    public static void guardarObrasExpo(HashMap<String, Exposicion> mapaExposiciones, String rutaArchivo){
+        try(PrintWriter escritor = new PrintWriter(new FileWriter(rutaArchivo))){
+            escritor.println("id,obras");
+            for(Exposicion expo : mapaExposiciones.values()){
+                // Unir IDs de obras separadas por coma
                 StringBuilder obrasStr = new StringBuilder();
-                if (expo.getListaObras() != null) {
-                    for (int i = 0; i < expo.getListaObras().size(); i++) {
-                        obrasStr.append(expo.getListaObras().get(i).getId());
-                        if (i < expo.getListaObras().size() - 1) {
-                            obrasStr.append(",");
+                ArrayList<String> listaIds = expo.getIdsObras();
+                if (listaIds != null) {
+                    for (int i = 0; i < listaIds.size(); i++) {
+                        obrasStr.append(listaIds.get(i));
+                        if (i < listaIds.size() - 1) {
+                        obrasStr.append(",");
                         }
                     }
                 }
-
-                escritor.println(
-                    expo.getId() + "," +
-                    "\"" + expo.getTitulo() + "\"," +
-                    expo.getfechaInicio() + "," +
-                    expo.getfechaTermino() + "," +
-                    "\"" + obrasStr.toString() + "\""
-                );
+                escritor.println(expo.getId() + "," + obrasStr.toString());
+            }
+        } catch(IOException e){
+            System.err.println("Error al escribir el archivo csv de obras de exposiciones: " + e.getMessage());
+        }
+    }
+    
+    public static void guardarExposicionesCsv(HashMap<String, Exposicion> mapaExposiciones, String rutaArchivo) {
+        ManejoArchivos.guardarObrasExpo(mapaExposiciones, "data/obras_exposiciones.csv");
+        try (PrintWriter escritor = new PrintWriter(new FileWriter(rutaArchivo))) {
+            escritor.println("id,titulo,fechaInicio,fechaTermino");
+            for (Exposicion expo : mapaExposiciones.values()) {
+                escritor.println(expo.getId() + "," + expo.getTitulo() + "," + expo.getfechaInicio() + "," + expo.getfechaTermino());
             }
         } catch (IOException e) {
             System.err.println("Error al escribir el archivo csv de exposiciones: " + e.getMessage());
         }
     }
 
+    public static HashMap<String, ArrayList<String>> obtenerMapaIdsObrasExpo(String rutaArchivo){
+        HashMap<String, ArrayList<String>> mapaIdsObras = new HashMap<>();
+        try (BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo))){
+            lector.readLine(); // Saltar Encabezado
+            String linea = "";
+            while ((linea = lector.readLine()) != null){
+                String[] campos = linea.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                String id = campos[0].trim();
+                ArrayList<String> idsObras = new ArrayList<>();
+                if (campos.length >= 1){
+                    for(int i = 1; i < campos.length; i ++){
+                        idsObras.add(campos[i]);
+                    }
+                }
+                mapaIdsObras.put(id, idsObras);
+            }
+        } catch(IOException e) {
+            System.err.println("Error al leer el archivo csv de obras de exposiciones: " + e.getMessage());
+        }
+        return mapaIdsObras;
+    }
+
     public static HashMap<String, Exposicion> cargarExposicionesDesdeCsv(String rutaArchivo, HashMap<String, Obra> mapaObras) {
+        HashMap<String, ArrayList<String>> mapaIdsObras = ManejoArchivos.obtenerMapaIdsObrasExpo("data/obras_exposiciones.csv");
         HashMap<String, Exposicion> mapaExposiciones = new HashMap<>();
         try (BufferedReader lector = new BufferedReader(new FileReader(rutaArchivo))) {
             lector.readLine(); // Saltar encabezado
             String linea = "";
             while ((linea = lector.readLine()) != null) {
                 String[] campos = linea.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-                if (campos.length >= 5) {
+                if (campos.length >= 4) {
                     String id = campos[0].trim();
-                    String titulo = campos[1].replace("\"", "").trim();
+                    String titulo = campos[1].trim();
                     LocalDate fechaInicio = LocalDate.parse(campos[2].trim());
                     LocalDate fechaTermino = LocalDate.parse(campos[3].trim());
-                    String idsObras = campos[4].replace("\"", "").trim();
 
                     // Creamos la exposición vacía o con la estructura de fechas iniciales
                     Exposicion expo = new Exposicion(id, titulo, fechaInicio, fechaTermino, null);
 
-                    // Recorrer los IDs de la celda, buscarlos en el mapa y añadirlos a la exposición
-                    if (!idsObras.isEmpty()) {
-                        String[] arrayIds = idsObras.split(",");
-                        for (String idObra : arrayIds) {
-                            Obra obra = mapaObras.get(idObra.trim());
-                            if (obra != null) {
-                                expo.anadirObra(obra); // Utiliza el método de tu clase Exposicion
-                            }
+                    ArrayList<String> idsObras = mapaIdsObras.get(id);
+
+                    for(int i = 0; i < idsObras.size(); i++) {
+                        if(idsObras.get(i) != null){
+                            expo.anadirObra(mapaObras.get(idsObras.get(i)));      
                         }
                     }
-
+                    
                     mapaExposiciones.put(id, expo);
                 }
             }

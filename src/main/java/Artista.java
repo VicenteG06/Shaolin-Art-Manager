@@ -20,7 +20,7 @@ public class Artista {
         nombre = "Desconocido";
         obras = new ArrayList<>();
     }
-    
+
     // Se define la sobrecarga del constructor.
     public Artista(String nombre, Obra obra){
         this.nombre = nombre;
