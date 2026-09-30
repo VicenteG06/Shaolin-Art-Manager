@@ -96,7 +96,7 @@ public class MenuModificarExposiciones {
             System.out.println("La fecha de inicio fue modificada con éxito.");
             return;
         }
-        System.out.println("Error: La fecha de inicio no puede ser posterior a la fecha de término.");
+        System.out.println("Error: La exposición debe empezar antes de su término y durar como máximo un año.");
     }
 
     // Método para modificar la fecha de término de una exposición
@@ -114,7 +114,7 @@ public class MenuModificarExposiciones {
             System.out.println("La fecha de término fue modificada con éxito.");
             return;
         }
-        System.out.println("Error: La fecha de término no puede ser anterior a la fecha de inicio.");
+        System.out.println("Error: La exposición debe terminar después de su inicio y durar como máximo un año.");
     }
 
     public static void menuModificarExposiciones(HashMap<String, Exposicion> exposiciones) throws IOException, EmptyEntryException{

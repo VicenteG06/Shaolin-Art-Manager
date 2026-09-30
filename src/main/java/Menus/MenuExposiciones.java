@@ -74,13 +74,16 @@ public class MenuExposiciones {
  
         LocalDate fInicio = Validaciones.pedirFecha(lector, "Ingrese la fecha de inicio de la exposición (formato: AAAA-MM-DD):");
         
-        //validación para que la fecha de termino sea después de la de inicio
+        //validación para que la fecha de termino sea después de la de inicio y el rango entre ellas no supere un año 
         LocalDate fTermino = null;
         while (fTermino == null) {
             fTermino = Validaciones.pedirFecha(lector, "Ingrese la fecha de termino de la exposición (formato: AAAA-MM-DD) :");
             if (fTermino.isBefore(fInicio)) {
                 System.out.println("Error: La fecha de término no puede ser anterior a la de inicio");
                 fTermino = null; // """"reiniciar""" para que vuelva a preguntar
+            } else if (fInicio.plusYears(1).isBefore(fTermino)) {
+                System.out.println("Error: La exposición no puede durar más de un año.");
+                fTermino = null;
             }
         }
         

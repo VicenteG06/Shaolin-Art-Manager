@@ -113,35 +113,39 @@ public class Exposicion {
         PresioneTeclaParaContinuar.ptpc();
     }
     
-        //Método para cambiar el titulo de la exposición 
+        //Se verifica que el rango de fechas sea correcto: el termino despues del inicio y con maximo un año de diferencia
+    private boolean rangoDeFechasValido(LocalDate inicio, LocalDate termino){
+        if (inicio == null || termino == null) return false;
+        if (termino.isBefore(inicio)) return false;
+        //si al sumarle un año al inicio el resultado queda antes del termino, el rango supera el año límite por el que se puede mantener una exposición
+        if (inicio.plusYears(1).isBefore(termino)) return false;
+        return true;
+    }
+    //Cambiar el titulo de la exposicion validando que no sea vacio
     public boolean cambiarTitulo(String nuevoTitulo){
-        if (nuevoTitulo == null || nuevoTitulo.trim().isEmpty() ){ //validando que no sea vacio
+        if (nuevoTitulo == null || nuevoTitulo.trim().isEmpty()){
             return false;
         }
-        this.titulo = nuevoTitulo.trim(); // si no es nulo ni una entrada vacía, se cambia el título al nuevo ingresado 
-
+        this.titulo = nuevoTitulo.trim();
         return true;
     }
-    //Cambiar fecha de inicio 
+    //Cambiar la fecha de inicio validando el rango contra la fecha de termino actual
     public boolean cambiarFechaInicio(LocalDate nuevaFecha){
-        if (nuevaFecha == null) return false;
-        if (fechaTermino != null && nuevaFecha.isAfter(fechaTermino)){ // Validar que no sea después de la fecha de término de la exposición
+        if (!rangoDeFechasValido(nuevaFecha, fechaTermino)){
             return false;
         }
-
-        this.fechaInicio = nuevaFecha; //si es válida, se cammbia la fecha de inicio a la nueva
+        this.fechaInicio = nuevaFecha;
         return true;
     }
-    //Cambiar fecha de termino 
+    //Cambiar la fecha de termino validando el rango contra la fecha de inicio actual
     public boolean cambiarFechaTermino(LocalDate nuevaFecha){
-        if (nuevaFecha == null) return false;
-        if (fechaInicio != null && nuevaFecha.isBefore(fechaInicio)){ // Validar q ue la fecha no sea anterior a la fecha de inicio
+        if (!rangoDeFechasValido(fechaInicio, nuevaFecha)){
             return false;
         }
-        this.fechaTermino = nuevaFecha; // si es válida, se cambia la fecha de término a la fecha ingresada por el usuario
+        this.fechaTermino = nuevaFecha;
         return true;
     }
-    
+   
     public ArrayList<Obra> getListaObras(){
         return listaObras;
     }
