@@ -27,15 +27,47 @@ public class Validaciones {
             }
             
             try {
-                if (rut.isEmpty() || rut.length() < 8 || rut.length() > 9) {
+                if (rut.isEmpty() || rut.length() < 7 || rut.length() > 8) {
                     throw new FormatoRutException();
                 }
+                Integer.parseInt(rut);
                 rutValido = true;
             } catch (FormatoRutException e) {
                 System.out.println(e.getMessage());
+            } catch(NumberFormatException e){  
+                System.out.println("Ingrese un RUT compuesto únicamente por números");
             }
         }
-        return rut;
+        char dv = ' ';
+        int suma = 0;
+        int multiplicador = 2;
+        int rutInt= Integer.parseInt(rut);
+        // Recorrer los dígitos del RUT de derecha a izquierda
+        while (rutInt > 0) {
+            int digito = rutInt % 10;
+            suma += digito * multiplicador;
+            rutInt /= 10;
+            
+            multiplicador++;
+            if (multiplicador > 7) {
+                multiplicador = 2; // Reiniciar el ciclo de factores (2 al 7)
+            }
+        }
+        
+        // Aplicar la fórmula del módulo 11
+        int resto = suma % 11;
+        int resultado = 11 - resto;
+        
+        // Casos especiales
+        if (resultado == 11) {
+            dv=  '0';
+        } else if (resultado == 10) {
+            dv = 'K';
+        } else {
+            dv= Character.forDigit(resultado, 10);
+        }
+        
+        return rut+dv ;
     }
 
     // Pedir fechas y validar errores
@@ -53,7 +85,7 @@ public class Validaciones {
         return fecha;
     }
 
-    // Método para pedir números enteros POSITIVOS ( precios, años) al usuario y validarlos
+    // Método para pedir números enteros POSITIVOS (precios, años) al usuario y validarlos
     public static int pedirEnteroPositivo(BufferedReader lector, String mensaje) throws IOException {
         int numero = -1;
         while (numero < 0) {

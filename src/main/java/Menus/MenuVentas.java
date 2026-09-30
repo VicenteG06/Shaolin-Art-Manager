@@ -93,7 +93,7 @@ public class MenuVentas {
         //como está a la venta, se registra su venta 
         LocalDate fechaVentaObj = Validaciones.pedirFecha(l, "Ingrese la fecha de la venta (formato: AAAA-MM-DD):");
         
-        String mensajeRut = "Ingrese el rut SIN GUIÓN Y CON DÍGITO VERIFICADOR del cliente que desea comprar '" + o.getTitulo() + "':\n(Ingrese '0' para cancelar la operación)";
+        String mensajeRut = "Ingrese el rut SIN GUIÓN Y SIN DÍGITO VERIFICADOR del cliente que desea comprar '" + o.getTitulo() + "':\n(Ingrese '0' para cancelar la operación)";
         String rutC = Validaciones.pedirRut(l, mensajeRut);
         if (rutC.equals("0")) return; // si usuario ingresa "0", se devuelve al menú para no quedar en loop infinito
                 

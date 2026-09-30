@@ -78,7 +78,7 @@ public class MenuSubastas {
             System.out.println("No hay ninguna subasta activa en este momento.");
             return;
         }     
-        String rutOfertador = Validaciones.pedirRut(lector, "Ingrese el RUT del cliente que oferta (Sin guión, incluyendo dígito verificador) o '0' para cancelar:");
+        String rutOfertador = Validaciones.pedirRut(lector, "Ingrese el RUT del cliente que oferta (Sin guión, sin dígito verificador)");
         if (rutOfertador.equals("0")) return; //0 para retornar al menú y no quedar en loop inifinito
         
         //--------------------------------------------------------------- se hacen las validaciones correspondientes para añadir la oferta

@@ -18,7 +18,8 @@ public class MenuObras {
         System.out.println("1) Mostrar Obras");
         System.out.println("2) Buscar Obra");
         System.out.println("3) Registrar Obra");
-        System.out.println("4) Salir del Menú");
+        System.out.println("4) Modificar Obra");
+        System.out.println("5) Salir del Menú");
     }
     public static void mostrarObras(HashMap<String, Obra> obras){
         if (obras.isEmpty()){
@@ -112,6 +113,9 @@ public class MenuObras {
                     MenuObras.registrarObra(obras, artistas);
                     break;
                 case '4':
+                    MenuModificarObras.menuModificarObras(obras);
+                    break;
+                case '5':
                     System.out.println("Saliendo del menú......");
                     break;
                 default:
@@ -124,6 +128,6 @@ public class MenuObras {
                 System.out.println("Error de lectura: " + e.getMessage());
                 break;
             }
-        } while(opcion != '4');
+        } while(opcion != '5');
     }
 }

@@ -24,20 +24,30 @@ public class MenuModificarExposiciones {
         System.out.println("4) Salir del Menú");
     }
 
-    // Método para pedir el ID de la exposición que se desee modificar y se busca dentro del mapa
+        // Método para pedir el ID de la exposición que se desee modificar y se busca dentro del mapa
     public static Exposicion pedirExposicion(HashMap<String, Exposicion> exposiciones) throws IOException, EmptyEntryException{
         BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
-        System.out.println("Ingrese el ID de la Exposición a modificar:");
-        String id = lector.readLine();
-        if(id == null || id.trim().isEmpty()){
-            throw new EmptyEntryException();
+        String id = "";
+
+        while(id.isEmpty()){//se pide el ID hasta que la entrada no esté vacía
+            System.out.println("Ingrese el ID de la Exposición a modificar:");
+            try{
+                String entrada = lector.readLine();
+                if(entrada == null || entrada.trim().isEmpty()){
+                    throw new EmptyEntryException();
+                }
+                id = entrada.trim();
+            } catch (EmptyEntryException ex) {
+                System.out.println("Error: El ID no puede estar vacío.\n");
+            }
         }
+
         //si la exposición no existe, se da un aviso y se retorna null
-        if(!exposiciones.containsKey(id.trim())){
+        if(!exposiciones.containsKey(id)){
             System.out.println("Esa exposición no se encuentra en el sistema");
             return null;
         }
-        Exposicion e = exposiciones.get(id.trim());
+        Exposicion e = exposiciones.get(id);
         System.out.println("Exposición seleccionada: " + e.getTitulo());
         return e;
     }
@@ -64,6 +74,11 @@ public class MenuModificarExposiciones {
                 System.out.println("Error: El título no puede estar vacío.\n");
             }
         }
+        if(e.cambiarTitulo(nuevoTitulo)){
+            System.out.println("El título fue modificado con éxito.");
+            return;
+        }
+        System.out.println("No se pudo modificar el título de la Exposición.");
     }
 
     //método para modificar la fecha de inicio de una exposición

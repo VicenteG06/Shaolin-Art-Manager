@@ -90,7 +90,7 @@ public class MenuPrestamos {
         //como está disponible, se puede prestar 
  
 
-        String mensajeRut = "Ingrese el rut SIN GUIÓN Y CON DÍGITO VERIFICADOR del cliente que desea pedir prestado '" + o.getTitulo() + "':\n(Ingrese '0' y enter para cancelar la operación)";
+        String mensajeRut = "Ingrese el rut SIN GUIÓN Y SIN DÍGITO VERIFICADOR del cliente que desea pedir prestado '" + o.getTitulo() + "':\n(Ingrese '0' y enter para cancelar la operación)";
         String rutC = Validaciones.pedirRut(l, mensajeRut);
         if (rutC.equals("0")) return;
                 
