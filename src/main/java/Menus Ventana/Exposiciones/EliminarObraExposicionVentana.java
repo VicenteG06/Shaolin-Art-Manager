@@ -7,19 +7,19 @@
  *
  * @author Alejandro
  */
-
 import java.util.*;
-public class AñadirObraExposicionVentana extends javax.swing.JFrame {
+public class EliminarObraExposicionVentana extends javax.swing.JFrame {
     private HashMap<String, Exposicion> exposiciones;
     private HashMap<String, Obra> obras;
-    /** Creates new form AñadirObraExposicionVentana */
-    public AñadirObraExposicionVentana(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) {
+    /** Creates new form EliminarObraExposicion */
+    public EliminarObraExposicionVentana(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) {
         initComponents();
         this.exposiciones = exposiciones;
         this.obras = obras;
+
     }
 
-    private AñadirObraExposicionVentana() {
+    private EliminarObraExposicionVentana() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
@@ -32,16 +32,37 @@ public class AñadirObraExposicionVentana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        IngresarIDObra = new javax.swing.JTextField();
+        EliminarObraBoton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         VolverMenuExposiciones = new javax.swing.JButton();
         IngresarIDExposicion = new javax.swing.JTextField();
-        IngresarIDObra = new javax.swing.JTextField();
-        AnadirObraBoton = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        IngresarIDObra.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IngresarIDObraActionPerformed(evt);
+            }
+        });
+
+        EliminarObraBoton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        EliminarObraBoton.setForeground(new java.awt.Color(153, 0, 0));
+        EliminarObraBoton.setText("Eliminar Obra");
+        EliminarObraBoton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarObraBotonActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setText("ID de la exposicion:");
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setText("ID de la obra:");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -63,49 +84,30 @@ public class AñadirObraExposicionVentana extends javax.swing.JFrame {
             }
         });
 
-        IngresarIDObra.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IngresarIDObraActionPerformed(evt);
-            }
-        });
-
-        AnadirObraBoton.setText("Añadir Obra");
-        AnadirObraBoton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AnadirObraBotonActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("ID de la exposicion:");
-
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel2.setText("ID de la obra:");
-
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 375, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(0, 0, Short.MAX_VALUE))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 375, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(layout.createSequentialGroup()
+                        .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .add(VolverMenuExposiciones))
+                    .add(layout.createSequentialGroup()
                         .add(32, 32, 32)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                             .add(jLabel1)
                             .add(jLabel2))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, VolverMenuExposiciones)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, IngresarIDExposicion, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 153, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, IngresarIDObra, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 153, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                    .add(org.jdesktop.layout.GroupLayout.TRAILING, layout.createSequentialGroup()
-                        .add(0, 0, Short.MAX_VALUE)
-                        .add(AnadirObraBoton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 106, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
+                            .add(EliminarObraBoton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 117, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, IngresarIDExposicion)
+                            .add(org.jdesktop.layout.GroupLayout.LEADING, IngresarIDObra, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 153, Short.MAX_VALUE))))
+                .add(17, 17, 17))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -121,7 +123,7 @@ public class AñadirObraExposicionVentana extends javax.swing.JFrame {
                     .add(IngresarIDObra, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 27, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel2))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(AnadirObraBoton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                .add(EliminarObraBoton, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 30, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .add(18, 18, 18)
                 .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 92, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -139,14 +141,12 @@ public class AñadirObraExposicionVentana extends javax.swing.JFrame {
         return texto;
     }
     
-    private void VolverMenuExposicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuExposicionesActionPerformed
-        MenuExposicionesVentana menu = new MenuExposicionesVentana(exposiciones, obras);
-        menu.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_VolverMenuExposicionesActionPerformed
-
-    private void AnadirObraBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AnadirObraBotonActionPerformed
+    
+    private void IngresarIDObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarIDObraActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_IngresarIDObraActionPerformed
+
+    private void EliminarObraBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarObraBotonActionPerformed
         try{
             String idExpo = obtenerTextoIngresado(IngresarIDExposicion);
             String idObra = obtenerTextoIngresado(IngresarIDObra);
@@ -165,30 +165,25 @@ public class AñadirObraExposicionVentana extends javax.swing.JFrame {
             }
             Obra o = obras.get(idObra);
 
-            //se verifica el estado de la obra
-            String estado = o.getEstado();
-            if(!estado.equalsIgnoreCase("DISPONIBLE")){
-                javax.swing.JOptionPane.showMessageDialog(this, "La obra '" + o.getTitulo() + "' no está disponible para exponerse (estado: " + estado + ")", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            //si la obra no estaba en la exposición, eliminarObra devuelve false
+            if(!e.eliminarObra(o)){
+                javax.swing.JOptionPane.showMessageDialog(this, "Esa obra no se encuentra en esta exposición", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
-            //si la obra ya estaba en la exposición, anadirObra devuelve false
-            if(!e.anadirObra(o)){
-                javax.swing.JOptionPane.showMessageDialog(this, "La obra ya se encuentra en esta exposición", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-            javax.swing.JOptionPane.showMessageDialog(this, "Obra añadida correctamente", "ÉXITO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "Obra eliminada correctamente", "ÉXITO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             //se actualiza la tabla con las obras de la exposición
             jTable1.setModel(e.obtenerObras());
 
         } catch (EmptyEntryException ex) {
             javax.swing.JOptionPane.showMessageDialog(this, "Error: Debe ingresar el ID de la Exposición y el ID de la Obra", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_AnadirObraBotonActionPerformed
+    }//GEN-LAST:event_EliminarObraBotonActionPerformed
 
-    private void IngresarIDObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarIDObraActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_IngresarIDObraActionPerformed
+    private void VolverMenuExposicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuExposicionesActionPerformed
+        MenuExposicionesVentana menu = new MenuExposicionesVentana(exposiciones, obras);
+        menu.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_VolverMenuExposicionesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,24 +202,25 @@ public class AñadirObraExposicionVentana extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AñadirObraExposicionVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarObraExposicionVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AñadirObraExposicionVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarObraExposicionVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AñadirObraExposicionVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarObraExposicionVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AñadirObraExposicionVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarObraExposicionVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new AñadirObraExposicionVentana(new HashMap<String, Exposicion>(), new HashMap<String, Obra>()).setVisible(true);
+            new EliminarObraExposicionVentana(new HashMap<String, Exposicion>(), new HashMap<String, Obra>()).setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton AnadirObraBoton;
+    private javax.swing.JButton EliminarObraBoton;
     private javax.swing.JTextField IngresarIDExposicion;
     private javax.swing.JTextField IngresarIDObra;
     private javax.swing.JButton VolverMenuExposiciones;

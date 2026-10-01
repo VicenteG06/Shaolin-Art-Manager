@@ -1,3 +1,6 @@
+
+import java.util.HashMap;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -35,6 +38,7 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
         VolverMenuPrincipal = new javax.swing.JButton();
         EliminarExposicion = new javax.swing.JButton();
         RegistrarExposicion = new javax.swing.JButton();
@@ -42,6 +46,10 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
         MenuExposiciones = new javax.swing.JLabel();
         MostrarExposciones = new javax.swing.JButton();
         ModificarExposicion = new javax.swing.JButton();
+        AñadirObraAExposicion = new javax.swing.JButton();
+        EliminarObraDeExposicion = new javax.swing.JButton();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,6 +97,20 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
             }
         });
 
+        AñadirObraAExposicion.setText("Añadir Obra A Exposicion");
+        AñadirObraAExposicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AñadirObraAExposicionActionPerformed(evt);
+            }
+        });
+
+        EliminarObraDeExposicion.setText("Eliminar Obra De Exposicion");
+        EliminarObraDeExposicion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarObraDeExposicionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -102,27 +124,33 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
                     .addComponent(RegistrarExposicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(EliminarExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(ModificarExposicion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(AñadirObraAExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(EliminarObraDeExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(93, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(43, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(MenuExposiciones, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(MostrarExposciones, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(BuscarExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RegistrarExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(EliminarExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(AñadirObraAExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(EliminarObraDeExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(ModificarExposicion, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(19, 19, 19)
-                .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(VolverMenuPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -136,18 +164,34 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
 
     private void EliminarExposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarExposicionActionPerformed
         // TODO add your handling code here:
+        //para no eliminar si no hay exposiciones registradas
+        if(exposiciones.isEmpty()){
+            javax.swing.JOptionPane.showMessageDialog(this, "No hay exposiciones registradas");
+            return;
+        }
+        EliminarExposicionVentana v = new EliminarExposicionVentana(exposiciones, obras);
+        v.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_EliminarExposicionActionPerformed
        
     private void RegistrarExposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarExposicionActionPerformed
         // TODO add your handling code here:
+        RegistrarExposicionVentana v = new RegistrarExposicionVentana(exposiciones, obras);
+        v.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_RegistrarExposicionActionPerformed
 
     private void BuscarExposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarExposicionActionPerformed
         // TODO add your handling code here:
+        BuscarExposicionVentana v = new BuscarExposicionVentana(exposiciones, obras);
+        v.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_BuscarExposicionActionPerformed
 
     private void MostrarExposcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarExposcionesActionPerformed
-        
+        MostrarExposicionesVentana v = new MostrarExposicionesVentana(exposiciones, obras);
+        v.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_MostrarExposcionesActionPerformed
 
     private void ModificarExposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarExposicionActionPerformed
@@ -155,6 +199,20 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
         v1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_ModificarExposicionActionPerformed
+
+    private void AñadirObraAExposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirObraAExposicionActionPerformed
+        // TODO add your handling code here:
+        AñadirObraExposicionVentana v1 = new AñadirObraExposicionVentana(exposiciones,obras);
+        v1.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_AñadirObraAExposicionActionPerformed
+
+    private void EliminarObraDeExposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarObraDeExposicionActionPerformed
+        // TODO add your handling code here:
+        EliminarObraExposicionVentana v1 = new EliminarObraExposicionVentana(exposiciones,obras);
+        v1.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_EliminarObraDeExposicionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -181,17 +239,20 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new MenuExposicionesVentana().setVisible(true);
+            new MenuExposicionesVentana(new HashMap<String, Exposicion>(), new HashMap<String, Obra>()).setVisible(true);
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton AñadirObraAExposicion;
     private javax.swing.JButton BuscarExposicion;
     private javax.swing.JButton EliminarExposicion;
+    private javax.swing.JButton EliminarObraDeExposicion;
     private javax.swing.JLabel MenuExposiciones;
     private javax.swing.JButton ModificarExposicion;
     private javax.swing.JButton MostrarExposciones;
     private javax.swing.JButton RegistrarExposicion;
     private javax.swing.JButton VolverMenuPrincipal;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

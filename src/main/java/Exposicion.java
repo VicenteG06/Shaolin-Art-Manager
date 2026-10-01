@@ -8,6 +8,7 @@
 
 import java.util.*;
 import java.time.*;
+import javax.swing.table.DefaultTableModel;
 
 public class Exposicion {
     //Atributos Exposicion
@@ -108,7 +109,7 @@ public class Exposicion {
         //Mostrar obras
         System.out.println("OBRAS: ");
         if ( listaObras.isEmpty() == true ){
-            System.out.println("%s NO contiene obras.");
+            System.out.printf("%s NO contiene obras.\n", titulo);
             return;
         }
         for (int i = 0 ; i < listaObras.size() ; i++){
@@ -118,7 +119,7 @@ public class Exposicion {
     }
     
         //Se verifica que el rango de fechas sea correcto: el termino despues del inicio y con maximo un año de diferencia
-    private boolean rangoDeFechasValido(LocalDate inicio, LocalDate termino){
+    public static boolean rangoDeFechasValido(LocalDate inicio, LocalDate termino){
         if (inicio == null || termino == null) return false;
         if (termino.isBefore(inicio)) return false;
         //si al sumarle un año al inicio el resultado queda antes del termino, el rango supera el año límite por el que se puede mantener una exposición
@@ -150,9 +151,11 @@ public class Exposicion {
         return true;
     }
     
+        //función usada en ventana para cambiar ambas fechas a la vez
     public boolean cambiarFechas(LocalDate nuevaInicio, LocalDate nuevaTermino){
-        if (nuevaInicio == null || nuevaTermino == null) return false;
-        if (nuevaTermino.isBefore(nuevaInicio)) return false;
+        if (!rangoDeFechasValido(nuevaInicio, nuevaTermino)){
+            return false;
+        }
         this.fechaInicio = nuevaInicio;
         this.fechaTermino = nuevaTermino;
         return true;
@@ -168,5 +171,15 @@ public class Exposicion {
             ids.add(o.getId());        
         }
         return ids;
+    }
+        // Se crea una tabla con las obras de la exposición para ser mostrada por una Ventana
+    public DefaultTableModel obtenerObras(){
+        String[] columnas = {"ID", "TITULO", "ARTISTA", "ESTADO", "AÑO"};
+        DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+        for(int i = 0; i < listaObras.size(); i++){
+            Object[] fila = {(listaObras.get(i)).getId(), (listaObras.get(i)).getTitulo(), ((listaObras.get(i)).getArtista()).getNombre(), (listaObras.get(i)).getEstado(), (listaObras.get(i)).getAnio()};
+            modeloTabla.addRow(fila);
+        }
+        return modeloTabla;
     }
 }
