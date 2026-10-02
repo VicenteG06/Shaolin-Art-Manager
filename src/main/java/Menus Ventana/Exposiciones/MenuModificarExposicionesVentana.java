@@ -10,6 +10,7 @@
 
 import java.time.*;
 import java.time.format.DateTimeParseException;
+import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 
@@ -269,7 +270,7 @@ public class MenuModificarExposicionesVentana extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new MenuExposicionesVentana().setVisible(true);
+            new MenuExposicionesVentana(new HashMap<String, Exposicion>(), new HashMap<String, Obra>()).setVisible(true);
         });
     }
 
