@@ -55,7 +55,7 @@ public class MenuObras {
         }
         nombre = nombre.trim();
  
-        String id = IDManager.generarID(nombre, obras);
+        String id = IDManager.generarID(nombre);
         
         System.out.println("Ingrese el Nombre del Artista:");
         String nombreArtista = lector.readLine();

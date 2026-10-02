@@ -2,7 +2,7 @@ id,titulo,artista,ano_creacion,estilo,tipo_obra,ubicacion_actual,precio_estimado
 110,"El taller del pintor","Gustave Courbet",1855,x,x,x,x,Disponible
 111,"Entierro en Ornans","Gustave Courbet",1849,x,x,x,x,Disponible
 112,"Las espigadoras","Jean-François Millet",1857,x,x,x,x,Disponible
-113,"El �?ngelus","Jean-François Millet",1859,x,x,x,x,Disponible
+113,"El �?ngelus","Jean-François Millet",1859,x,x,x,x,Disponible
 114,"Baile en el Moulin de la Galette","Pierre-Auguste Renoir",1876,x,x,x,x,Disponible
 115,"El almuerzo de los remeros","Pierre-Auguste Renoir",1881,x,x,x,x,Disponible
 116,"Las grandes bañistas","Paul Cézanne",1906,x,x,x,x,Disponible
@@ -10,7 +10,7 @@ id,titulo,artista,ano_creacion,estilo,tipo_obra,ubicacion_actual,precio_estimado
 118,"La montaña Sainte-Victoire","Paul Cézanne",1904,x,x,x,x,Disponible
 119,"Visión después del sermón","Paul Gauguin",1888,x,x,x,x,Disponible
 10,"La persistencia de la memoria","Salvador Dalí",1931,x,x,x,x,Disponible
-11,"David","Miguel �?ngel",1504,x,x,x,x,Disponible
+11,"David","Miguel �?ngel",1504,x,x,x,x,Disponible
 12,"El pensador","Auguste Rodin",1904,x,x,x,x,Disponible
 13,"La ronda de noche","Rembrandt",1642,x,x,x,x,Disponible
 14,"Impresión, sol naciente","Claude Monet",1872,x,x,x,x,Disponible
@@ -33,7 +33,7 @@ id,titulo,artista,ano_creacion,estilo,tipo_obra,ubicacion_actual,precio_estimado
 126,"El retrato de Ambroise Vollard","Pablo Picasso",1910,x,x,x,x,Disponible
 6,"Las meninas","Diego Velázquez",1656,x,x,x,x,Disponible
 127,"Los tres músicos","Pablo Picasso",1921,x,x,x,x,Disponible
-7,"La creación de Adán","Miguel �?ngel",1512,x,x,x,x,Disponible
+7,"La creación de Adán","Miguel �?ngel",1512,x,x,x,x,Disponible
 128,"El viejo guitarrista ciego","Pablo Picasso",1904,x,x,x,x,Disponible
 8,"El nacimiento de Venus","Sandro Botticelli",1486,x,x,x,x,Disponible
 129,"La vida","Pablo Picasso",1903,x,x,x,x,Disponible
@@ -140,6 +140,7 @@ id,titulo,artista,ano_creacion,estilo,tipo_obra,ubicacion_actual,precio_estimado
 179,"La dama de Shalott","John William Waterhouse",1888,x,x,x,x,Disponible
 70,"Judith decapitando a Holofernes","Caravaggio",1599,x,x,x,x,Disponible
 71,"La vocación de San Mateo","Caravaggio",1600,x,x,x,x,Disponible
+a4cd8a86,"hola","visente",2026,x,x,x,x,Disponible
 72,"Cabeza de Medusa","Caravaggio",1597,x,x,x,x,Disponible
 73,"David con la cabeza de Goliat","Caravaggio",1610,x,x,x,x,Disponible
 74,"El bautismo de Cristo","Andrea del Verrocchio y Leonardo da Vinci",1475,x,x,x,x,Disponible
@@ -147,7 +148,7 @@ id,titulo,artista,ano_creacion,estilo,tipo_obra,ubicacion_actual,precio_estimado
 76,"La dama del armiño","Leonardo da Vinci",1490,x,x,x,x,Disponible
 77,"Salvator Mundi","Leonardo da Vinci",1500,x,x,x,x,Disponible
 78,"Ginevra de' Benci","Leonardo da Vinci",1478,x,x,x,x,Disponible
-79,"La Piedad","Miguel �?ngel",1499,x,x,x,x,Disponible
+79,"La Piedad","Miguel �?ngel",1499,x,x,x,x,Disponible
 180,"Hylas y las ninfas","John William Waterhouse",1896,x,x,x,x,Disponible
 181,"El cazador en la nieve","Pieter Bruegel el Viejo",1565,x,x,x,x,Disponible
 182,"La torre de Babel","Pieter Bruegel el Viejo",1563,x,x,x,x,Disponible
@@ -158,8 +159,8 @@ id,titulo,artista,ano_creacion,estilo,tipo_obra,ubicacion_actual,precio_estimado
 187,"El carro de heno","El Bosco",1516,x,x,x,x,Disponible
 188,"La extracción de la piedra de la locura","El Bosco",1494,x,x,x,x,Disponible
 189,"Melancolía I","Alberto Durero",1514,x,x,x,x,Disponible
-80,"Moisés","Miguel �?ngel",1515,x,x,x,x,Disponible
-81,"El Juicio Final","Miguel �?ngel",1541,x,x,x,x,Disponible
+80,"Moisés","Miguel �?ngel",1515,x,x,x,x,Disponible
+81,"El Juicio Final","Miguel �?ngel",1541,x,x,x,x,Disponible
 82,"Los desposorios de la Virgen","Rafael Sanzio",1504,x,x,x,x,Disponible
 83,"La Transfiguración","Rafael Sanzio",1520,x,x,x,x,Disponible
 84,"Retrato de Balthasar Castiglione","Rafael Sanzio",1515,x,x,x,x,Disponible

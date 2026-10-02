@@ -190,7 +190,7 @@ public class RegistrarExposicionVentana extends javax.swing.JFrame {
             }
 
             //se genera el ID y se registra la exposición
-            String id = IDManager.generarID(titulo, exposiciones);
+            String id = IDManager.generarID(titulo);
             Exposicion e = new Exposicion(id, titulo, fInicio, fTermino, o);
             exposiciones.put(id, e);
             javax.swing.JOptionPane.showMessageDialog(this, "Exposición registrada correctamente (ID: " + id + ")", "ÉXITO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
