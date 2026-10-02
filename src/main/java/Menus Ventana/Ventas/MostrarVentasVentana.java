@@ -101,7 +101,7 @@ public class MostrarVentasVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverMenuVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuVentasActionPerformed
-        MenuVentasVentana menu = new MenuVentasVentana();
+        MenuVentasVentana menu = new MenuVentasVentana(Datos.ventas, Datos.obras, Datos.clientes, Datos.subastas);
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_VolverMenuVentasActionPerformed

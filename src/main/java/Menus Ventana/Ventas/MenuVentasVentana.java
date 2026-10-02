@@ -19,7 +19,7 @@ public class MenuVentasVentana extends javax.swing.JFrame {
     private HashMap<String, Obra> obras;
     private HashMap<String, Cliente> clientes;
     private ArrayList<Subasta> subastas;
-    
+
     public MenuVentasVentana() {
         initComponents();
     }
@@ -152,7 +152,8 @@ public class MenuVentasVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_RegistrarVentaActionPerformed
 
     private void VolverMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuPrincipalActionPerformed
-        MenuPrincipalVentana v1 = new MenuPrincipalVentana();
+        MenuPrincipalVentana v1 = new MenuPrincipalVentana(Datos.obras, Datos.artistas,
+                Datos.exposiciones, Datos.ventas, Datos.clientes, Datos.prestamos, Datos.subastas);
         v1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_VolverMenuPrincipalActionPerformed
@@ -209,10 +210,8 @@ public class MenuVentasVentana extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuVentasVentana().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new MenuVentasVentana().setVisible(true);
         });
     }
 

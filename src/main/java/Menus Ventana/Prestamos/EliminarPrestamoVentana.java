@@ -143,7 +143,7 @@ public class EliminarPrestamoVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarPrestamoActionPerformed
 
     private void VolverMenuPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuPrestamoActionPerformed
-        MenuPrestamosVentana menu = new MenuPrestamosVentana(); //SE LLAMA SIN PARÁMETROS YA QUE NO SE TIENEN TODOS 
+        MenuPrestamosVentana menu = new MenuPrestamosVentana(Datos.prestamos, Datos.obras, Datos.clientes); 
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_VolverMenuPrestamoActionPerformed

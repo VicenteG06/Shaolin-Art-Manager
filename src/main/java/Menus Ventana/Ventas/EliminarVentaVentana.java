@@ -107,7 +107,7 @@ public class EliminarVentaVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_IngreseIDObraActionPerformed
 
     private void VolverMenuVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuVentasActionPerformed
-        MenuVentasVentana menu = new MenuVentasVentana(ventas, obras);
+        MenuVentasVentana menu = new MenuVentasVentana(Datos.ventas, Datos.obras, Datos.clientes, Datos.subastas);
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_VolverMenuVentasActionPerformed

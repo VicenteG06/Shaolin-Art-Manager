@@ -143,8 +143,52 @@ public class RegistrarVentaVentana extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //Se valida el formato del rut ingresado: 7 u 8 dígitos, sin guion ni dígito verificador
+    private void validarFormatoRut(String rut) throws FormatoRutException {
+        if (rut.length() < 7 || rut.length() > 8) {
+            throw new FormatoRutException();
+        }
+        //se verifica que el rut contenga solo números
+        for (int i = 0; i < rut.length(); i++) {
+            if (!Character.isDigit(rut.charAt(i))) {
+                throw new FormatoRutException();
+            }
+        }
+    }
+    
+    //Se calcula el dígito verificador del rut
+    private char calcularDigitoVerificador(String rut) {
+        int suma = 0;
+        int multiplicador = 2;
+        int rutInt = Integer.parseInt(rut);
+        // Recorrer los dígitos del RUT de derecha a izquierda
+        while (rutInt > 0) {
+            int digito = rutInt % 10;
+            suma += digito * multiplicador;
+            rutInt /= 10;
+            
+            multiplicador++;
+            if (multiplicador > 7) {
+                multiplicador = 2; // Reiniciar el ciclo de factores (2 al 7)
+            }
+        }
+        
+        // Aplicar la fórmula del módulo 11
+        int resto = suma % 11;
+        int resultado = 11 - resto;
+        
+        // Casos especiales
+        if (resultado == 11) {
+            return '0';
+        } else if (resultado == 10) {
+            return 'K';
+        }
+        return Character.forDigit(resultado, 10);
+    }
+    
+    
     private void RegistrarVentaBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarVentaBotonActionPerformed
-        String idObra = IngresarIDObra.getText();
+         String idObra = IngresarIDObra.getText();
         if(!obras.containsKey(idObra)){
             javax.swing.JOptionPane.showMessageDialog(this, "No existe esa Obra", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
             return;
@@ -156,19 +200,15 @@ public class RegistrarVentaVentana extends javax.swing.JFrame {
         }
         
         String rut = IngresarRutCliente.getText().trim();
-            
-        // Si el usuario presiona 0 y enter, se termina el ciclo y se devuelve al menú para no quedar en loop infinito
-        if (rut.equals("0")) {
-            MenuVentasVentana menu = new MenuVentasVentana(ventas, obras, clientes);
-            menu.setVisible(true);
-            this.setVisible(false);
-        }
-            
-        if (rut.trim().isEmpty() || rut.trim().length() < 8 || rut.trim().length() > 9) {
-            javax.swing.JOptionPane.showMessageDialog(this, "Ingrese un RUT válido", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
+
+        //se valida el formato del rut y se le agrega el dígito verificador, igual que en consola
+        try {
+            validarFormatoRut(rut);
+        } catch (FormatoRutException e) {
+            javax.swing.JOptionPane.showMessageDialog(this, e.getMessage() + ". Ingrese 7 u 8 dígitos, sin guion ni dígito verificador", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+        rut = rut + calcularDigitoVerificador(rut);
         
         LocalDate fecha = null; //Se inicia la fecha en NULL, para cambiarla solo si se ingresa una fecha válida en el formato válido
         String entrada = IngresarFechaVenta.getText(); 
@@ -205,7 +245,7 @@ public class RegistrarVentaVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_RegistrarVentaBotonActionPerformed
 
     private void VolverMenuVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuVentasActionPerformed
-        MenuVentasVentana menu = new MenuVentasVentana(ventas, obras, clientes);
+        MenuVentasVentana menu = new MenuVentasVentana(Datos.ventas, Datos.obras, Datos.clientes, Datos.subastas);
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_VolverMenuVentasActionPerformed
@@ -238,10 +278,8 @@ public class RegistrarVentaVentana extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistrarVentaVentana().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new RegistrarVentaVentana().setVisible(true);
         });
     }
 

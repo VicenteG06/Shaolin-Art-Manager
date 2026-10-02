@@ -122,6 +122,9 @@ public class BuscarVentaVentana extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
+    
     private void BuscarObraPorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarObraPorIDActionPerformed
         String id = IngresarIDObra.getText();
         if(!obras.containsKey(id)){
@@ -146,7 +149,7 @@ public class BuscarVentaVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_BuscarObraPorIDActionPerformed
 
     private void VolverMenuVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuVentasActionPerformed
-        MenuVentasVentana menu = new MenuVentasVentana(ventas, obras);
+        MenuVentasVentana menu = new MenuVentasVentana(Datos.ventas, Datos.obras, Datos.clientes, Datos.subastas);
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_VolverMenuVentasActionPerformed

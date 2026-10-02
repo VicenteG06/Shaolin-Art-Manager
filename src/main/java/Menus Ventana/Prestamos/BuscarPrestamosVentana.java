@@ -142,7 +142,7 @@ public class BuscarPrestamosVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_BuscarPrestamoPorIDActionPerformed
 
     private void VolverMenuPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuPrestamosActionPerformed
-        MenuPrestamosVentana menu = new MenuPrestamosVentana();
+        MenuPrestamosVentana menu = new MenuPrestamosVentana(Datos.prestamos, Datos.obras, Datos.clientes);
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_VolverMenuPrestamosActionPerformed

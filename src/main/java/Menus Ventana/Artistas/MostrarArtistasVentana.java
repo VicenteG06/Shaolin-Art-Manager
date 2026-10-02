@@ -97,7 +97,7 @@ public class MostrarArtistasVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverMenuArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuArtistasActionPerformed
-        MenuArtistasVentana menu = new MenuArtistasVentana();
+        MenuArtistasVentana menu = new MenuArtistasVentana(Datos.artistas);
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_VolverMenuArtistasActionPerformed

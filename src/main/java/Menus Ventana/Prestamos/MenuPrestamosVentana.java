@@ -132,7 +132,8 @@ public class MenuPrestamosVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuPrincipalActionPerformed
-        MenuPrincipalVentana v1 = new MenuPrincipalVentana();
+        MenuPrincipalVentana v1 = new MenuPrincipalVentana(Datos.obras, Datos.artistas,
+                Datos.exposiciones, Datos.ventas, Datos.clientes, Datos.prestamos, Datos.subastas);
         v1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_VolverMenuPrincipalActionPerformed

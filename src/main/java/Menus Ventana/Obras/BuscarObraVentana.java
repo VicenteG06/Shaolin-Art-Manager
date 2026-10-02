@@ -119,7 +119,7 @@ public class BuscarObraVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_BuscarObraPorIDActionPerformed
 
     private void VolverMenuObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuObrasActionPerformed
-        MenuObrasVentana menu = new MenuObrasVentana(obras);
+        MenuObrasVentana menu = new MenuObrasVentana(Datos.obras, Datos.artistas);
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_VolverMenuObrasActionPerformed

@@ -22,7 +22,14 @@ public class Main {
         ArrayList<Venta> registroVentas = ManejoArchivos.cargarVentasDesdeCsv("data/ventas.csv", clientes, obras);
         ArrayList<Prestamo> registroPrestamos = ManejoArchivos.cargarPrestamosDesdeCsv("data/prestamos.csv", clientes, obras);
         ArrayList<Subasta> registroSubastas = new ArrayList<>();
-        
+        // Se guardan las colecciones en Datos para que las ventanas puedan reconstruir los menús al volver
+        Datos.obras = obras;
+        Datos.artistas = artistas;
+        Datos.exposiciones = exposiciones;
+        Datos.clientes = clientes;
+        Datos.ventas = registroVentas;
+        Datos.prestamos = registroPrestamos;
+        Datos.subastas = registroSubastas;
         // Se imprime por pantalla y se declara el menú de selección de modo de ejecución
         char opcion = ' ';
        

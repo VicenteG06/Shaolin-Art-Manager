@@ -78,7 +78,7 @@ public class MostrarObrasVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverMenuObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuObrasActionPerformed
-        MenuObrasVentana menu = new MenuObrasVentana();
+        MenuObrasVentana menu = new MenuObrasVentana(Datos.obras, Datos.artistas);
         menu.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_VolverMenuObrasActionPerformed
