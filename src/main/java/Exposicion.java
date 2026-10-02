@@ -172,7 +172,7 @@ public class Exposicion {
         }
         return ids;
     }
-        // Se crea una tabla con las obras de la exposición para ser mostrada por una Ventana
+    // Se crea una tabla con las obras de la exposición para ser mostrada por una Ventana
     public DefaultTableModel obtenerObras(){
         String[] columnas = {"ID", "TITULO", "ARTISTA", "ESTADO", "AÑO"};
         DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);

@@ -166,7 +166,7 @@ public class MenuPrincipalVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuExposicionesActionPerformed
 
     private void MenuArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuArtistasActionPerformed
-        MenuArtistasVentana v2 = new MenuArtistasVentana(artistas);
+        MenuArtistasVentana v2 = new MenuArtistasVentana(artistas, obras);
         v2.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MenuArtistasActionPerformed

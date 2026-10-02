@@ -14,14 +14,16 @@ import java.util.*;
 public class BuscarObrasArtistaVentana extends javax.swing.JFrame {
 
     private HashMap<String, Artista> artistas;
+    private HashMap<String, Obra> obras;
     
     /** Creates new form BuscarObrasArtistaVentana */
     public BuscarObrasArtistaVentana() {
         initComponents();
     }
-    public BuscarObrasArtistaVentana(HashMap<String, Artista> artistas){
+    public BuscarObrasArtistaVentana(HashMap<String, Artista> artistas, HashMap<String, Obra> obras){
         initComponents();
         this.artistas = artistas;
+        this.obras = obras;
     }
     /** This method is called from within the constructor to
      * initialize the form.
@@ -130,7 +132,14 @@ public class BuscarObrasArtistaVentana extends javax.swing.JFrame {
             return;  
         }
         Artista a = artistas.get(nombre.toLowerCase());
-        DefaultTableModel modeloTabla = a.obtenerObras();
+        ArrayList<String> idObras = a.obtenerIdsObras();
+        String[] columnas = {"ID", "TITULO", "ARTISTA", "ESTADO", "AÑO"};
+        DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+        for(int i = 0; i < idObras.size(); i++){
+            Obra o = obras.get(idObras.get(i));
+            Object[] fila = {o.getId(), o.getTitulo(), (o.getArtista()).getNombre(), o.getEstado(), o.getAnio()};
+            modeloTabla.addRow(fila);
+        }
         jTable1.setModel(modeloTabla);
     }//GEN-LAST:event_BuscarObrasBotonActionPerformed
 

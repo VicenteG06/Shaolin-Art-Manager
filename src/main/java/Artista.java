@@ -8,7 +8,6 @@
 
 import java.util.*;
 import java.io.*;
-import javax.swing.table.DefaultTableModel;
 
 public class Artista {
     // Se crean los parametros de la clase.
@@ -56,14 +55,13 @@ public class Artista {
     }
 
     // Se crea una tabla de todas las obras del artista para luego ser mostrada por una Ventana
-    public DefaultTableModel obtenerObras(){
-         String[] columnas = {"ID", "TITULO", "ARTISTA", "ESTADO", "AÑO"};
-       DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+    public ArrayList<String> obtenerIdsObras(){
+        ArrayList<String> ids = new ArrayList<>();
+        if(obras.size() == 0) { return null ;}
         for(int i = 0; i < obras.size(); i++){
-            Object[] fila = {(obras.get(i)).getId(), (obras.get(i)).getTitulo(), ((obras.get(i)).getArtista()).getNombre(), (obras.get(i)).getEstado(), (obras.get(i)).getAnio()};
-            modeloTabla.addRow(fila);
+            Obra o = obras.get(i);
+            ids.add(o.getId());
         }
-        
-        return modeloTabla;
+        return ids;
     }
 }
