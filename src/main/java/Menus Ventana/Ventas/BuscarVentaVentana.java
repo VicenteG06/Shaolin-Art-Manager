@@ -1,12 +1,12 @@
-
-import java.util.*;
-import javax.swing.table.DefaultTableModel;
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
+import java.util.*;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Alejandro
@@ -16,7 +16,8 @@ public class BuscarVentaVentana extends javax.swing.JFrame {
     /** Creates new form BuscarVentaVentana */
     private ArrayList<Venta> ventas;
     private HashMap<String, Obra> obras;
-    
+
+
     public BuscarVentaVentana() {
         initComponents();
     }
@@ -35,37 +36,26 @@ public class BuscarVentaVentana extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFrame1 = new javax.swing.JFrame();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         IngresarIDObra = new javax.swing.JTextField();
         BuscarObraPorID = new javax.swing.JButton();
+        VolverMenuVentas = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        VolverMenuVentas = new javax.swing.JButton();
 
-        jFrame1.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("ID:");
+        jLabel2.setText("Buscar Venta");
 
-        BuscarObraPorID.setText("Buscar Obra");
+        jLabel1.setText("ID Obra:");
+
+        BuscarObraPorID.setText("Buscar Venta");
         BuscarObraPorID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BuscarObraPorIDActionPerformed(evt);
             }
         });
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
 
         VolverMenuVentas.setText("Menu Ventas");
         VolverMenuVentas.addActionListener(new java.awt.event.ActionListener() {
@@ -74,78 +64,87 @@ public class BuscarVentaVentana extends javax.swing.JFrame {
             }
         });
 
-        org.jdesktop.layout.GroupLayout jFrame1Layout = new org.jdesktop.layout.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jFrame1Layout.createSequentialGroup()
-                .addContainerGap()
-                .add(jFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                    .add(jFrame1Layout.createSequentialGroup()
-                        .add(jLabel1)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(IngresarIDObra, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 131, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                        .add(BuscarObraPorID)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .add(VolverMenuVentas))
-                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 452, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(30, Short.MAX_VALUE))
-        );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jFrame1Layout.createSequentialGroup()
-                .addContainerGap(19, Short.MAX_VALUE)
-                .add(jFrame1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jLabel1)
-                    .add(IngresarIDObra, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(BuscarObraPorID)
-                    .add(VolverMenuVentas))
-                .add(18, 18, 18)
-                .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 100, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .add(31, 31, 31))
-        );
+        jScrollPane1.setViewportView(jTable1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 400, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 300, Short.MAX_VALUE)
+                        .addComponent(VolverMenuVentas))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(IngresarIDObra, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(BuscarObraPorID))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 300, Short.MAX_VALUE)
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(VolverMenuVentas))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(IngresarIDObra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BuscarObraPorID))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    
-    
     private void BuscarObraPorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarObraPorIDActionPerformed
-        String id = IngresarIDObra.getText();
-        if(!obras.containsKey(id)){
+        //si no hay ventas, se da un aviso y se retorna
+        if (ventas.size() == 0){
+            javax.swing.JOptionPane.showMessageDialog(this, "No hay ventas registradas.", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        //se busca la obra vendida. De no existir, se da un aviso y se retorna
+        String idObra = IngresarIDObra.getText().trim();
+        if(!obras.containsKey(idObra)){
             javax.swing.JOptionPane.showMessageDialog(this, "No existe esa Obra", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
             return;
         }
-        Obra o = obras.get(id.toLowerCase());
-        if(!(o.getEstado()).equals("VENDIDA")){
-            javax.swing.JOptionPane.showMessageDialog(this, "La obra NO ha sido vendida", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
+        //al obtener la obra, si no esta vendida se da un aviso y se retorna
+        Obra o = obras.get(idObra);
+        if(!(o.getEstado()).equalsIgnoreCase("VENDIDA")){
+            javax.swing.JOptionPane.showMessageDialog(this, "La obra '" + o.getTitulo() + "' no ha sido vendida.", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
+        //como se sabe que esta vendida, se busca y se muestra en la tabla
         String[] columnas = {"RUT", "OBRA VENDIDA", "ARTISTA", "PRECIO $", "FECHA DE VENTA"};
         DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+        Venta auxV;
         for(int i = 0; i < ventas.size() ; i++){
-            Venta v = (Venta) ventas.get(i);
-            o = (Obra) v.getObra();
-            Object[] fila = {(v.getCliente()).getRut(),o.getTitulo() , (o.getArtista()).getNombre(), v.getPrecio(), v.getFechaVenta()};
-            modeloTabla.addRow(fila);
+            auxV = (Venta) ventas.get(i);
+            if (auxV.getObra() == o){
+                String rut = "Ninguno";
+                if (auxV.getCliente() != null){
+                    rut = (auxV.getCliente()).getRut();
+                }
+                Object[] fila = {rut, o.getTitulo(), (o.getArtista()).getNombre(), auxV.getPrecio(), auxV.getFechaVenta()};
+                modeloTabla.addRow(fila);
+                jTable1.setModel(modeloTabla);
+                return;
+            }
         }
+        //si por alguna razón no se encontró, se da aviso
         jTable1.setModel(modeloTabla);
+        javax.swing.JOptionPane.showMessageDialog(this, "'" + o.getTitulo() + "' sale vendida pero no se encontró en la lista de ventas.", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_BuscarObraPorIDActionPerformed
 
     private void VolverMenuVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuVentasActionPerformed
@@ -161,7 +160,7 @@ public class BuscarVentaVentana extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -190,11 +189,11 @@ public class BuscarVentaVentana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BuscarObraPorID;
-    private javax.swing.JTextField IngresarIDObra;
-    private javax.swing.JButton VolverMenuVentas;
-    private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField IngresarIDObra;
+    private javax.swing.JButton BuscarObraPorID;
+    private javax.swing.JButton VolverMenuVentas;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

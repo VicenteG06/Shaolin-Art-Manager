@@ -17,6 +17,8 @@ public class MenuArtistasVentana extends javax.swing.JFrame {
      * Creates new form MenuArtistasVentana
      */
     private HashMap<String, Artista> artistas;
+    private HashMap<String, Obra> obras;
+
     public MenuArtistasVentana(){
         initComponents();
     }
@@ -24,6 +26,11 @@ public class MenuArtistasVentana extends javax.swing.JFrame {
     public MenuArtistasVentana(HashMap<String, Artista> artistas) {
         initComponents();
         this.artistas = artistas;
+    }
+    public MenuArtistasVentana(HashMap<String, Artista> artistas,HashMap<String, Obra> obras) {
+        initComponents();
+        this.artistas = artistas;
+        this.obras = obras;
     }
 
     /**
@@ -111,7 +118,7 @@ public class MenuArtistasVentana extends javax.swing.JFrame {
     }//GEN-LAST:event_VolverMenuPrincipalActionPerformed
 
     private void BuscarObrasPorArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarObrasPorArtistaActionPerformed
-        BuscarObrasArtistaVentana buscar = new BuscarObrasArtistaVentana(artistas);
+        BuscarObrasArtistaVentana buscar = new BuscarObrasArtistaVentana(artistas, obras);
         buscar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_BuscarObrasPorArtistaActionPerformed
