@@ -10,8 +10,9 @@
 import java.util.*;
 
 public class IDManager {
-    public static String generarID(String cadena){
-       // Se calcula un ID en hexadecimal, se toman los bits más significativos del número y se fuerza a ser positivo
-       return String.valueOf((java.util.UUID.randomUUID().getMostSignificantBits() & 0x7FFFFFFFL) % 900 + 200);
+public class IDManager {
+    public static String generarID(String cadena) {
+        // Se crea un ID hexadecimal, se toman sus bits mas significativos y se fuerza a ser positivo
+        return String.valueOf((java.util.UUID.randomUUID().getMostSignificantBits() & 0x7FFFFFFFL) % 900 + 200);
     }
 }
