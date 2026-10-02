@@ -69,7 +69,7 @@ public class MenuExposiciones {
         }
         nombre = nombre.trim();
  
-        String id = IDManager.generarID(nombre, exposiciones);
+        String id = IDManager.generarID(nombre);
  
         LocalDate fInicio = Validaciones.pedirFecha(lector, "Ingrese la fecha de inicio de la exposición (formato: AAAA-MM-DD):");
         
