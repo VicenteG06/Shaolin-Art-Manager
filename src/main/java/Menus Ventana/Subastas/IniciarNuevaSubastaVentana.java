@@ -22,9 +22,11 @@ public class IniciarNuevaSubastaVentana extends javax.swing.JFrame {
 
     public IniciarNuevaSubastaVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     public IniciarNuevaSubastaVentana(ArrayList<Venta> ventas, HashMap<String, Obra> obras, HashMap<String, Cliente> clientes, ArrayList<Subasta> subastas) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.ventas = ventas;
         this.obras = obras;
         this.clientes = clientes;

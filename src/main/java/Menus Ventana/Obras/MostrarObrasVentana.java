@@ -17,10 +17,12 @@ public class MostrarObrasVentana extends javax.swing.JFrame {
      * */
     public MostrarObrasVentana(){
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     
     public MostrarObrasVentana(HashMap<String, Obra> obras) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         
         String[] columnas = {"ID", "TITULO", "ARTISTA", "ESTADO", "AÑO"};
         DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);

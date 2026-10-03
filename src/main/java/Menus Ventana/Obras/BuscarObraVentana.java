@@ -17,9 +17,11 @@ public class BuscarObraVentana extends javax.swing.JFrame {
     /** Creates new form BuscarObraVentana */
     public BuscarObraVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     public BuscarObraVentana(HashMap<String, Obra> obras){
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.obras = obras;
     }
     /** This method is called from within the constructor to

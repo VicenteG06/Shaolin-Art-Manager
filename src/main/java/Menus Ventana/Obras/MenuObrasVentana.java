@@ -20,13 +20,16 @@ public class MenuObrasVentana extends javax.swing.JFrame {
     private static HashMap<String, Artista> artistas;
     public MenuObrasVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     public MenuObrasVentana(HashMap<String, Obra> obras){
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.obras = obras;
     }
     public MenuObrasVentana(HashMap<String, Obra> obras, HashMap<String, Artista> artistas){
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.obras = obras;
         this.artistas = artistas;
     }

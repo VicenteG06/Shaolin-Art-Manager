@@ -18,9 +18,11 @@ public class MostrarVentasVentana extends javax.swing.JFrame {
     private ArrayList<Venta> ventas;
     public MostrarVentasVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     public MostrarVentasVentana(ArrayList<Venta> ventas){
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.ventas = ventas;
         String[] columnas = {"RUT", "OBRA VENDIDA", "ARTISTA", "PRECIO $", "FECHA DE VENTA"};
         DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);

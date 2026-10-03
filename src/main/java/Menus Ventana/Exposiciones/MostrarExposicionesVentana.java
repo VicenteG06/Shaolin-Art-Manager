@@ -15,6 +15,7 @@ public class MostrarExposicionesVentana extends javax.swing.JFrame {
     /** Creates new form MostrarExposicionesVentana */
     public MostrarExposicionesVentana(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.exposiciones = exposiciones;
         this.obras = obras;
 
@@ -35,6 +36,7 @@ public class MostrarExposicionesVentana extends javax.swing.JFrame {
 
     private MostrarExposicionesVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
 
     /** This method is called from within the constructor to

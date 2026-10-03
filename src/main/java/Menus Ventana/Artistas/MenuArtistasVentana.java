@@ -21,14 +21,17 @@ public class MenuArtistasVentana extends javax.swing.JFrame {
 
     public MenuArtistasVentana(){
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     
     public MenuArtistasVentana(HashMap<String, Artista> artistas) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.artistas = artistas;
     }
     public MenuArtistasVentana(HashMap<String, Artista> artistas,HashMap<String, Obra> obras) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.artistas = artistas;
         this.obras = obras;
     }

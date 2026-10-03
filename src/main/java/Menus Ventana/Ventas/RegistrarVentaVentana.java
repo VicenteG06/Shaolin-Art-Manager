@@ -22,9 +22,11 @@ public class RegistrarVentaVentana extends javax.swing.JFrame {
     
     public RegistrarVentaVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     public RegistrarVentaVentana(ArrayList<Venta> ventas, HashMap<String, Obra> obras, HashMap<String, Cliente> clientes) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.ventas = ventas;
         this.obras = obras;
         this.clientes = clientes;

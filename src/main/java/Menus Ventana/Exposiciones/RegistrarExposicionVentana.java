@@ -17,6 +17,7 @@ public class RegistrarExposicionVentana extends javax.swing.JFrame {
 
     public RegistrarExposicionVentana(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.exposiciones = exposiciones;
         this.obras = obras;
     }

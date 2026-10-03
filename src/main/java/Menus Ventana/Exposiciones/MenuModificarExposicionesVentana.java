@@ -25,6 +25,7 @@ public class MenuModificarExposicionesVentana extends javax.swing.JFrame {
 
     public MenuModificarExposicionesVentana(java.util.HashMap<String, Exposicion> exposiciones,java.util.HashMap<String, Obra> obras) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.exposiciones = exposiciones;
         this.exposicionActual = null;
         this.obras=obras;

@@ -20,10 +20,12 @@ public class RegistrarPrestamoVentana extends javax.swing.JFrame {
     
     public RegistrarPrestamoVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     
     public RegistrarPrestamoVentana(ArrayList<Prestamo> prestamos, HashMap<String, Cliente> clientes, HashMap<String, Obra> obras) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.prestamos = prestamos;
         this.obras = obras;
         this.clientes = clientes;

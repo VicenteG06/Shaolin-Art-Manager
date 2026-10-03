@@ -20,9 +20,11 @@ public class BuscarVentaVentana extends javax.swing.JFrame {
 
     public BuscarVentaVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     public BuscarVentaVentana(ArrayList<Venta> ventas, HashMap<String, Obra> obras){
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.ventas = ventas;
         this.obras = obras;
     }

@@ -18,9 +18,11 @@ public class BuscarPrestamosVentana extends javax.swing.JFrame {
     /** Creates new form BuscarPrestamosVentana */
     public BuscarPrestamosVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     public BuscarPrestamosVentana(ArrayList<Prestamo> prestamos, HashMap<String, Obra> obras) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.prestamos= prestamos;
         this.obras= obras;
     }

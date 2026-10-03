@@ -21,9 +21,11 @@ public class MenuPrestamosVentana extends javax.swing.JFrame {
 
     public MenuPrestamosVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     public MenuPrestamosVentana(ArrayList<Prestamo> prestamos, HashMap<String, Obra> obras, HashMap<String, Cliente> clientes) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.prestamos = prestamos;
         this.obras = obras;
         this.clientes = clientes;

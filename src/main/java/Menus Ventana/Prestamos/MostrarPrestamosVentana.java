@@ -18,10 +18,12 @@ public class MostrarPrestamosVentana extends javax.swing.JFrame {
     /** Creates new form MostrarPrestamosVentana */
     public MostrarPrestamosVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     
     public MostrarPrestamosVentana(ArrayList<Prestamo> prestamos) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.prestamos = prestamos;
         //si no hay prestamos, se da un aviso y se retorna al menu
         if (prestamos.size() == 0){

@@ -26,11 +26,13 @@ public class MenuPrincipalVentana extends javax.swing.JFrame {
     
     public MenuPrincipalVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     public MenuPrincipalVentana(HashMap<String, Obra> obras, HashMap<String, Artista> artistas, 
                        HashMap<String, Exposicion> exposiciones, ArrayList<Venta> ventas, 
                        HashMap<String, Cliente> clientes, ArrayList<Prestamo> prestamos, ArrayList<Subasta> subastas){
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.obras = obras;
         this.artistas = artistas;
         this.exposiciones = exposiciones;

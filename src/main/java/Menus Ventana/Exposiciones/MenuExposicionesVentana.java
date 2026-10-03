@@ -22,9 +22,11 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
     
     public MenuExposicionesVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     public MenuExposicionesVentana(java.util.HashMap<String, Exposicion> exposiciones, java.util.HashMap<String, Obra> obras) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.exposiciones = exposiciones;
         this.obras = obras;
     }

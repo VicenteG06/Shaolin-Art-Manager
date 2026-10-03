@@ -22,20 +22,24 @@ public class MenuVentasVentana extends javax.swing.JFrame {
 
     public MenuVentasVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     public MenuVentasVentana(ArrayList<Venta> ventas, HashMap<String, Obra> obras){
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.obras = obras;
         this.ventas = ventas;
     }
     public MenuVentasVentana(ArrayList<Venta> ventas, HashMap<String, Obra> obras, HashMap<String, Cliente> clientes){
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.obras = obras;
         this.ventas = ventas;
         this.clientes = clientes;
     }
     public MenuVentasVentana(ArrayList<Venta> ventas, HashMap<String, Obra> obras, HashMap<String, Cliente> clientes, ArrayList<Subasta> subastas){
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.obras = obras;
         this.ventas = ventas;
         this.clientes = clientes;

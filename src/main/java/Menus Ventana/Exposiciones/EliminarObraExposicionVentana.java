@@ -17,6 +17,7 @@ public class EliminarObraExposicionVentana extends javax.swing.JFrame {
     /** Creates new form EliminarObraExposicion */
     public EliminarObraExposicionVentana(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.exposiciones = exposiciones;
         this.obras = obras;
 

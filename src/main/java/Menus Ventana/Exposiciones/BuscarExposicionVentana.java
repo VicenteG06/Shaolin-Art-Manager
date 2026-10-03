@@ -16,6 +16,7 @@ public class BuscarExposicionVentana extends javax.swing.JFrame {
     private HashMap<String, Obra> obras;
     public BuscarExposicionVentana(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.exposiciones = exposiciones;
         this.obras = obras;
     }

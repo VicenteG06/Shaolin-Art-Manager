@@ -18,10 +18,12 @@ public class EliminarPrestamoVentana extends javax.swing.JFrame {
             
     public EliminarPrestamoVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     
     public EliminarPrestamoVentana(ArrayList<Prestamo> prestamos, HashMap<String, Obra> obras) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.prestamos= prestamos;
         this.obras= obras;
     }

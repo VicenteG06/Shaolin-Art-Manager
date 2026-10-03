@@ -19,6 +19,7 @@ public class MenuModificarObraVentana extends javax.swing.JFrame {
     private Obra obraActual;
     public MenuModificarObraVentana(HashMap<String, Obra> obras, HashMap<String, Artista> artistas) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.obras = obras;
         this.artistas = artistas;
         this.obraActual = null;

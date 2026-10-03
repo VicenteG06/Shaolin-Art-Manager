@@ -18,9 +18,11 @@ public class EliminarVentaVentana extends javax.swing.JFrame {
     
     public EliminarVentaVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     public EliminarVentaVentana(ArrayList<Venta> ventas, HashMap<String, Obra> obras) {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.obras = obras;
         this.ventas = ventas;
     }

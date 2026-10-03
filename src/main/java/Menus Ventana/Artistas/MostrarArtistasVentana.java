@@ -15,9 +15,11 @@ public class MostrarArtistasVentana extends javax.swing.JFrame {
     /** Creates new form MostrarArtistasVentana */
     public MostrarArtistasVentana() {
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
     }
     public MostrarArtistasVentana(HashMap<String, Artista> artistas){
         initComponents();
+        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         
         String[] columnas = {"NOMBRE"};
         DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
