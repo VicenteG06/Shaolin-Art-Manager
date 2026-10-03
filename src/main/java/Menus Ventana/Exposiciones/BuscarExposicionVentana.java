@@ -1,5 +1,6 @@
 
-import java.util.HashMap;
+import java.util.*;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -143,7 +144,15 @@ public class BuscarExposicionVentana extends javax.swing.JFrame {
             //se muestran los datos propios de la exposición
             DatosExposicion.setText("Título: " + e.getTitulo() + "   |   Inicio: " + e.getfechaInicio() + "   |   Término: " + e.getfechaTermino());
             //se muestran las obras que contiene la exposición
-            jTable1.setModel(e.obtenerObras());
+            ArrayList<String> idObras = e.getIdsObras();
+            String[] columnas = {"ID", "TITULO", "ARTISTA", "ESTADO", "AÑO"};
+            DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+            for(int i = 0; i < idObras.size(); i++){
+                Obra obra = obras.get(idObras.get(i));
+                Object[] fila = {obra.getId(), obra.getTitulo(), (obra.getArtista()).getNombre(), obra.getEstado(), obra.getAnio()};
+                modeloTabla.addRow(fila);
+            }
+            jTable1.setModel(modeloTabla);
 
         } catch (EmptyEntryException ex) {
             javax.swing.JOptionPane.showMessageDialog(this, "Error: Debe ingresar el ID de la Exposición", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);

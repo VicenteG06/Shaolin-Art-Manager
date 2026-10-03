@@ -8,6 +8,9 @@
  * @author Alejandro
  */
 import java.util.*;
+import javax.swing.table.DefaultTableModel;
+
+
 public class EliminarObraExposicionVentana extends javax.swing.JFrame {
     private HashMap<String, Exposicion> exposiciones;
     private HashMap<String, Obra> obras;
@@ -172,7 +175,15 @@ public class EliminarObraExposicionVentana extends javax.swing.JFrame {
             }
             javax.swing.JOptionPane.showMessageDialog(this, "Obra eliminada correctamente", "ÉXITO!", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             //se actualiza la tabla con las obras de la exposición
-            jTable1.setModel(e.obtenerObras());
+            ArrayList<String> idObras = e.getIdsObras();
+            String[] columnas = {"ID", "TITULO", "ARTISTA", "ESTADO", "AÑO"};
+            DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
+            for(int i = 0; i < idObras.size(); i++){
+                Obra obra = obras.get(idObras.get(i));
+                Object[] fila = {obra.getId(), obra.getTitulo(), (obra.getArtista()).getNombre(), obra.getEstado(), obra.getAnio()};
+                modeloTabla.addRow(fila);
+            }
+            jTable1.setModel(modeloTabla);
 
         } catch (EmptyEntryException ex) {
             javax.swing.JOptionPane.showMessageDialog(this, "Error: Debe ingresar el ID de la Exposición y el ID de la Obra", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);

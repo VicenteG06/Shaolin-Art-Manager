@@ -9,6 +9,7 @@
 import java.io.*;
 
 public class PresioneTeclaParaContinuar {
+    // Se utiliza para detener el programa
     public static void ptpc(){
         try {
             BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));

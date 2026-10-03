@@ -172,14 +172,4 @@ public class Exposicion {
         }
         return ids;
     }
-    // Se crea una tabla con las obras de la exposición para ser mostrada por una Ventana
-    public DefaultTableModel obtenerObras(){
-        String[] columnas = {"ID", "TITULO", "ARTISTA", "ESTADO", "AÑO"};
-        DefaultTableModel modeloTabla = new DefaultTableModel(columnas, 0);
-        for(int i = 0; i < listaObras.size(); i++){
-            Object[] fila = {(listaObras.get(i)).getId(), (listaObras.get(i)).getTitulo(), ((listaObras.get(i)).getArtista()).getNombre(), (listaObras.get(i)).getEstado(), (listaObras.get(i)).getAnio()};
-            modeloTabla.addRow(fila);
-        }
-        return modeloTabla;
-    }
 }
