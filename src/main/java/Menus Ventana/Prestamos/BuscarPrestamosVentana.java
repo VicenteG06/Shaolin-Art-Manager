@@ -1,16 +1,14 @@
+/**
+ * @archivo: BuscarPrestamosVentana.java
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Método para buscar préstamos por ventana
+ * @author Alexia Gallardo
+ * @Lenguaje: Java
+*/
 
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author Alexia Gallardo
- */
 public class BuscarPrestamosVentana extends javax.swing.JFrame {
 
     /** Creates new form BuscarPrestamosVentana */

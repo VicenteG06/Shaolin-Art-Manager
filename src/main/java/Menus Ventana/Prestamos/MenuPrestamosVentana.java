@@ -1,13 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
+ * @archivo: MenuPrestamosVentana.java
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Ventana de menú préstamos
  * @author Alexia Gallardo
- */
+ * @Lenguaje: Java
+*/
 
 import java.util.*;
 public class MenuPrestamosVentana extends javax.swing.JFrame {

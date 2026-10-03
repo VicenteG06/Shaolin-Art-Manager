@@ -1,16 +1,15 @@
+/**
+ * @archivo: RegistrarPrestamosVentana.java
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Método para registrar un préstamo por ventana
+ * @author Alexia Gallardo
+ * @Lenguaje: Java
+*/
+
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.*;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author Alexia Gallardo
- */
 public class RegistrarPrestamoVentana extends javax.swing.JFrame {
 
     /** Creates new form RegistrarPrestamoVentana */
