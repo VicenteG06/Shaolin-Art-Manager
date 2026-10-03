@@ -242,7 +242,7 @@ public class RegistrarVentaVentana extends javax.swing.JFrame {
         }
         Venta n = new Venta(fecha, c, o, monto);
         if(n.registrar()){
-            javax.swing.JOptionPane.showMessageDialog(this, "Venta registrada correctamente", "ÉXITO!",javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "Registrando Transacción.....\nVenta registrada correctamente", "ÉXITO!",javax.swing.JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             javax.swing.JOptionPane.showMessageDialog(this, "ERROR al registrar la compra", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);

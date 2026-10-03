@@ -241,7 +241,7 @@ public class RegistrarPrestamoVentana extends javax.swing.JFrame {
         // SE GUARDA EL PRESTAMO 
         Prestamo n = new Prestamo(idObra, c, o, fechaI, fechaT);
         if(n.registrar()){
-            javax.swing.JOptionPane.showMessageDialog(this, "Préstamo registrado correctamente", "ÉXITO!",javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "Registrando Transacción.....\nPréstamo registrado correctamente", "ÉXITO!",javax.swing.JOptionPane.INFORMATION_MESSAGE);
         }
         else{
             javax.swing.JOptionPane.showMessageDialog(this, "ERROR al registrar el préstamo", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
