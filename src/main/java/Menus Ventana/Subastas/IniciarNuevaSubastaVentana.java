@@ -10,7 +10,7 @@ import java.time.format.DateTimeParseException;
 
 /**
  *
- * @author Alejandro
+ * @author Vicente Gamboa
  */
 public class IniciarNuevaSubastaVentana extends javax.swing.JFrame {
 

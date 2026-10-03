@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Alejandro
+ * @author Vicente Gamboa
  */
 public class MostrarSubastasCerradasVentana extends javax.swing.JFrame {
 

@@ -9,7 +9,7 @@ import java.util.*;
 
 /**
  *
- * @author Vicente
+ * @author Vicente Gamboa
  */
 public class MenuObrasVentana extends javax.swing.JFrame {
 

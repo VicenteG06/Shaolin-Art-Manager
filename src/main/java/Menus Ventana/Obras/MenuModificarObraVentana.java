@@ -7,7 +7,7 @@ import java.util.*;
 import javax.swing.JOptionPane;
 /**
  *
- * @author Netaxion
+ * @author Antonia Avello 
  */
 public class MenuModificarObraVentana extends javax.swing.JFrame {
 

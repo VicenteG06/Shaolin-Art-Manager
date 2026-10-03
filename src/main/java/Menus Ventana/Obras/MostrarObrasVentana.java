@@ -9,7 +9,7 @@ import javax.swing.table.DefaultTableModel;
  */
 /**
  *
- * @author Vicente
+ * @author Vicente Gamboa
  */
 public class MostrarObrasVentana extends javax.swing.JFrame {
 

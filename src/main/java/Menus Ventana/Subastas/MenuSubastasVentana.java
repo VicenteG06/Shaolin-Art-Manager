@@ -8,7 +8,7 @@ import java.util.*;
 
 /**
  *
- * @author Alejandro
+ * @author Vicente Gamboa
  */
 public class MenuSubastasVentana extends javax.swing.JFrame {
 
