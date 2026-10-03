@@ -9,19 +9,8 @@
  */
 import java.util.*;
 public class EliminarExposicionVentana extends javax.swing.JFrame {
-    private HashMap<String, Exposicion> exposiciones;
-    private HashMap<String, Obra> obras;
     /** Creates new form EliminarExposicionVentana */
-    public EliminarExposicionVentana(HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) {
-        initComponents();
-        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
-        this.exposiciones = exposiciones;
-        this.obras = obras;
-    }
 
-    private EliminarExposicionVentana() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     //Se obtiene el texto de un campo, validando que no esté vacío
     private String obtenerTextoIngresado(javax.swing.JTextField campo) throws EmptyEntryException {
         String texto = campo.getText().trim();
@@ -30,6 +19,25 @@ public class EliminarExposicionVentana extends javax.swing.JFrame {
         }
         return texto;
     }
+    private final javax.swing.JFrame ventanaAnterior; //ventana desde la que se abrió esta
+    private final HashMap<String, Exposicion> exposiciones;
+    private final HashMap<String, Obra> obras;
+
+    public EliminarExposicionVentana(javax.swing.JFrame ventanaAnterior, HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) {
+        initComponents();
+        this.ventanaAnterior = ventanaAnterior;
+        this.exposiciones = exposiciones;
+        this.obras = obras;
+        //si se cierra esta ventana con la X, se le avisa a la ventana anterior para que también se cierre,
+        //así el aviso llega hasta el menú principal, que es el que guarda los archivos
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                ventanaAnterior.dispatchEvent(new java.awt.event.WindowEvent(ventanaAnterior, java.awt.event.WindowEvent.WINDOW_CLOSING));
+            }
+        });
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -105,9 +113,8 @@ public class EliminarExposicionVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverMenuExposicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuExposicionesActionPerformed
-        MenuExposicionesVentana menu = new MenuExposicionesVentana(exposiciones, obras);
-        menu.setVisible(true);
-        this.setVisible(false);
+        ventanaAnterior.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_VolverMenuExposicionesActionPerformed
 
     private void IngresarIDExposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarIDExposicionActionPerformed
@@ -138,39 +145,6 @@ public class EliminarExposicionVentana extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "Error: Debe ingresar el ID de la Exposición", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_EliminarExposicionBotonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EliminarExposicionVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EliminarExposicionVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EliminarExposicionVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EliminarExposicionVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new EliminarExposicionVentana(new HashMap<String, Exposicion>(), new HashMap<String, Obra>()).setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton EliminarExposicionBoton;

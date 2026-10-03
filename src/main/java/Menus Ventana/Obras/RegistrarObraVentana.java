@@ -14,18 +14,23 @@ import javax.swing.table.DefaultTableModel;
 public class RegistrarObraVentana extends javax.swing.JFrame {
 
     /** Creates new form RegistrarObraVentana */
-    private HashMap<String, Obra> obras;
-    private HashMap<String, Artista> artistas;
-    
-    public RegistrarObraVentana() {
+    private final javax.swing.JFrame ventanaAnterior; //ventana desde la que se abrió esta
+    private final HashMap<String, Obra> obras;
+    private final HashMap<String, Artista> artistas;
+
+    public RegistrarObraVentana(javax.swing.JFrame ventanaAnterior, HashMap<String, Obra> obras, HashMap<String, Artista> artistas) {
         initComponents();
-        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
-    }
-    public RegistrarObraVentana(HashMap<String, Obra> obras, HashMap<String, Artista> artistas) {
-        initComponents();
-        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
+        this.ventanaAnterior = ventanaAnterior;
         this.obras = obras;
         this.artistas = artistas;
+        //si se cierra esta ventana con la X, se le avisa a la ventana anterior para que también se cierre,
+        //así el aviso llega hasta el menú principal, que es el que guarda los archivos
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                ventanaAnterior.dispatchEvent(new java.awt.event.WindowEvent(ventanaAnterior, java.awt.event.WindowEvent.WINDOW_CLOSING));
+            }
+        });
     }
 
     /** This method is called from within the constructor to
@@ -129,9 +134,8 @@ public class RegistrarObraVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverMenuObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuObrasActionPerformed
-        MenuObrasVentana menu = new MenuObrasVentana(obras, artistas);
-        menu.setVisible(true);
-        this.setVisible(false);
+        ventanaAnterior.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_VolverMenuObrasActionPerformed
 
     private void RegistrarObraBotonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarObraBotonActionPerformed
@@ -160,41 +164,6 @@ public class RegistrarObraVentana extends javax.swing.JFrame {
         obras.put(id, o);
         javax.swing.JOptionPane.showMessageDialog(this, "Obra añadida correctamente", "ÉXITO!",javax.swing.JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_RegistrarObraBotonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistrarObraVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistrarObraVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistrarObraVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistrarObraVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new RegistrarObraVentana().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel AnioCreacionObra;

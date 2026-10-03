@@ -16,19 +16,23 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
     /**
      * Creates new form MenuExposicionesVentana
      */
-    
-    private java.util.HashMap<String, Exposicion> exposiciones;
-    private java.util.HashMap<String, Obra> obras;
-    
-    public MenuExposicionesVentana() {
+    private final javax.swing.JFrame ventanaAnterior; //ventana desde la que se abrió esta
+    private final HashMap<String, Exposicion> exposiciones;
+    private final HashMap<String, Obra> obras;
+
+    public MenuExposicionesVentana(javax.swing.JFrame ventanaAnterior, HashMap<String, Exposicion> exposiciones, HashMap<String, Obra> obras) {
         initComponents();
-        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
-    }
-    public MenuExposicionesVentana(java.util.HashMap<String, Exposicion> exposiciones, java.util.HashMap<String, Obra> obras) {
-        initComponents();
-        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
+        this.ventanaAnterior = ventanaAnterior;
         this.exposiciones = exposiciones;
         this.obras = obras;
+        //si se cierra esta ventana con la X, se le avisa a la ventana anterior para que también se cierre,
+        //así el aviso llega hasta el menú principal, que es el que guarda los archivos
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                ventanaAnterior.dispatchEvent(new java.awt.event.WindowEvent(ventanaAnterior, java.awt.event.WindowEvent.WINDOW_CLOSING));
+            }
+        });
     }
 
     /**
@@ -159,10 +163,8 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuPrincipalActionPerformed
-        MenuPrincipalVentana v1 = new MenuPrincipalVentana(Datos.obras, Datos.artistas,
-                Datos.exposiciones, Datos.ventas, Datos.clientes, Datos.prestamos, Datos.subastas);
-        v1.setVisible(true);
-        this.setVisible(false);
+        ventanaAnterior.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_VolverMenuPrincipalActionPerformed
 
     private void EliminarExposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarExposicionActionPerformed
@@ -172,79 +174,50 @@ public class MenuExposicionesVentana extends javax.swing.JFrame {
             javax.swing.JOptionPane.showMessageDialog(this, "No hay exposiciones registradas");
             return;
         }
-        EliminarExposicionVentana v = new EliminarExposicionVentana(exposiciones, obras);
+        EliminarExposicionVentana v = new EliminarExposicionVentana(this, exposiciones, obras);
         v.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_EliminarExposicionActionPerformed
        
     private void RegistrarExposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarExposicionActionPerformed
         // TODO add your handling code here:
-        RegistrarExposicionVentana v = new RegistrarExposicionVentana(exposiciones, obras);
+        RegistrarExposicionVentana v = new RegistrarExposicionVentana(this, exposiciones, obras);
         v.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_RegistrarExposicionActionPerformed
 
     private void BuscarExposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarExposicionActionPerformed
         // TODO add your handling code here:
-        BuscarExposicionVentana v = new BuscarExposicionVentana(exposiciones, obras);
+        BuscarExposicionVentana v = new BuscarExposicionVentana(this, exposiciones, obras);
         v.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_BuscarExposicionActionPerformed
 
     private void MostrarExposcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarExposcionesActionPerformed
-        MostrarExposicionesVentana v = new MostrarExposicionesVentana(exposiciones, obras);
+        MostrarExposicionesVentana v = new MostrarExposicionesVentana(this, exposiciones, obras);
         v.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MostrarExposcionesActionPerformed
 
     private void ModificarExposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarExposicionActionPerformed
-        MenuModificarExposicionesVentana v1 = new MenuModificarExposicionesVentana(exposiciones,obras);
+        MenuModificarExposicionesVentana v1 = new MenuModificarExposicionesVentana(this, exposiciones, obras);
         v1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_ModificarExposicionActionPerformed
 
     private void AñadirObraAExposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AñadirObraAExposicionActionPerformed
         // TODO add your handling code here:
-        AñadirObraExposicionVentana v1 = new AñadirObraExposicionVentana(exposiciones,obras);
+        AñadirObraExposicionVentana v1 = new AñadirObraExposicionVentana(this, exposiciones, obras);
         v1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_AñadirObraAExposicionActionPerformed
 
     private void EliminarObraDeExposicionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarObraDeExposicionActionPerformed
         // TODO add your handling code here:
-        EliminarObraExposicionVentana v1 = new EliminarObraExposicionVentana(exposiciones,obras);
+        EliminarObraExposicionVentana v1 = new EliminarObraExposicionVentana(this, exposiciones, obras);
         v1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_EliminarObraDeExposicionActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuExposicionesVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new MenuExposicionesVentana(new HashMap<String, Exposicion>(), new HashMap<String, Obra>()).setVisible(true);
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AñadirObraAExposicion;

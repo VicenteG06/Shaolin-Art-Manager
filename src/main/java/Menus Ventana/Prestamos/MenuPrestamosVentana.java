@@ -15,20 +15,25 @@ public class MenuPrestamosVentana extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrestamosVentana
      */
-    private ArrayList<Prestamo> prestamos;
-    private HashMap<String, Obra> obras;
-    private HashMap<String, Cliente> clientes;
+    private final javax.swing.JFrame ventanaAnterior; //ventana desde la que se abrió esta
+    private final ArrayList<Prestamo> prestamos;
+    private final HashMap<String, Obra> obras;
+    private final HashMap<String, Cliente> clientes;
 
-    public MenuPrestamosVentana() {
+    public MenuPrestamosVentana(javax.swing.JFrame ventanaAnterior, ArrayList<Prestamo> prestamos, HashMap<String, Obra> obras, HashMap<String, Cliente> clientes) {
         initComponents();
-        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
-    }
-    public MenuPrestamosVentana(ArrayList<Prestamo> prestamos, HashMap<String, Obra> obras, HashMap<String, Cliente> clientes) {
-        initComponents();
-        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
+        this.ventanaAnterior = ventanaAnterior;
         this.prestamos = prestamos;
         this.obras = obras;
         this.clientes = clientes;
+        //si se cierra esta ventana con la X, se le avisa a la ventana anterior para que también se cierre,
+        //así el aviso llega hasta el menú principal, que es el que guarda los archivos
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                ventanaAnterior.dispatchEvent(new java.awt.event.WindowEvent(ventanaAnterior, java.awt.event.WindowEvent.WINDOW_CLOSING));
+            }
+        });
     }
 
     /**
@@ -134,70 +139,33 @@ public class MenuPrestamosVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuPrincipalActionPerformed
-        MenuPrincipalVentana v1 = new MenuPrincipalVentana(Datos.obras, Datos.artistas,
-                Datos.exposiciones, Datos.ventas, Datos.clientes, Datos.prestamos, Datos.subastas);
-        v1.setVisible(true);
-        this.setVisible(false);
+        ventanaAnterior.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_VolverMenuPrincipalActionPerformed
 
     private void RegistrarPréstamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarPréstamoActionPerformed
-        RegistrarPrestamoVentana reg = new RegistrarPrestamoVentana(prestamos, clientes, obras);
+        RegistrarPrestamoVentana reg = new RegistrarPrestamoVentana(this, prestamos, clientes, obras);
         reg.setVisible(true); 
         this.setVisible(false); 
     }//GEN-LAST:event_RegistrarPréstamoActionPerformed
 
     private void EliminarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarPrestamoActionPerformed
-        EliminarPrestamoVentana eliminar = new EliminarPrestamoVentana(prestamos, obras);
+        EliminarPrestamoVentana eliminar = new EliminarPrestamoVentana(this, prestamos, obras);
         eliminar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_EliminarPrestamoActionPerformed
 
     private void BuscarPrestamoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarPrestamoActionPerformed
-        BuscarPrestamosVentana buscar = new BuscarPrestamosVentana(prestamos, obras);
+        BuscarPrestamosVentana buscar = new BuscarPrestamosVentana(this, prestamos, obras);
         buscar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_BuscarPrestamoActionPerformed
 
     private void MostrarPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarPrestamosActionPerformed
-        MostrarPrestamosVentana mostrar = new MostrarPrestamosVentana(prestamos);
+        MostrarPrestamosVentana mostrar = new MostrarPrestamosVentana(this, prestamos);
         mostrar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MostrarPrestamosActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrestamosVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrestamosVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrestamosVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrestamosVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuPrestamosVentana().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BuscarPrestamo;

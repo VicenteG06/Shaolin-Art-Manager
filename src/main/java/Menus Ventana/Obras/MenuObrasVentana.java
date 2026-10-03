@@ -16,22 +16,23 @@ public class MenuObrasVentana extends javax.swing.JFrame {
     /**
      * Creates new form MenuObrasVentana
      */
-    private static HashMap<String, Obra> obras;
-    private static HashMap<String, Artista> artistas;
-    public MenuObrasVentana() {
+    private final javax.swing.JFrame ventanaAnterior; //ventana desde la que se abrió esta
+    private final HashMap<String, Obra> obras;
+    private final HashMap<String, Artista> artistas;
+
+    public MenuObrasVentana(javax.swing.JFrame ventanaAnterior, HashMap<String, Obra> obras, HashMap<String, Artista> artistas) {
         initComponents();
-        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
-    }
-    public MenuObrasVentana(HashMap<String, Obra> obras){
-        initComponents();
-        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
-        this.obras = obras;
-    }
-    public MenuObrasVentana(HashMap<String, Obra> obras, HashMap<String, Artista> artistas){
-        initComponents();
-        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
+        this.ventanaAnterior = ventanaAnterior;
         this.obras = obras;
         this.artistas = artistas;
+        //si se cierra esta ventana con la X, se le avisa a la ventana anterior para que también se cierre,
+        //así el aviso llega hasta el menú principal, que es el que guarda los archivos
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                ventanaAnterior.dispatchEvent(new java.awt.event.WindowEvent(ventanaAnterior, java.awt.event.WindowEvent.WINDOW_CLOSING));
+            }
+        });
     }
 
     /**
@@ -137,71 +138,34 @@ public class MenuObrasVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverMenuPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuPrincipalActionPerformed
-        MenuPrincipalVentana v1 = new MenuPrincipalVentana(Datos.obras, Datos.artistas,
-                Datos.exposiciones, Datos.ventas, Datos.clientes, Datos.prestamos, Datos.subastas);
-        v1.setVisible(true);
-        this.setVisible(false);
+        ventanaAnterior.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_VolverMenuPrincipalActionPerformed
 
     private void BuscarObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarObraActionPerformed
-        BuscarObraVentana buscar = new BuscarObraVentana(obras);
+        BuscarObraVentana buscar = new BuscarObraVentana(this, obras);
         buscar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_BuscarObraActionPerformed
 
     private void MostrarObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarObrasActionPerformed
-        MostrarObrasVentana mostrar = new MostrarObrasVentana(obras);
+        MostrarObrasVentana mostrar = new MostrarObrasVentana(this, obras);
         mostrar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MostrarObrasActionPerformed
 
     private void RegistrarObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarObraActionPerformed
-        RegistrarObraVentana registrar = new RegistrarObraVentana(obras, artistas);
+        RegistrarObraVentana registrar = new RegistrarObraVentana(this, obras, artistas);
         registrar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_RegistrarObraActionPerformed
 
     private void ModificarObraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModificarObraActionPerformed
         // TODO add your handling code here:
-        MenuModificarObraVentana mod= new MenuModificarObraVentana(obras,artistas);
+        MenuModificarObraVentana mod= new MenuModificarObraVentana(this, obras, artistas);
         mod.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_ModificarObraActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuObrasVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuObrasVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuObrasVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuObrasVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuObrasVentana().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BuscarObra;

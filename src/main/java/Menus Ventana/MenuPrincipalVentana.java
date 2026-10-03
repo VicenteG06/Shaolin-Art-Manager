@@ -16,23 +16,16 @@ public class MenuPrincipalVentana extends javax.swing.JFrame {
     /**
      * Creates new form MenuPrincipalVentana
      */
-    HashMap<String, Obra> obras;
-    HashMap<String, Artista> artistas;
-    HashMap<String, Exposicion> exposiciones;
-    ArrayList<Venta> ventas;
-    HashMap<String, Cliente> clientes;
-    ArrayList<Prestamo> prestamos;
-    ArrayList<Subasta> subastas;
-    
-    public MenuPrincipalVentana() {
+    private final HashMap<String, Obra> obras;
+    private final HashMap<String, Artista> artistas;
+    private final HashMap<String, Exposicion> exposiciones;
+    private final ArrayList<Venta> ventas;
+    private final HashMap<String, Cliente> clientes;
+    private final ArrayList<Prestamo> prestamos;
+    private final ArrayList<Subasta> subastas;
+
+    public MenuPrincipalVentana(HashMap<String, Obra> obras, HashMap<String, Artista> artistas, HashMap<String, Exposicion> exposiciones, ArrayList<Venta> ventas, HashMap<String, Cliente> clientes, ArrayList<Prestamo> prestamos, ArrayList<Subasta> subastas) {
         initComponents();
-        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
-    }
-    public MenuPrincipalVentana(HashMap<String, Obra> obras, HashMap<String, Artista> artistas, 
-                       HashMap<String, Exposicion> exposiciones, ArrayList<Venta> ventas, 
-                       HashMap<String, Cliente> clientes, ArrayList<Prestamo> prestamos, ArrayList<Subasta> subastas){
-        initComponents();
-        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
         this.obras = obras;
         this.artistas = artistas;
         this.exposiciones = exposiciones;
@@ -40,8 +33,20 @@ public class MenuPrincipalVentana extends javax.swing.JFrame {
         this.clientes = clientes;
         this.prestamos = prestamos;
         this.subastas = subastas;
+        //al cerrar la ventana con la X (o cuando una ventana hija avisa que se cerró) se guardan los archivos
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                guardarArchivos();
+            }
+        });
     }
-            
+
+    //se cierra la subasta activa y se guardan todas las colecciones en los .csv (lo mismo que hace el main en modo consola)
+    private void guardarArchivos(){
+        MenuSubastas.cerrarSubastaActiva(subastas, clientes);
+        ManejoArchivos.guardarArchivos(prestamos, ventas, clientes, exposiciones, obras);
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -150,69 +155,34 @@ public class MenuPrincipalVentana extends javax.swing.JFrame {
 
     private void MenuObrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuObrasActionPerformed
         // TODO add your handling code here:
-        MenuObrasVentana v1 = new MenuObrasVentana(obras, artistas);
+        MenuObrasVentana v1 = new MenuObrasVentana(this, obras, artistas);
         v1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MenuObrasActionPerformed
 
     private void MenuPrestamosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuPrestamosActionPerformed
-        MenuPrestamosVentana v4 = new MenuPrestamosVentana(prestamos, obras, clientes);
+        MenuPrestamosVentana v4 = new MenuPrestamosVentana(this, prestamos, obras, clientes);
         v4.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MenuPrestamosActionPerformed
 
     private void MenuExposicionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuExposicionesActionPerformed
-        MenuExposicionesVentana v5 = new MenuExposicionesVentana(exposiciones,obras);
+        MenuExposicionesVentana v5 = new MenuExposicionesVentana(this, exposiciones, obras);
         v5.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MenuExposicionesActionPerformed
 
     private void MenuArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuArtistasActionPerformed
-        MenuArtistasVentana v2 = new MenuArtistasVentana(artistas, obras);
+        MenuArtistasVentana v2 = new MenuArtistasVentana(this, artistas, obras);
         v2.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MenuArtistasActionPerformed
 
     private void MenuVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuVentasActionPerformed
-        MenuVentasVentana v3 = new MenuVentasVentana(ventas, obras, clientes, subastas);
+        MenuVentasVentana v3 = new MenuVentasVentana(this, ventas, obras, clientes, subastas);
         v3.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_MenuVentasActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MenuPrincipalVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MenuPrincipalVentana().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton MenuArtistas;

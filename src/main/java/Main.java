@@ -22,14 +22,6 @@ public class Main {
         ArrayList<Venta> registroVentas = ManejoArchivos.cargarVentasDesdeCsv("data/ventas.csv", clientes, obras);
         ArrayList<Prestamo> registroPrestamos = ManejoArchivos.cargarPrestamosDesdeCsv("data/prestamos.csv", clientes, obras);
         ArrayList<Subasta> registroSubastas = new ArrayList<>();
-        // Se guardan las colecciones en Datos para que las ventanas puedan reconstruir los menús al volver
-        Datos.obras = obras;
-        Datos.artistas = artistas;
-        Datos.exposiciones = exposiciones;
-        Datos.clientes = clientes;
-        Datos.ventas = registroVentas;
-        Datos.prestamos = registroPrestamos;
-        Datos.subastas = registroSubastas;
         // Se imprime por pantalla y se declara el menú de selección de modo de ejecución
         char opcion = ' ';
        
@@ -49,8 +41,13 @@ public class Main {
             switch(opcion){
             case '1':
                 MenuPrincipal.menuPrincipal(obras, artistas, exposiciones, registroVentas, clientes, registroPrestamos, registroSubastas);
+                // al salir del modo consola se cierra la subasta activa y se guardan los archivos
+                MenuSubastas.cerrarSubastaActiva(registroSubastas, clientes);
+                ManejoArchivos.guardarArchivos(registroPrestamos, registroVentas, clientes, exposiciones, obras);
                 break;
             case '2':
+                // en modo ventana, el menú principal es el controlador: recibe las colecciones
+                // y es el que guarda los archivos cuando se cierra el programa
                 new MenuPrincipalVentana(obras, artistas, exposiciones, registroVentas, clientes, registroPrestamos, registroSubastas).setVisible(true);
                 break;
             default:
@@ -65,7 +62,5 @@ public class Main {
             System.out.println("Error de lectura: " + e.getMessage());
             return;
         }
-        MenuSubastas.cerrarSubastaActiva(registroSubastas, clientes);
-        ManejoArchivos.guardarArchivos(registroPrestamos, registroVentas, clientes, exposiciones, obras);
     }
 }

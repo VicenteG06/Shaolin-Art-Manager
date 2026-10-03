@@ -13,20 +13,27 @@ import java.util.*;
 
 public class BuscarObrasArtistaVentana extends javax.swing.JFrame {
 
-    private HashMap<String, Artista> artistas;
-    private HashMap<String, Obra> obras;
     
     /** Creates new form BuscarObrasArtistaVentana */
-    public BuscarObrasArtistaVentana() {
+    private final javax.swing.JFrame ventanaAnterior; //ventana desde la que se abrió esta
+    private final HashMap<String, Artista> artistas;
+    private final HashMap<String, Obra> obras;
+
+    public BuscarObrasArtistaVentana(javax.swing.JFrame ventanaAnterior, HashMap<String, Artista> artistas, HashMap<String, Obra> obras) {
         initComponents();
-        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
-    }
-    public BuscarObrasArtistaVentana(HashMap<String, Artista> artistas, HashMap<String, Obra> obras){
-        initComponents();
-        Datos.guardarAlCerrar(this); //se guardan los archivos al cerrar la ventana
+        this.ventanaAnterior = ventanaAnterior;
         this.artistas = artistas;
         this.obras = obras;
+        //si se cierra esta ventana con la X, se le avisa a la ventana anterior para que también se cierre,
+        //así el aviso llega hasta el menú principal, que es el que guarda los archivos
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                ventanaAnterior.dispatchEvent(new java.awt.event.WindowEvent(ventanaAnterior, java.awt.event.WindowEvent.WINDOW_CLOSING));
+            }
+        });
     }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -118,9 +125,8 @@ public class BuscarObrasArtistaVentana extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void VolverMenuArtistasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VolverMenuArtistasActionPerformed
-        MenuArtistasVentana menu = new MenuArtistasVentana(artistas);
-        menu.setVisible(true);
-        this.setVisible(false);
+        ventanaAnterior.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_VolverMenuArtistasActionPerformed
 
     private void IngresarNombreArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IngresarNombreArtistaActionPerformed
@@ -144,41 +150,6 @@ public class BuscarObrasArtistaVentana extends javax.swing.JFrame {
         }
         jTable1.setModel(modeloTabla);
     }//GEN-LAST:event_BuscarObrasBotonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(BuscarObrasArtistaVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(BuscarObrasArtistaVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(BuscarObrasArtistaVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(BuscarObrasArtistaVentana.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BuscarObrasArtistaVentana().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BuscarObrasBoton;
