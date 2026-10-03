@@ -1,15 +1,13 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-import java.util.*;
 
 /**
- *
+ * @archivo: MenuSubastasVentana.java
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Menú para acceder a todas las funcionalidades del menú subastas por ventana
  * @author Vicente Gamboa
- */
+ * @Lenguaje: Java
+*/
+import java.util.*;
+
 public class MenuSubastasVentana extends javax.swing.JFrame {
 
     /** Creates new form MenuSubastasVentana */

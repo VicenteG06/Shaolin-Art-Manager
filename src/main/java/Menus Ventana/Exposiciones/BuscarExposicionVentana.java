@@ -1,16 +1,15 @@
 
+/**
+ * @archivo: BuscarExposicionVentana.java
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Método para buscar exposiciones por ventana
+ * @author Antonia Avello
+ * @Lenguaje: Java
+*/
+
 import java.util.*;
 import javax.swing.table.DefaultTableModel;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-/**
- *
- * @author Alejandro
- */
 public class BuscarExposicionVentana extends javax.swing.JFrame {
 
     private final javax.swing.JFrame ventanaAnterior; //ventana desde la que se abrió esta

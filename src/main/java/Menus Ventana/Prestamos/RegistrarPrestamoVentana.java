@@ -201,7 +201,7 @@ public class RegistrarPrestamoVentana extends javax.swing.JFrame {
         }
         Obra o = obras.get(idObra.toLowerCase());
         if(!(o.getEstado()).equals("Disponible")){
-            javax.swing.JOptionPane.showMessageDialog(this, "La obra ya ha sido prestada", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "La obra no está disponible", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
             return;
         }
 

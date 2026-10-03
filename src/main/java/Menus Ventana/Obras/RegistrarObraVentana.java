@@ -1,12 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /**
- *
+ * @archivo: RegistrarObraVentanajava
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Método para registrar una obra por ventana
  * @author Vicente Gamboa
- */
+ * @Lenguaje: Java
+*/
 
 import java.util.*;
 import javax.swing.table.DefaultTableModel;

@@ -1,16 +1,14 @@
 
+/**
+ * @archivo: MenuObrasVentana.java
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Menú para acceder a todas las funcionalidades del menú obras por ventana
+ * @author Vicente Gamboa
+ * @Lenguaje: Java
+*/
+
 import java.util.*;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Vicente Gamboa
- */
 public class MenuObrasVentana extends javax.swing.JFrame {
 
     /**

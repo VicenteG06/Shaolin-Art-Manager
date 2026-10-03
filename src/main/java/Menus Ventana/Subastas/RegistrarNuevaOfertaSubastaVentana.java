@@ -1,15 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
+/**
+ * @archivo: RegistrarNuevaOfertaSubastaVentana.java
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Método para registrar una nueva oferta para la subasta activa por ventana
+ * @author Vicente Gamboa
+ * @Lenguaje: Java
+*/
 
 import java.util.*;
 
-/**
- *
- * @author Vicente Gamboa
- */
 public class RegistrarNuevaOfertaSubastaVentana extends javax.swing.JFrame {
 
     /** Creates new form RegistrarNuevaOfertaSubastaVentana */

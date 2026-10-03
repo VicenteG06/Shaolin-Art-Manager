@@ -1,12 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /**
- *
- * @author Alejandro
- */
+ * @archivo: RegistrarExposiciónVentana.java
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Método para registrar una exposición por ventana
+ * @author Antonia Avello
+ * @Lenguaje: Java
+*/
+
 import java.util.*;
 import java.time.*;
 import java.time.format.DateTimeParseException;

@@ -1,12 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 /**
- *
- * @author Alejandro
- */
+ * @archivo: RegistrarVentaVentana.java
+ * @Proyecto: Shaolin Art Manager 
+ * @Descripción: Método para registrar ventas por ventana
+ * @author Vicente Gamboa
+ * @Lenguaje: Java
+*/
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -202,7 +201,7 @@ public class RegistrarVentaVentana extends javax.swing.JFrame {
         }
         Obra o = obras.get(idObra.toLowerCase());
         if(!(o.getEstado()).equals("Disponible")){
-            javax.swing.JOptionPane.showMessageDialog(this, "La obra ya ha sido vendida", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "La obra no está disponible", "Error",javax.swing.JOptionPane.ERROR_MESSAGE);
             return;
         }
         
